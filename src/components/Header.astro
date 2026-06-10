@@ -1,11 +1,10 @@
 ---
-// input: siteConfig, getAvailableLocales, getMainNavItems
-// output: Header navigation layout with logo, nav links, and locale selector
-// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/components/Header.astro (更新规则：文件变更需同步本注释与所属目录 README)
+// input: siteConfig, getAvailableLocales
+// output: Header navigation layout with logo, Guides dropdown menu, nav links, and locale selector
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/components/Header.astro (更新规则：文件变更需同步本目录 README)
 import { siteConfig } from "../data/config";
-import { getAvailableLocales, getMainNavItems } from "../lib/navigation";
+import { getAvailableLocales } from "../lib/navigation";
 
-const navItems = getMainNavItems();
 const locales = getAvailableLocales();
 ---
 
@@ -17,9 +16,29 @@ const locales = getAvailableLocales();
       <small>Roblox wiki hub</small>
     </span>
   </a>
+  
   <nav aria-label="Main navigation">
-    {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a href="/">Home</a>
+    <a href="/codes/">Codes</a>
+    
+    <!-- Dropdown Menu for Guides -->
+    <div class="nav-dropdown" data-nav-dropdown>
+      <div class="nav-dropdown__control">
+        <a class="nav-dropdown__link" href="/progression/">Guides</a>
+        <button class="nav-dropdown__chevron" type="button" aria-expanded="false" aria-haspopup="true" aria-label="Guides menu"></button>
+      </div>
+      <div class="nav-dropdown__menu" role="menu">
+        <a href="/beginner-guide/" role="menuitem">Beginner Guide</a>
+        <a href="/money-fast/" role="menuitem">Make Money Fast</a>
+        <a href="/progression/" role="menuitem">Best Progression</a>
+        <a href="/rebirths/" role="menuitem">Rebirth Guide</a>
+      </div>
+    </div>
+
+    <a href="/income-sources/">Income Sources</a>
+    <a href="/deals/">Deals</a>
   </nav>
+
   <details class="language-menu">
     <summary>Language</summary>
     <div class="language-list">
@@ -30,4 +49,57 @@ const locales = getAvailableLocales();
       ))}
     </div>
   </details>
+
+  <!-- Script to handle mobile dropdown toggling -->
+  <script is:inline>
+    const closeDropdown = (dropdown) => {
+      dropdown.classList.remove("is-open");
+      const chevron = dropdown.querySelector(".nav-dropdown__chevron");
+      if (chevron) {
+        chevron.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    document.querySelectorAll("[data-nav-dropdown]").forEach((dropdown) => {
+      const chevron = dropdown.querySelector(".nav-dropdown__chevron");
+      if (chevron) {
+        chevron.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = dropdown.classList.contains("is-open");
+          
+          // Close other open dropdowns first
+          document.querySelectorAll("[data-nav-dropdown].is-open").forEach((other) => {
+            if (other !== dropdown) {
+              closeDropdown(other);
+            }
+          });
+
+          dropdown.classList.toggle("is-open", !isOpen);
+          chevron.setAttribute("aria-expanded", String(!isOpen));
+        });
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener("click", (e) => {
+      if (e.target instanceof Element && !e.target.closest("[data-nav-dropdown]")) {
+        document.querySelectorAll("[data-nav-dropdown].is-open").forEach((dropdown) => {
+          closeDropdown(dropdown);
+        });
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll("[data-nav-dropdown].is-open").forEach((dropdown) => {
+          closeDropdown(dropdown);
+          const chevron = dropdown.querySelector(".nav-dropdown__chevron");
+          if (chevron) {
+            chevron.focus();
+          }
+        });
+      }
+    });
+  </script>
 </header>
