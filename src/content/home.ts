@@ -10,7 +10,8 @@ export const wikiLinks = [
   { title: "Rebirths", slug: "rebirths", description: "Research reported rebirth mechanics and bonuses." },
   { title: "Deals", slug: "deals", description: "Track reported deal and haggling mechanics without fabricating rates or prices." },
   { title: "Beginner Guide", slug: "beginner-guide", description: "Get started on your lemon stand and make your first $10K easily." },
-  { title: "Money Fast", slug: "money-fast", description: "Master the fastest active and passive methods to earn cash quickly." }
+  { title: "Money Fast", slug: "money-fast", description: "Master the fastest active and passive methods to earn cash quickly." },
+  { title: "Best Upgrades", slug: "best-upgrades", description: "Check the best upgrades, automators, and gamepasses rankings." }
 ];
 
 export const homeContent = {

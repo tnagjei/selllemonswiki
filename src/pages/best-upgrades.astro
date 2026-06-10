@@ -1,0 +1,138 @@
+---
+// input: siteConfig, evidenceNotice from config and reported-guides
+// output: Dedicated guide detailing upgrade rankings, priority matrix, and optimal builds
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/best-upgrades.astro (更新规则：文件变更需同步本目录 README与文件头注释)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import { siteConfig } from "../data/config";
+import { evidenceNotice } from "../data/reported-guides";
+---
+
+<SiteLayout title="Sell Lemons Best Upgrades Ranking | Optimal Build Priority" description="Check the best upgrades, automators, and gamepasses in Roblox Sell Lemons. Maximize your Rebirth efficiency with the active and passive meta builds.">
+  <main>
+    <!-- Page Hero Section -->
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Rankings & Meta</p>
+          <h1>Sell Lemons Best Upgrades Ranking</h1>
+          <p>Check our weekly updated priorities matrix to find the absolute best upgrades, automators, and gamepasses to optimize your fast-progression loop.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons best upgrades priority rankings" width="894" height="500" />
+      </div>
+    </section>
+
+    <!-- Main Guide Body -->
+    <article class="guide-detail">
+      <h2>The Upgrade Priority Matrix</h2>
+      <div class="guide-step-flow">
+        
+        <!-- S-Rank -->
+        <section class="guide-step-card" style="border-left: 4px solid #ef4444;">
+          <h3 style="color: #ef4444; font-size: 1.3rem;">🔥 S-Rank — Essential Meta Upgrades</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">The most powerful systems in Sell Lemons. Essential for long-term progression speedruns.</p>
+          <ul>
+            <li><strong>Alien Investors (Core System):</strong> The main engine for your whole Rebirth loop. You need these points to unlock permanent, game-changing multiplier boosts.</li>
+            <li><strong>Expert Picker (Alien Power):</strong> Massively scales the cash rewards when you manually pick up loose floor fruits. This is the absolute best meta for active players trying to climb the leaderboard fast.</li>
+            <li><strong>Run Faster (Alien Power):</strong> Grants a massive speed boost, allowing you to zoom around the map and harvest spawned lemons way faster.</li>
+            <li><strong>Cash Register Automator (Base Automation):</strong> Automatically collects cash from your stand, removing finger click strain and making early game setup a breeze.</li>
+            <li><strong>2x Stand Cash (Premium Pass):</strong> Permanent double stand multiplier that compounds with all other multipliers from the second you spawn.</li>
+          </ul>
+        </section>
+
+        <!-- A-Rank -->
+        <section class="guide-step-card" style="border-left: 4px solid #3b82f6;">
+          <h3 style="color: #3b82f6; font-size: 1.3rem;">⚡ A-Rank — High Efficiency Upgrades</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Improves income scaling speed and automation efficiency in mid-game progression.</p>
+          <ul>
+            <li><strong>LemonDash Garage (Logistics):</strong> Unlocks the racing delivery minigame which yields huge startup cash injections.</li>
+            <li><strong>LemonDash Manager (Automation):</strong> Passively completes deliveries for you so you can continue running around the map harvesting fruits.</li>
+            <li><strong>LemonDash Delivery Fees (Logistics):</strong> Permanently increases the baseline payout of delivery minigame phone contracts.</li>
+            <li><strong>Vehicle Speed (Logistics):</strong> Speeds up your delivery truck, decreasing automated run times and raising cash rate speeds.</li>
+            <li><strong>Depot Manager (Base Automation):</strong> Automatically steps on physical base buttons, freeing you from manual construction routines.</li>
+          </ul>
+        </section>
+
+        <!-- B-Rank -->
+        <section class="guide-step-card" style="border-left: 4px solid #f59e0b;">
+          <h3 style="color: #f59e0b; font-size: 1.3rem;">✨ B-Rank — Situational & Mid-Game Upgrades</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Useful for early-to-mid progression, but becomes less efficient once late-game automation is running.</p>
+          <ul>
+            <li><strong>Labs Permanent Upgrades (Base Tech):</strong> A late-game technology tree containing crucial multipliers that survive Evolve resets.</li>
+            <li><strong>Cup Stand Upgrade (Base Progression):</strong> Provides a steady, reliable stream of passive background cash for your stand.</li>
+            <li><strong>Depot Per-Click (Active):</strong> Buffs click rewards inside the factory. Perfect if you run auto-clickers or macros.</li>
+            <li><strong>Depot Multipliers (Active):</strong> Triggers massive, temporary multiplier spikes while you click inside the Depot.</li>
+            <li><strong>Street Flyers (Base Progression):</strong> Attracts more customers to your starting lemonade stands, slightly boosting early stand cash flow.</li>
+            <li><strong>Trading Manager (Automation):</strong> Automates futures trading and resource exchange without manual terminal interaction.</li>
+          </ul>
+        </section>
+
+        <!-- C-Rank -->
+        <section class="guide-step-card" style="border-left: 4px solid #10b981;">
+          <h3 style="color: #10b981; font-size: 1.3rem;">🟢 C-Rank — Low Efficiency Upgrades</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Basic systems that are quickly outscaled by active gathering and delivery loops.</p>
+          <ul>
+            <li><strong>Required Decorations (Blockers):</strong> A mandatory cash trap. The game forces you to buy these signs, walls, and lights simply to spawn the next progression buttons.</li>
+            <li><strong>Main Lemon Stands (Base Progression):</strong> Basic passive stands. They are decent for early AFK but get outpaced by active picking.</li>
+          </ul>
+        </section>
+
+        <!-- D-Rank -->
+        <section class="guide-step-card" style="border-left: 4px solid #64748b;">
+          <h3 style="color: #64748b; font-size: 1.3rem;">⚪ D-Rank — Cosmetic & Trap Items</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Zero impact on economic progression. Avoid spending money on these early.</p>
+          <ul>
+            <li><strong>Cosmetic Fences & Signs:</strong> Yields zero stat buffs. Only purchase right before resetting to claim the 100% completion speed bonus.</li>
+            <li><strong>Cosmetic Skins:</strong> Visually customized base looks. Offers no economic progression value.</li>
+            <li><strong>24h Instant Profit (Consumables):</strong> A premium Robux trap. Avoid unless popped during active high-value weather multiplier events.</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <h2>Meta Progression Builds</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>The Active Fruit-Picking Build (Fast Rebirths)</h3>
+          <ul>
+            <li><strong>Core Powers:</strong> Expert Picker + Run Faster (Max these out with your Investor points first)</li>
+            <li><strong>Base Setup:</strong> Cash Register Automator + 2x Stand Cash (Purchase the gamepass if possible)</li>
+            <li><strong>Build Summary:</strong> This setup boosts manual gathering speed by over 1000%. It is the best strategy for free-to-play and micro-spending players to speedrun their first 20 Rebirth cycles and climb the leaderboards.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>The Idle Automation Build (Mid-to-Late Game)</h3>
+          <ul>
+            <li><strong>Core Automation:</strong> LemonDash Manager + Depot Manager + Trading Manager</li>
+            <li><strong>Passive Boosts:</strong> Labs Permanent Upgrades + Street Flyers</li>
+            <li><strong>Build Summary:</strong> Perfect for hands-free progress or making money while away. The game grants 100% full offline income. Sleep for 8 hours and wake up with enough capital to trigger a major Ascension loop.</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- What to Do Next Section -->
+      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
+        <header class="guide-what-next__head">
+          <span class="guide-what-next__icon" aria-hidden="true">⚡</span>
+          <h2 id="guide-what-next-title">What to Do Next</h2>
+        </header>
+        <div class="guide-what-next__divider" aria-hidden="true">
+          <span></span>
+          <span class="guide-what-next__diamond"></span>
+          <span></span>
+        </div>
+        <a class="guide-what-next__cta" href="/money-fast/">
+          <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
+          <span class="guide-what-next__cta-copy">
+            <strong>👉 Learn How to Make Money Fast</strong>
+            <span>Explore the best active and passive money-making strategies to compound your wealth.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="best-upgrades" />
+    </article>
+  </main>
+</SiteLayout>

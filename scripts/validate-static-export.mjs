@@ -43,7 +43,7 @@ function includesInsensitive(text, needle) {
 }
 
 const siteDomain = extractString(configText, "siteDomain", "https://example.com").replace(/\/+$/g, "");
-const completedCoreSlugs = [...extractArray(configText, "completedCoreSlugs"), "beginner-guide", "money-fast"];
+const completedCoreSlugs = [...extractArray(configText, "completedCoreSlugs"), "beginner-guide", "money-fast", "best-upgrades"];
 const completedEnglishOnlySlugs = extractArray(configText, "completedEnglishOnlySlugs");
 const systemSlugs = extractArray(configText, "systemSlugs");
 const blockedSlugs = extractArray(configText, "blockedSlugs");
