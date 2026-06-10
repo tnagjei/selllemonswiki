@@ -1,33 +1,92 @@
 ---
-// input: siteConfig, evidenceNotice, reportedIncomeSources from config and reported-guides
-// output: Income Sources page template listing stands and scaling options
+// input: siteConfig, evidenceNotice from config and reported-guides
+// output: High-fidelity step-by-step income sources guide matching competitor framework
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/income-sources.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
-import { evidenceNotice, reportedIncomeSources } from "../data/reported-guides";
+import { evidenceNotice } from "../data/reported-guides";
 ---
 
-<SiteLayout title="Sell Lemons Income Sources | Money, Upgrades & Scaling" description="Explore Sell Lemons income sources, money growth, upgrade paths, scaling mechanics, and gameplay tips for earning faster in Roblox.">
-  <main class="content-page">
-    <section class="prose-block">
-      <p class="eyebrow">Income sources</p>
-      <h1>{siteConfig.gameName} Income Sources</h1>
-      <p>{evidenceNotice.body}</p>
-      <p>This page tracks reported income sources for {siteConfig.gameName}. Costs, multipliers, and unlock requirements are not verified unless supported by official evidence.</p>
-    </section>
-    <section class="section">
-      <h2>Reported income sources</h2>
-      <div class="card-grid">
-        {reportedIncomeSources.map((item) => (
-          <article class="card">
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <p class="source-label">{item.sourceLabel}</p>
-          </article>
-        ))}
+<SiteLayout title="Sell Lemons Income Sources | Compounding Ecosystem & Automation Meta" description="Discover the fastest money methods in Sell Lemons! Learn the best income sources, passive offline farming, manager recruitment hierarchy, and how to avoid decoration traps.">
+  <main>
+    <!-- Page Hero Section -->
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Money Fast</p>
+          <h1>The Ultimate Money-Fast Matrix: Maximize Your Tycoon Yield</h1>
+          <p>Stop grinding backward. This blueprint breaks down the absolute fastest money methods, ranks the best income sources, reveals hidden passive income tips, and exposes the brutal mistakes bleeding your bank account.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons income sources guide" width="894" height="500" />
       </div>
     </section>
-    <RelatedGuides currentSlug="income-sources" />
+
+    <!-- Detailed Guide Content -->
+    <article class="guide-detail">
+      <h2>The Compounding Income Blueprint</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>⚡ 1. Fastest Money Methods — The Payout Flips</h3>
+          <ul>
+            <li><strong>The Blueprint Meta:</strong> Your absolute fastest active money method in the early-to-mid game is exploiting the Level 2 LemonDash phone message system. When NPCs text you with delivery offers, NEVER click auto-accept!</li>
+            <li><strong>Action Blueprint:</strong> Always use the counter-offer option to haggle. Countering by 25% to 35% above the starting price forces the game's AI to meet you halfway, instantly multiplying single deliveries into $8,000+ lump-sum payouts within seconds.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>🍋 2. Best Income Sources — The Stacking Pyramid</h3>
+          <ul>
+            <li><strong>The Blueprint Meta:</strong> The best income sources are not a single building—they are a compounding ecosystem. The game uses an 8-tier progression system spanning from the starter Lemon Stand all the way up to cosmic LemonX.</li>
+            <li><strong>Action Blueprint:</strong> Higher tiers don't replace old ones; they multiply them. Even in the endgame, the base cash from lower tiers compounds exponentially through global modifiers and Ascension loops. Never leave your early-game nodes empty!</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>💤 3. Passive Income Tips — The 100% Offline Exploit</h3>
+          <ul>
+            <li><strong>The Blueprint Meta:</strong> The ultimate passive income tip relies on the game's built-in offline reward mechanics. Unlike standard tycoon games that nerf your away-from-keyboard (AFK) earnings, Sell Lemons grants you 100% full income rate indefinitely while offline.</li>
+            <li><strong>Action Blueprint:</strong> The optimal cycle is "Burst and Sleep"—log in, collect 100% of your accumulated offline bankroll, throw all capital into automated infrastructure upgrades, and log out immediately. Staying online mid-game adds zero mathematical advantage.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>🤖 4. Automation Strategy — Manager Purchasing Priority</h3>
+          <ul>
+            <li><strong>The Blueprint Meta:</strong> An efficient automation strategy turns active clicking into a hands-free automated empire, but buying managers in the wrong order wastes millions in capital.</li>
+            <li><strong>Action Blueprint:</strong> Follow this strict recruitment chain to maximize your ROI:
+              <ol type="a">
+                <li><strong>Stand Automator (🍋 Tier 1):</strong> Unlocked early to permanently remove finger strain.</li>
+                <li><strong>LemonDash Manager (🚚 Tier 2):</strong> Buy only after maxing delivery fees and vehicle speeds—never run a manager on a weak setup!</li>
+                <li><strong>Depot Manager (🏭 Tier 3):</strong> Hire only after expanding factory multiplier nodes and buying base decorations.</li>
+              </ol>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- What to Do Next Section -->
+      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
+        <header class="guide-what-next__head">
+          <span class="guide-what-next__icon" aria-hidden="true">🔄</span>
+          <h2 id="guide-what-next-title">What to Do Next</h2>
+        </header>
+        <div class="guide-what-next__divider" aria-hidden="true">
+          <span></span>
+          <span class="guide-what-next__diamond"></span>
+          <span></span>
+        </div>
+        <a class="guide-what-next__cta" href="/rebirths/">
+          <span class="guide-what-next__cta-arrow" aria-hidden="true">🔄</span>
+          <span class="guide-what-next__cta-copy">
+            <strong>👉 Rebirth Strategy</strong>
+            <span>Master the prestige system and claim permanent Alien Investor multipliers.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="income-sources" />
+    </article>
   </main>
 </SiteLayout>

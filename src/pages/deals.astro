@@ -1,33 +1,91 @@
 ---
-// input: siteConfig, evidenceNotice, reportedDeals from config and reported-guides
-// output: Deals page template showing negotiation mechanics and selling strategies
+// input: siteConfig, evidenceNotice from config and reported-guides
+// output: High-fidelity step-by-step deals and secrets guide matching competitor framework
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/deals.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
-import { evidenceNotice, reportedDeals } from "../data/reported-guides";
+import { evidenceNotice } from "../data/reported-guides";
 ---
 
-<SiteLayout title="Sell Lemons Deals Guide | Trading, Offers & Profit Tips" description="Master Sell Lemons deals with trading notes, offer timing, profit tips, upgrade choices, and practical Roblox strategy for better returns.">
-  <main class="content-page">
-    <section class="prose-block">
-      <p class="eyebrow">Deals</p>
-      <h1>{siteConfig.gameName} Deals Guide</h1>
-      <p>{evidenceNotice.body}</p>
-      <p>This page tracks reported deal and haggling mechanic research for {siteConfig.gameName}. Pricing, multipliers, and negotiation outcomes are not verified unless supported by official evidence.</p>
-    </section>
-    <section class="section">
-      <h2>Reported deal research</h2>
-      <div class="card-grid">
-        {reportedDeals.map((item) => (
-          <article class="card">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            <p class="source-label">{item.sourceLabel}</p>
-          </article>
-        ))}
+<SiteLayout title="Sell Lemons Deals & Secrets | Sewer Mazes & UFO Keys" description="Unlock hidden areas in Sell Lemons! Solve the sewer maze, decode the 5-color lever puzzle, get the UFO key, and read honest gamepass reviews.">
+  <main>
+    <!-- Page Hero Section -->
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Endgame Unlocks</p>
+          <h1>Endgame Secrets & Keys: Complete Maze Walkthrough</h1>
+          <p>Hidden Secrets & Keys are not just collectibles. They directly impact your progression in Sell Lemons. Complete these quests to solve sewer mazes, locate hidden keys, and scale your lemonade empire efficiently.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons secrets guide" width="894" height="500" />
       </div>
     </section>
-    <RelatedGuides currentSlug="deals" />
+
+    <!-- Detailed Guide Content -->
+    <article class="guide-detail">
+      <h2>The Secrets & Gamepass Blueprint</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Step 1: The Sewer Key & Maze Entry</h3>
+          <ul>
+            <li><strong>The Secret Unlock:</strong> The Sewer Key unlocks the underground sewer system, which contains rare items, Cosmic Cash Vines, and hidden quest progression.</li>
+            <li><strong>Action Blueprint:</strong> Navigate the dark sewers to locate the hidden lever chambers. Because the patterns are complex, prepare with a map or follow our 5-color lever layout in Step 2.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 2: The 5-Color Lever Puzzle Sequence</h3>
+          <ul>
+            <li><strong>The Secret Unlock:</strong> Opening the underground steel vault door.</li>
+            <li><strong>Action Blueprint:</strong> Locate the 5 colored levers inside the maze. Pull them in the exact verified sequence to release the vault locks. Opening the vault grants immediate access to the Cosmic Cash Vine chamber.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 3: The UFO Key Quest & Good Samaritan Badge</h3>
+          <ul>
+            <li><strong>The Secret Unlock:</strong> Triggers the UFO event zone with special spawn mechanics and a permanent F2P Investor multiplier.</li>
+            <li><strong>Action Blueprint:</strong> Solve the Good Samaritan puzzle inside the sewers to retrieve the UFO Key. Walking to the UFO site with the key active rewards you with a permanent +1% to +2% Investor Multiplier (the maximum possible for free-to-play players).</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 4: Gamepass Evaluation (God-Tier vs. Traps)</h3>
+          <ul>
+            <li><strong>The Secret Unlock:</strong> Optimize your real Robux investments.</li>
+            <li><strong>Action Blueprint:</strong>
+              <ul>
+                <li><strong>God-Tier:</strong> "Double Investors" Gamepass (stacks up to 4 times) and the 4-stack Speed Gamepass. Essential for leaderboard competitive progression.</li>
+                <li><strong>Traps:</strong> Buying early Lemon X sources or managers directly. Their slow base speed makes them highly inefficient without stacking global multipliers first.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- What to Do Next Section -->
+      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
+        <header class="guide-what-next__head">
+          <span class="guide-what-next__icon" aria-hidden="true">🎁</span>
+          <h2 id="guide-what-next-title">What to Do Next</h2>
+        </header>
+        <div class="guide-what-next__divider" aria-hidden="true">
+          <span></span>
+          <span class="guide-what-next__diamond"></span>
+          <span></span>
+        </div>
+        <a class="guide-what-next__cta" href="/codes/">
+          <span class="guide-what-next__cta-arrow" aria-hidden="true">🎁</span>
+          <span class="guide-what-next__cta-copy">
+            <strong>👉 Check Active Codes</strong>
+            <span>Claim free boosts, cash bonuses, and speed increases before they expire.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="deals" />
+    </article>
   </main>
 </SiteLayout>

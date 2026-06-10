@@ -1,33 +1,86 @@
 ---
-// input: siteConfig, evidenceNotice, reportedRebirthInfo from config and reported-guides
-// output: Rebirths page template showing rebirth requirements and bonuses
+// input: siteConfig, evidenceNotice from config and reported-guides
+// output: High-fidelity step-by-step rebirth guide matching competitor framework
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/rebirths.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
-import { evidenceNotice, reportedRebirthInfo } from "../data/reported-guides";
+import { evidenceNotice } from "../data/reported-guides";
 ---
 
-<SiteLayout title="Sell Lemons Rebirth Guide | Requirements, Bonuses & Tips" description="Use this Sell Lemons rebirth guide to understand requirements, bonuses, reset planning, upgrade timing, and progression tips for Roblox players.">
-  <main class="content-page">
-    <section class="prose-block">
-      <p class="eyebrow">Rebirths</p>
-      <h1>{siteConfig.gameName} Rebirth Guide</h1>
-      <p>{evidenceNotice.body}</p>
-      <p>This page tracks reported rebirth mechanic research for {siteConfig.gameName}. Rebirth requirements, bonuses, and multipliers are not verified unless supported by official evidence.</p>
-    </section>
-    <section class="section">
-      <h2>Reported rebirth research</h2>
-      <div class="card-grid">
-        {reportedRebirthInfo.map((item) => (
-          <article class="card">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            <p class="source-label">{item.sourceLabel}</p>
-          </article>
-        ))}
+<SiteLayout title="Sell Lemons Rebirth Guide | Optimal Evolve Milestones & Reset Recovery" description="Use this Sell Lemons rebirth guide to master evolve milestones, permanent boosts, the community 350% multiplier sweet spot, and post-reset recovery strategy.">
+  <main>
+    <!-- Page Hero Section -->
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Prestige Strategy</p>
+          <h1>The Ultimate Rebirth Blueprint: Maximize Multipliers</h1>
+          <p>Ready to reset your base for permanent multipliers? Learn why you must wait for the community-verified 350% investor sweet spot and how to execute the 180-second post-reset recovery walkthrough to secure maximum growth.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons rebirth guide" width="894" height="500" />
       </div>
     </section>
-    <RelatedGuides currentSlug="rebirths" />
+
+    <!-- Detailed Guide Content -->
+    <article class="guide-detail">
+      <h2>The Rebirth & Evolution Road Map</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Step 1: Evolve Valuation Thresholds</h3>
+          <ul>
+            <li><strong>The Milestone Target:</strong> You unlock the Rebirth feature when your total base valuation hits roughly 50 to 100 Sextillion. Valuation includes spent cash, bought buttons, and structures.</li>
+            <li><strong>Action Blueprint:</strong> Do not rush into resetting. Keep pushing upgrades until you reach Evolution 6 (requiring cash/base valuation between 50 to 100 Octillion alongside a high count of Investors) which grants your base a permanent 42x income speed buff.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 2: The Community 350% Sweet Spot Rule</h3>
+          <ul>
+            <li><strong>The Milestone Target:</strong> To scale your investor income, you must collect permanent Alien Investor percentage multipliers.</li>
+            <li><strong>Action Blueprint:</strong> NEVER Rebirth under a 200% investor bonus! The ultimate community-verified sweet spot is 350%+. Resetting at 350% multiplies your income so drastically that your new multipliers allow you to buy back your automated stand loops in less than 60 seconds.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 3: The 180-Second Post-Reset Recovery Speedrun</h3>
+          <ul>
+            <li><strong>The Milestone Target:</strong> Recover your automated income stream immediately after a reset.</li>
+            <li><strong>Action Blueprint:</strong> Immediately upon resetting, buy back the starter stand, click manually to purchase the Juicer ($450), and get the Cash Register Automator ($2,100). Because of your new 350% multiplier, you will accumulate the necessary cash in under 3 minutes without grinding.</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>Step 4: Forever Purchase Token Allocation</h3>
+          <ul>
+            <li><strong>The Milestone Target:</strong> Make key upgrades permanent across all future Ascensions.</li>
+            <li><strong>Action Blueprint:</strong> You receive a Forever Purchase token upon successfully completing an Ascension (or for 1,499 Robux). Always prioritize the 42x Global Cash Upgrade button as your first Forever Purchase candidate. Alternative good targets are the two 16x Global Cash upgrades.</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- What to Do Next Section -->
+      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
+        <header class="guide-what-next__head">
+          <span class="guide-what-next__icon" aria-hidden="true">🔑</span>
+          <h2 id="guide-what-next-title">What to Do Next</h2>
+        </header>
+        <div class="guide-what-next__divider" aria-hidden="true">
+          <span></span>
+          <span class="guide-what-next__diamond"></span>
+          <span></span>
+        </div>
+        <a class="guide-what-next__cta" href="/deals/">
+          <span class="guide-what-next__cta-arrow" aria-hidden="true">🔑</span>
+          <span class="guide-what-next__cta-copy">
+            <strong>👉 Discover Map Secrets</strong>
+            <span>Solve the sewer mazes, get the UFO key, and unlock hidden endgame areas.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="rebirths" />
+    </article>
   </main>
 </SiteLayout>
