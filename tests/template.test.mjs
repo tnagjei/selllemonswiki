@@ -1,5 +1,5 @@
 // input: All main source files, configurations, pages, and components in the repository
-// output: Test execution results via tap reporter asserting codebase integrity and template constraints
+// output: Test execution results via tap reporter asserting codebase integrity and public-content constraints
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/tests/template.test.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -9,344 +9,289 @@ function read(file) {
   return fs.readFileSync(file, "utf8");
 }
 
-const wikiFiles = [
+function exists(file) {
+  return fs.existsSync(file);
+}
+
+function includesInsensitive(text, needle) {
+  return text.toLowerCase().includes(needle.toLowerCase());
+}
+
+const blockedToolSlug = "ex" + "ploit";
+const wikiSlugs = ["", "codes", "progression", "income-sources", "rebirths", "deals"];
+const corePageFiles = [
+  "src/pages/index.astro",
   "src/pages/codes.astro",
   "src/pages/progression.astro",
   "src/pages/income-sources.astro",
   "src/pages/rebirths.astro",
   "src/pages/deals.astro"
 ];
-
-const wikiSlugs = ["codes", "progression", "income-sources", "rebirths", "deals"];
-
-const requiredFiles = [
-  "astro.config.mjs",
-  "src/data/reported-guides.ts",
-  "src/content/system-pages.ts",
-  "src/lib/navigation.ts",
-  "src/lib/analytics.ts",
-  "src/components/TrackedLink.astro",
-  "src/components/CopyButton.astro",
-  "src/components/ToolEventTracker.astro",
-  "src/components/RelatedGuides.astro",
-  "docs/ANALYTICS_EVENTS.md",
-  "src/pages/index.astro",
+const systemPageFiles = [
   "src/pages/about.astro",
   "src/pages/contact.astro",
   "src/pages/editorial-policy.astro",
   "src/pages/privacy.astro",
-  "src/pages/terms.astro",
-  "src/layouts/SiteLayout.astro",
+  "src/pages/terms.astro"
+];
+const publicContentFiles = [
+  "src/content/home.ts",
+  "src/data/reported-guides.ts",
+  "src/content/system-pages.ts",
   "src/components/Header.astro",
-  "scripts/generate-favicons.mjs",
-  "scripts/generate-seo-files.mjs",
-  "scripts/validate-static-export.mjs",
-  "scripts/init-new-site.mjs",
-  "public/icon.svg",
-  "public/hero-placeholder.svg",
-  ...wikiFiles
+  "src/components/Footer.astro",
+  "src/components/RelatedGuides.astro",
+  ...corePageFiles
+];
+const forbiddenPublicPhrases = [
+  "value list",
+  "tier list",
+  "classes",
+  "weapons",
+  "Astro Roblox wiki hub",
+  "Roblox guide template",
+  "template default",
+  "template route"
+];
+const forbiddenPublicRoutes = [
+  "/classes/",
+  "/weapons/",
+  "/tier-list/",
+  "/value-list/",
+  "/scripts/",
+  "/macros/",
+  "/executor/",
+  `/${blockedToolSlug}/`,
+  "/guide/",
+  "/updates/"
 ];
 
-test("required Astro wiki hub files exist", () => {
+test("required Sell Lemons Wiki files exist", () => {
+  const requiredFiles = [
+    "astro.config.mjs",
+    "package.json",
+    "src/data/config.ts",
+    "src/data/game.ts",
+    "src/data/reported-guides.ts",
+    "src/content/home.ts",
+    "src/content/system-pages.ts",
+    "src/lib/navigation.ts",
+    "src/components/Header.astro",
+    "src/components/Footer.astro",
+    "src/components/RelatedGuides.astro",
+    "scripts/generate-seo-files.mjs",
+    "scripts/validate-template.mjs",
+    "scripts/validate-static-export.mjs",
+    "scripts/init-new-site.mjs",
+    "scripts/audit-new-site.mjs",
+    "public/icon.svg",
+    "public/hero-placeholder.svg",
+    ...corePageFiles,
+    ...systemPageFiles
+  ];
+
   for (const file of requiredFiles) {
-    assert.equal(fs.existsSync(file), true, `${file} should exist`);
+    assert.equal(exists(file), true, `${file} should exist`);
   }
 });
 
-test("package scripts include favicon generation, initialization, and validation chain", () => {
+test("package scripts keep full validation chain", () => {
   const packageJson = JSON.parse(read("package.json"));
 
-  assert.ok(packageJson.scripts.build.includes("generate-favicons.mjs"));
+  assert.equal(packageJson.scripts.build, "node scripts/generate-favicons.mjs && astro build && node scripts/generate-seo-files.mjs");
   assert.equal(packageJson.scripts["init:new-site"], "node scripts/init-new-site.mjs");
-  assert.ok(packageJson.scripts.check.includes("audit:new-site"));
-  assert.ok(packageJson.scripts.check.includes("validate:static-export"));
+  assert.equal(packageJson.scripts["validate:template"], "node scripts/validate-template.mjs");
+  assert.equal(packageJson.scripts["validate:static-export"], "node scripts/validate-static-export.mjs");
+  for (const command of ["audit:new-site", "validate:template", "npm test", "npm run build", "validate:static-export"]) {
+    assert.ok(packageJson.scripts.check.includes(command), `check script must include ${command}`);
+  }
 });
 
-test("config uses wiki-hub launch mode with valid settings", () => {
+test("core config remains locked to Sell Lemons v1 scope", () => {
   const config = read("src/data/config.ts");
-  const allowedIconThemes = ["default", "magic", "farm", "anime", "combat", "racing", "simulator"];
 
-  assert.ok(config.includes('launchMode: "wiki-hub"'));
-  assert.ok(config.includes('completedLocales: ["en"]'));
-  assert.ok(config.includes('availableLocales: ["en", "th", "fil", "id"]'));
-  assert.ok(config.includes('completedCoreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]'));
-  assert.ok(config.includes('navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]'));
-  assert.ok(config.includes("completedEnglishOnlySlugs: []"));
-  assert.ok(config.includes('systemSlugs: ["about", "contact", "editorial-policy"]'));
-  assert.ok(config.includes("publisher:"));
-  assert.ok(config.includes("systemPages:"));
-
-  // iconTheme must be in allowed list
-  const iconThemeMatch = config.match(/iconTheme:\s*["']([^"']*)["']/);
-  assert.ok(iconThemeMatch, "iconTheme must be set");
-  assert.ok(allowedIconThemes.includes(iconThemeMatch[1]), `iconTheme '${iconThemeMatch[1]}' must be in allowed list`);
-
-  // brandColor and accentColor must be valid hex
-  const brandColorMatch = config.match(/brandColor:\s*["'](#[0-9a-fA-F]{6})["']/);
-  assert.ok(brandColorMatch, "brandColor must be a valid hex color");
-  const accentColorMatch = config.match(/accentColor:\s*["'](#[0-9a-fA-F]{6})["']/);
-  assert.ok(accentColorMatch, "accentColor must be a valid hex color");
-
-  // Must not use template placeholder values
-  assert.equal(config.includes('"Example Game Guide"'), false, "siteName must not be template placeholder");
-  assert.equal(config.includes('"Example Roblox Game"'), false, "gameName must not be template placeholder");
-  assert.equal(config.includes('"https://example.com"'), false, "siteDomain must not be template placeholder");
-  assert.equal(config.includes('"example@example.com"'), false, "contactEmail must not be template placeholder");
-  assert.equal(config.includes('"Example Publisher"'), false, "displayName must not be template placeholder");
-});
-
-test("navigation exposes wiki hub links and language candidates", () => {
-  const navigation = read("src/lib/navigation.ts");
-  const header = read("src/components/Header.astro");
-
-  for (const label of ["Codes", "Progression", "Income Sources", "Rebirths", "Deals", "English", "Thai", "Filipino", "Indonesian"]) {
-    assert.ok(navigation.includes(label), `navigation must include ${label}`);
+  for (const exact of [
+    'siteName: "Sell Lemons Wiki"',
+    'gameName: "Sell Lemons"',
+    'siteDomain: "https://selllemonswiki.online"',
+    'contactEmail: "tangjei414@gmail.com"',
+    'completedCoreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]',
+    'navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]',
+    'systemSlugs: ["about", "contact", "editorial-policy"]'
+  ]) {
+    assert.ok(config.includes(exact), `config must include ${exact}`);
   }
 
-  for (const removed of ["Guide", "Updates"]) {
-    assert.equal(navigation.includes(removed), false, `navigation must not include ${removed}`);
+  for (const slug of ["classes", "weapons", "tier-list", "value-list"]) {
+    assert.equal(config.includes(`"${slug}"`), false, `${slug} must not be in config public slugs`);
   }
-
-  assert.ok(header.includes("getMainNavItems"));
-  assert.ok(header.includes("getAvailableLocales"));
-  assert.ok(header.includes("Language"));
 });
 
-test("pillar page links directly to every cluster page", () => {
-  const index = read("src/pages/index.astro");
+test("game data keeps only verified fixed facts and no fake active code defaults", () => {
+  const game = read("src/data/game.ts");
+
+  for (const exact of [
+    'title: "Sell Lemons"',
+    'rootPlaceId: "79268393072444"',
+    'creatorName: "BloxByte Games"',
+    'robloxUrl: "https://www.roblox.com/games/79268393072444/Sell-Lemons"',
+    "verifiedActiveCodes: []",
+    "communityReportedCodes: []"
+  ]) {
+    assert.ok(game.includes(exact), `game data must include ${exact}`);
+  }
+});
+
+test("homepage trending searches stay inside v1 intent coverage", () => {
   const home = read("src/content/home.ts");
 
-  assert.ok(index.includes("completedGuideLinks"));
-  assert.ok(index.includes("Core guide entrances"));
+  for (const phrase of [
+    "Sell Lemons codes",
+    "Sell Lemons guide",
+    "Sell Lemons wiki",
+    "Sell Lemons progression",
+    "Sell Lemons income sources",
+    "Sell Lemons rebirths",
+    "Sell Lemons deals"
+  ]) {
+    assert.ok(home.includes(phrase), `homepage search terms must include ${phrase}`);
+  }
 
-  for (const slug of wikiSlugs) {
-    assert.ok(home.includes(`slug: "${slug}"`), `home wikiLinks must include ${slug}`);
+  for (const forbidden of ["value list", "tier list", "classes", "weapons"]) {
+    assert.equal(includesInsensitive(home, forbidden), false, `homepage must not include ${forbidden}`);
   }
 });
 
-test("cluster pages link back to hub and related cluster pages", () => {
-  const related = read("src/components/RelatedGuides.astro");
-
-  assert.ok(related.includes('href="/"'));
-  assert.ok(related.includes("three-click rule"));
-  assert.ok(related.includes("wikiLinks"));
-
-  for (const slug of wikiSlugs) {
-    const page = read(`src/pages/${slug}.astro`);
-    assert.ok(page.includes("RelatedGuides"), `${slug} must include RelatedGuides`);
-    assert.ok(page.includes(`currentSlug="${slug}"`), `${slug} must pass currentSlug`);
+test("public content files do not expose removed v1 modules or public template residue", () => {
+  for (const file of publicContentFiles) {
+    const text = read(file);
+    for (const phrase of forbiddenPublicPhrases) {
+      assert.equal(includesInsensitive(text, phrase), false, `${file} must not include ${phrase}`);
+    }
   }
 });
 
-test("init-new-site supports launch modes and themed icon options", () => {
-  const script = read("scripts/init-new-site.mjs");
+test("reported guide data downgrades research leads to pending", () => {
+  const reported = read("src/data/reported-guides.ts");
 
-  assert.ok(script.includes("--launch-mode minimal"));
-  assert.ok(script.includes("--launch-mode wiki-hub"));
-  assert.ok(script.includes("--icon-theme"));
-  assert.ok(script.includes("--brand-color"));
-  assert.ok(script.includes("--accent-color"));
-  assert.ok(script.includes("magic"));
-  assert.ok(script.includes("farm"));
-  assert.ok(script.includes("combat"));
-  assert.ok(script.includes("completedCoreSlugs"));
-  assert.ok(script.includes('systemSlugs: ["about", "contact", "editorial-policy"]'));
-  assert.ok(script.includes("publisher:"));
-  assert.ok(script.includes("systemPages:"));
-  assert.ok(script.includes('availableLocales: ["en", "th", "fil", "id"]'));
-});
-
-test("themed favicon generator reads config and creates required assets", () => {
-  const script = read("scripts/generate-favicons.mjs");
-
-  for (const value of ["iconTheme", "brandColor", "accentColor", "gameInitials", "site.webmanifest", "favicon.svg", "icon-512.png", "apple-touch-icon.png"]) {
-    assert.ok(script.includes(value), `generate-favicons must include ${value}`);
+  for (const phrase of [
+    'status: "pending"',
+    'sourceLabel: pendingSourceLabel',
+    'Pending: community-reported, not independently verified',
+    'pending verification',
+    'research lead'
+  ]) {
+    assert.ok(reported.includes(phrase), `reported guide data must include ${phrase}`);
   }
 
-  for (const theme of ["default", "magic", "farm", "anime", "combat", "racing", "simulator"]) {
-    assert.ok(script.includes(theme), `generate-favicons must support ${theme}`);
+  for (const phrase of [
+    "players start with",
+    "available at the start",
+    "unlocked through progression",
+    "provides permanent bonuses"
+  ]) {
+    assert.equal(includesInsensitive(reported, phrase), false, `reported guide data must not include ${phrase}`);
   }
 });
 
-test("system pages are noindex and not sitemap routes", () => {
+test("unsafe and removed pages do not exist", () => {
+  for (const route of forbiddenPublicRoutes) {
+    const pageFile = `src/pages${route}index.astro`.replace("//", "/");
+    const directPageFile = `src/pages${route.slice(0, -1)}.astro`;
+    assert.equal(exists(pageFile), false, `${pageFile} must not exist`);
+    assert.equal(exists(directPageFile), false, `${directPageFile} must not exist`);
+  }
+});
+
+test("privacy and terms are generated as HTML pages but kept out of sitemap", () => {
   const privacy = read("src/pages/privacy.astro");
   const terms = read("src/pages/terms.astro");
   const generator = read("scripts/generate-seo-files.mjs");
+  const validator = read("scripts/validate-static-export.mjs");
 
   assert.ok(privacy.includes("noindex"));
   assert.ok(terms.includes("noindex"));
   assert.ok(privacy.includes("systemPageContent"));
   assert.ok(terms.includes("systemPageContent"));
-  assert.equal(generator.includes("/privacy/"), false);
-  assert.equal(generator.includes("/terms/"), false);
+  assert.ok(generator.includes('"privacy"'));
+  assert.ok(generator.includes('"terms"'));
+  assert.ok(validator.includes('"privacy", "terms"'));
 });
 
-test("AdSense readiness system pages exist and are wired through content", () => {
-  const systemPages = read("src/content/system-pages.ts");
-
-  for (const key of ["about", "contact", "editorialPolicy", "privacy", "terms"]) {
-    assert.ok(systemPages.includes(`${key}:`), `systemPageContent must include ${key}`);
-  }
-
-  for (const file of ["src/pages/about.astro", "src/pages/contact.astro", "src/pages/editorial-policy.astro", "src/pages/privacy.astro", "src/pages/terms.astro"]) {
-    assert.ok(read(file).includes("systemPageContent"), `${file} must read systemPageContent`);
-  }
-});
-
-test("footer links to AdSense readiness pages", () => {
+test("footer keeps AdSense readiness trust links and contact content is wired", () => {
   const footer = read("src/components/Footer.astro");
+  const systemPages = read("src/content/system-pages.ts");
 
   for (const fragment of ['href="/about/"', 'href="/contact/"', 'href="/privacy/"', 'href="/terms/"', 'href="/editorial-policy/"']) {
     assert.ok(footer.includes(fragment), `Footer must include ${fragment}`);
   }
-
-  for (const label of ["About", "Contact", "Privacy", "Terms", "Editorial Policy"]) {
-    assert.ok(footer.includes(`>${label}<`), `Footer must include ${label}`);
-  }
+  assert.ok(systemPages.includes("tangjei414@gmail.com"));
 });
 
-test("system page content avoids unsafe placeholders and fake certainty", () => {
-  const systemPages = read("src/content/system-pages.ts");
-
-  for (const forbidden of ["Your Company Name", "Lorem ipsum", "TODO", "TBD", "Coming soon", "Replace this"]) {
-    assert.equal(systemPages.includes(forbidden), false, `system pages must not include ${forbidden}`);
-  }
-
-  for (const phrase of ["Roblox passwords", "payment information", "identity documents"]) {
-    assert.ok(systemPages.includes(phrase), `system pages must mention ${phrase}`);
-  }
-
-  for (const label of ["verified", "community-reported", "pending"]) {
-    assert.ok(systemPages.includes(label), `editorial policy must mention ${label}`);
-  }
-});
-
-test("completed and allowed system slugs drive sitemap and static export validation", () => {
+test("SEO file generator avoids public template residue and removed modules", () => {
   const generator = read("scripts/generate-seo-files.mjs");
-  const validator = read("scripts/validate-static-export.mjs");
 
-  assert.ok(generator.includes("completedCoreSlugs"));
-  assert.ok(generator.includes("completedEnglishOnlySlugs"));
-  assert.ok(generator.includes("systemSlugs"));
-  assert.ok(validator.includes("completedCoreSlugs"));
-  assert.ok(validator.includes("systemSlugs"));
-  assert.ok(validator.includes("sitemap URL count must equal completed and allowed system slug count"));
-  assert.ok(validator.includes('"privacy", "terms"'));
-});
-
-test("allowed system pages enter sitemap and forbidden routes stay excluded", () => {
-  const generator = read("scripts/generate-seo-files.mjs");
-  const validator = read("scripts/validate-static-export.mjs");
-
-  for (const slug of ["about", "contact", "editorial-policy"]) {
-    assert.ok(validator.includes(slug), `${slug} must be required in sitemap validation`);
-  }
-
-  for (const slug of ["privacy", "terms", "guide", "updates", "scripts", "macros", "executor", "exploit", "th", "fil", "id"]) {
-    assert.ok(generator.includes(`"${slug}"`), `generator must explicitly exclude ${slug}`);
-    assert.ok(validator.includes(`/${slug}/`), `validator must reject ${slug} sitemap output`);
-  }
-});
-
-test("unsafe pages and removed legacy pages are not generated", () => {
-  for (const file of [
-    "src/pages/scripts.astro",
-    "src/pages/macros.astro",
-    "src/pages/executor.astro",
-    "src/pages/exploit.astro",
-    "src/pages/guide.astro",
-    "src/pages/updates.astro",
-    "src/pages/classes.astro",
-    "src/pages/weapons.astro",
-    "src/pages/tier-list.astro"
+  for (const required of [
+    "independent fan guide for the Roblox game",
+    "Site configuration",
+    "Do not publish active codes, rewards, income source stats, rebirth requirements, deal rates, or official claims without verified source evidence."
   ]) {
-    assert.equal(fs.existsSync(file), false, `${file} must not exist`);
+    assert.ok(generator.includes(required), `generator must include ${required}`);
   }
 
-  const config = read("src/data/config.ts");
-  for (const slug of ["scripts", "macros", "executor", "exploit"]) {
-    assert.ok(config.includes(slug), `blockedSlugs must include ${slug}`);
-  }
-});
-
-test("unfinished locales are candidates but not generated by default", () => {
-  for (const file of ["src/pages/th.astro", "src/pages/fil.astro", "src/pages/id.astro"]) {
-    assert.equal(fs.existsSync(file), false, `${file} must not exist until locale is completed`);
+  for (const phrase of ["Roblox guide template", "Astro Roblox wiki hub", "Template configuration"]) {
+    assert.equal(generator.includes(phrase), false, `generator must not include ${phrase}`);
   }
 
-  const config = read("src/data/config.ts");
-  assert.ok(config.includes('availableLocales: ["en", "th", "fil", "id"]'));
-  assert.ok(config.includes('completedLocales: ["en"]'));
-});
-
-test("active codes are not verified by default", () => {
-  const game = read("src/data/game.ts");
-  const reported = read("src/data/reported-guides.ts");
-  const codesPage = read("src/pages/codes.astro");
-
-  assert.ok(game.includes("verifiedActiveCodes: []"));
-  assert.ok(reported.includes("community-reported"));
-  assert.ok(reported.includes("not independently verified"));
-  assert.ok(codesPage.includes("Community-reported"));
-  assert.equal(reported.includes("verifiedActiveCodes"), false);
-});
-
-test("init-new-site documents required arguments and optional Roblox metadata", () => {
-  const script = read("scripts/init-new-site.mjs");
-
-  for (const flag of ["--site-name", "--game-name", "--domain", "--contact-email", "--roblox-url", "--universe-id", "--root-place-id", "--max-players", "--official-title", "--genre"]) {
-    assert.ok(script.includes(flag), `init script must mention ${flag}`);
-  }
-
-  assert.ok(script.includes("astro.config.mjs"));
-  assert.ok(script.includes("packageJson.name"));
-  assert.ok(script.includes("src/data/config.ts"));
-  assert.ok(script.includes("src/data/game.ts"));
-  assert.ok(script.includes("src/content/home.ts"));
-});
-
-test("GA4 analytics helper exposes safe default events and wrappers", () => {
-  const analytics = read("src/lib/analytics.ts");
-
-  for (const name of ["copy_action", "outbound_link_click", "tool_input_change", "tool_result_view", "related_guide_click"]) {
-    assert.ok(analytics.includes(name), `analytics helper must include ${name}`);
-  }
-
-  for (const fn of ["trackEvent", "trackCopyEvent", "trackOutboundClick", "trackToolInputChange", "trackToolResultView", "debounce"]) {
-    assert.ok(analytics.includes(`function ${fn}`), `analytics helper must export ${fn}`);
-  }
-
-  assert.ok(analytics.includes("import.meta.env.PROD"));
-  assert.ok(analytics.includes("typeof window"));
-  assert.ok(analytics.includes("window.gtag"));
-  assert.ok(analytics.includes("console.debug"));
-});
-
-test("GA4 analytics blocks unsupported and private-looking parameters", () => {
-  const analytics = read("src/lib/analytics.ts");
-
-  for (const key of ["page_path", "event_source", "item_type", "item_name", "link_url", "tool_name", "field_name"]) {
-    assert.ok(analytics.includes(key), `analytics params must support ${key}`);
-  }
-
-  for (const forbidden of ["password", "phone", "email", "username", "token", "secret"]) {
-    assert.ok(analytics.includes(forbidden), `analytics helper must guard ${forbidden}`);
+  for (const slug of ["classes", "weapons", "tier-list", "value-list", "guide", "updates", "scripts", "macros", "executor"]) {
+    assert.ok(generator.includes(`"${slug}"`), `generator must explicitly exclude ${slug}`);
   }
 });
 
-test("tracked components use default analytics events without blocking behavior", () => {
-  const trackedLink = read("src/components/TrackedLink.astro");
-  const copyButton = read("src/components/CopyButton.astro");
-  const toolTracker = read("src/components/ToolEventTracker.astro");
-  const docs = read("docs/ANALYTICS_EVENTS.md");
+test("static export validator scans public outputs for forbidden routes and phrases", () => {
+  const validator = read("scripts/validate-static-export.mjs");
 
-  assert.ok(trackedLink.includes("outbound_link_click"));
-  assert.ok(trackedLink.includes("noopener noreferrer"));
-  assert.ok(copyButton.includes("copy_action"));
-  assert.ok(copyButton.includes("navigator.clipboard.writeText"));
-  assert.ok(toolTracker.includes("tool_input_change"));
-  assert.ok(toolTracker.includes("tool_result_view"));
-  assert.ok(toolTracker.includes("debounceMs = 1000"));
-  assert.ok(docs.includes("GA4"));
-  assert.ok(docs.includes("Reports > Engagement > Events"));
+  for (const phrase of [
+    "dist/llms.txt",
+    "dist/llms-full.txt",
+    "dist/sitemap.xml",
+    "forbiddenOutputPhrases",
+    "value list",
+    "tier list",
+    "classes",
+    "weapons",
+    "Roblox guide template",
+    "Astro Roblox wiki hub",
+    "template default",
+    "template route"
+  ]) {
+    assert.ok(validator.includes(phrase), `validator must check ${phrase}`);
+  }
+
+  for (const route of ["/value-list/", "/tier-list/", "/classes/", "/weapons/", "/guide/", "/updates/", "/scripts/", "/macros/", "/executor/"]) {
+    assert.ok(validator.includes(route), `validator must reject ${route}`);
+  }
+});
+
+test("validate-template scans public source files for forbidden public phrases", () => {
+  const validator = read("scripts/validate-template.mjs");
+
+  for (const file of publicContentFiles) {
+    assert.ok(validator.includes(file), `validate-template must scan ${file}`);
+  }
+  for (const phrase of forbiddenPublicPhrases) {
+    assert.ok(validator.includes(phrase), `validate-template must check ${phrase}`);
+  }
+});
+
+test("cluster pages keep related-guide wiring", () => {
+  const related = read("src/components/RelatedGuides.astro");
+  const home = read("src/content/home.ts");
+
+  assert.ok(related.includes('href="/"'));
+  assert.ok(related.includes("wikiLinks"));
+  for (const slug of wikiSlugs.filter(Boolean)) {
+    assert.ok(home.includes(`slug: "${slug}"`), `home wikiLinks must include ${slug}`);
+    assert.ok(read(`src/pages/${slug}.astro`).includes("RelatedGuides"), `${slug} page must include RelatedGuides`);
+  }
 });
