@@ -1,3 +1,6 @@
+// input: dist/ build output, core site config
+// output: Console outputs detailing static file export validation violations and exit codes
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/scripts/validate-static-export.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import fs from "node:fs";
 import path from "node:path";
 

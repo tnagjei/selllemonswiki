@@ -1,3 +1,6 @@
+// input: All codebase directories and core configuration/Astro pages
+// output: Console outputs detailing structural template violations (if any) and exit codes
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/scripts/validate-template.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import fs from "node:fs";
 import path from "node:path";
 

@@ -1,3 +1,6 @@
+// input: Command line arguments containing site name, game name, domain, email, iconTheme, colors, etc.
+// output: Formatted Astro configuration, homepage metadata, and core pages for the new site
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/scripts/init-new-site.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import fs from "node:fs";
 import path from "node:path";
 

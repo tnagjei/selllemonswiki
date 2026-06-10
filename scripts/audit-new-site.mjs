@@ -1,3 +1,6 @@
+// input: Core project configuration and page files
+// output: Console warnings or audit validation errors for initialized new sites
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/scripts/audit-new-site.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import fs from "node:fs";
 import path from "node:path";
 

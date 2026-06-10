@@ -1,11 +1,14 @@
 ---
+// input: siteConfig, evidenceNotice, reportedProgression from config and reported-guides
+// output: Progression page template showing growth stages
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/progression.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedProgression } from "../data/reported-guides";
 ---
 
-<SiteLayout title={`Progression Guide | ${siteConfig.siteName}`} description={`Pending progression research for ${siteConfig.gameName}. Growth path and milestone tracking.`}>
+<SiteLayout title="Sell Lemons Progression Guide | Early Game to Rebirth" description="Learn Sell Lemons progression with early-game priorities, income growth, upgrade planning, rebirth preparation, and practical Roblox gameplay tips.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Progression</p>

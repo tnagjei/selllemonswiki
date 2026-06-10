@@ -1,3 +1,6 @@
+// input: siteConfig from src/data/config.ts
+// output: localeLabels, defaultNavItems, and helper functions getMainNavItems, getAvailableLocales
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/lib/navigation.ts (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 
 export const localeLabels = {

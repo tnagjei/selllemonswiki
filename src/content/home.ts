@@ -1,3 +1,6 @@
+// input: siteConfig from src/data/config.ts
+// output: homeContent data structure containing static texts for the homepage
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/content/home.ts (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 
 export const wikiLinks = [
@@ -9,11 +12,11 @@ export const wikiLinks = [
 ];
 
 export const homeContent = {
-  title: `${siteConfig.siteName} | Roblox Wiki Hub`,
-  description: `${siteConfig.siteName} is an evidence-first Roblox wiki hub for ${siteConfig.gameName} codes, progression, income sources, rebirths, and deals.`,
+  title: "Sell Lemons Wiki | Codes, Rebirth, Progression & Upgrades",
+  description: "Sell Lemons Wiki covers Roblox codes, rebirths, upgrades, income sources, deals, progression tips, and practical guides for building your lemon empire.",
   hero: {
     eyebrow: "Roblox wiki hub",
-    title: `${siteConfig.gameName} Wiki Hub`,
+    title: "Sell Lemons Wiki",
     lede: "Community-reported information is labeled as unverified until official, Roblox API, or in-game proof exists.",
     primaryAction: "Open Roblox page"
   },

@@ -1,3 +1,6 @@
+// input: None
+// output: gameData object containing Roblox game page meta, creatorName, rootPlaceId, and evidence source confidence levels
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/data/game.ts (更新规则：文件变更需同步本注释与所属目录 README)
 export const gameData = {
   robloxUrl: "https://www.roblox.com/games/79268393072444/Sell-Lemons",
   creatorName: "BloxByte Games",

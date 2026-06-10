@@ -1,11 +1,14 @@
 ---
+// input: siteConfig, evidenceNotice, reportedIncomeSources from config and reported-guides
+// output: Income Sources page template listing stands and scaling options
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/income-sources.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedIncomeSources } from "../data/reported-guides";
 ---
 
-<SiteLayout title={`Income Sources | ${siteConfig.siteName}`} description={`Community-reported income source research for ${siteConfig.gameName}.`}>
+<SiteLayout title="Sell Lemons Income Sources | Money, Upgrades & Scaling" description="Explore Sell Lemons income sources, money growth, upgrade paths, scaling mechanics, and gameplay tips for earning faster in Roblox.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Income sources</p>

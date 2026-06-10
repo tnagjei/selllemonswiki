@@ -1,15 +1,18 @@
 ---
+// input: siteConfig, evidenceNotice, reportedDeals from config and reported-guides
+// output: Deals page template showing negotiation mechanics and selling strategies
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/deals.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedDeals } from "../data/reported-guides";
 ---
 
-<SiteLayout title={`Deals | ${siteConfig.siteName}`} description={`Pending deal and haggling mechanic research for ${siteConfig.gameName}.`}>
+<SiteLayout title="Sell Lemons Deals Guide | Trading, Offers & Profit Tips" description="Master Sell Lemons deals with trading notes, offer timing, profit tips, upgrade choices, and practical Roblox strategy for better returns.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Deals</p>
-      <h1>{siteConfig.gameName} Deals</h1>
+      <h1>{siteConfig.gameName} Deals Guide</h1>
       <p>{evidenceNotice.body}</p>
       <p>This page tracks reported deal and haggling mechanic research for {siteConfig.gameName}. Pricing, multipliers, and negotiation outcomes are not verified unless supported by official evidence.</p>
     </section>

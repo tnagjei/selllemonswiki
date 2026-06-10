@@ -1,3 +1,6 @@
+// input: All main source files, configurations, pages, and components in the repository
+// output: Test execution results via tap reporter asserting codebase integrity and template constraints
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/tests/template.test.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";

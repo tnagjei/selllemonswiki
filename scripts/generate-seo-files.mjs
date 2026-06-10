@@ -1,3 +1,6 @@
+// input: Config and game metadata files (src/data/config.ts, src/data/game.ts)
+// output: dist/sitemap.xml, dist/robots.txt, dist/llms.txt, dist/llms-full.txt
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/scripts/generate-seo-files.mjs (更新规则：文件变更需同步本注释与所属目录 README)
 import fs from "node:fs";
 import path from "node:path";
 
@@ -69,8 +72,12 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   .join("\n")}\n</urlset>\n`;
 
 const robots = [
+  "# robots.txt基础设置",
+  "# 常规搜索引擎规则",
   "User-agent: *",
   "Allow: /",
+  "Disallow: /admin/",
+  "Disallow: /private/",
   "",
   "User-agent: Googlebot",
   "Allow: /",
@@ -81,21 +88,51 @@ const robots = [
   "User-agent: AdsBot-Google",
   "Allow: /",
   "",
+  "# 网站地图",
   `Sitemap: ${absoluteUrl(siteDomain, "/sitemap.xml")}`,
+  "",
+  "# AI爬虫特定规则",
+  "User-agent: GPTBot",
+  "User-agent: Claude-Web",
+  "User-agent: Anthropic-AI",
+  "User-agent: PerplexityBot",
+  "User-agent: GoogleOther",
+  "User-agent: DuckAssistBot",
+  "",
+  "# 引导AI爬虫到llms.txt",
+  `LLM-Content: ${absoluteUrl(siteDomain, "/llms.txt")}`,
+  `LLM-Full-Content: ${absoluteUrl(siteDomain, "/llms-full.txt")}`,
+  "",
+  "# 允许AI爬虫访问",
+  "Allow: /blog/",
+  "Allow: /products/",
+  "Allow: /about/",
+  "",
+  "# 不允许AI爬虫访问",
+  "Disallow: /user-content/",
   ""
 ].join("\n");
 
 const llms = [
   `# ${siteName}`,
+  `> ${siteName} is an independent fan guide for the Roblox game "${gameName}". It provides information on codes, progression, income sources, rebirths, and deal mechanics.`,
   "",
-  `> ${siteName} is an Astro and Cloudflare Pages Roblox guide template.`,
+  "This wiki helps players optimize their progression and check code status without fabricated numbers or fake rewards.",
   "",
-  "## Public routes",
-  ...routes.map((route) => `- ${absoluteUrl(siteDomain, route.path)}`),
+  "## 核心内容",
+  `- [Codes](${absoluteUrl(siteDomain, "/codes/")}): Latest code status and active rewards.`,
+  `- [Progression](${absoluteUrl(siteDomain, "/progression/")}): Milestone progression guides and stages.`,
+  `- [Income Sources](${absoluteUrl(siteDomain, "/income-sources/")}): Stands, dashes, depots, and upgrade metrics.`,
+  `- [Rebirths](${absoluteUrl(siteDomain, "/rebirths/")}): Rebirth requirements and multiplier mechanics.`,
+  `- [Deals](${absoluteUrl(siteDomain, "/deals/")}): NPC haggling, negotiation options, and sales values.`,
   "",
-  "## Source policy",
-  "Do not publish active codes, rewards, values, or official claims without source evidence.",
-  "Third-party pages are community-reported research signals only.",
+  "## 常用资源",
+  `- [常见问题](${absoluteUrl(siteDomain, "/")}): Frequently asked questions on the homepage.`,
+  `- [联系方式](${absoluteUrl(siteDomain, "/contact/")}): Contact email for corrections and feedback.`,
+  "",
+  "## 可选",
+  `- [关于我们](${absoluteUrl(siteDomain, "/about/")}): About the Sell Lemons Wiki fan site project.`,
+  `- [编辑方针](${absoluteUrl(siteDomain, "/editorial-policy/")}): Editorial policy and evidence-first standards.`,
   ""
 ].join("\n");
 

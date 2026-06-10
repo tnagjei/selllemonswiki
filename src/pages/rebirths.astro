@@ -1,15 +1,18 @@
 ---
+// input: siteConfig, evidenceNotice, reportedRebirthInfo from config and reported-guides
+// output: Rebirths page template showing rebirth requirements and bonuses
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/rebirths.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedRebirthInfo } from "../data/reported-guides";
 ---
 
-<SiteLayout title={`Rebirths | ${siteConfig.siteName}`} description={`Pending rebirth mechanic research for ${siteConfig.gameName}.`}>
+<SiteLayout title="Sell Lemons Rebirth Guide | Requirements, Bonuses & Tips" description="Use this Sell Lemons rebirth guide to understand requirements, bonuses, reset planning, upgrade timing, and progression tips for Roblox players.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Rebirths</p>
-      <h1>{siteConfig.gameName} Rebirths</h1>
+      <h1>{siteConfig.gameName} Rebirth Guide</h1>
       <p>{evidenceNotice.body}</p>
       <p>This page tracks reported rebirth mechanic research for {siteConfig.gameName}. Rebirth requirements, bonuses, and multipliers are not verified unless supported by official evidence.</p>
     </section>

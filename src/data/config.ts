@@ -1,3 +1,6 @@
+// input: None
+// output: siteConfig object containing main layout config, site name, domain, social metadata, and brand assets
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/data/config.ts (更新规则：文件变更需同步本注释与所属目录 README)
 export const siteConfig = {
   siteName: "Sell Lemons Wiki",
   gameName: "Sell Lemons",

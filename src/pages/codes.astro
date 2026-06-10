@@ -1,11 +1,14 @@
 ---
+// input: siteConfig, evidenceNotice, reportedCodeRows from config and reported-guides
+// output: Codes page template listing code status and rewards
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/codes.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedCodeRows } from "../data/reported-guides";
 ---
 
-<SiteLayout title={`Codes | ${siteConfig.siteName}`} description={`Community-reported and pending code status for ${siteConfig.gameName}.`}>
+<SiteLayout title="Sell Lemons Codes | Active Codes, Rewards & Updates" description="Find Sell Lemons codes for Roblox, including code status, rewards, update notes, and tips for checking new code drops from the game community.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Codes</p>
