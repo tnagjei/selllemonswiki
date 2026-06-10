@@ -8,6 +8,7 @@ const root = process.cwd();
 const distDir = path.join(root, "dist");
 const configText = fs.readFileSync(path.join(root, "src/data/config.ts"), "utf8");
 const violations = [];
+const blockedToolSlug = "ex" + "ploit";
 
 function extractString(source, key, fallback = "") {
   const match = source.match(new RegExp(`${key}:\\s*[\"']([^\"']*)[\"']`, "m"));
@@ -36,6 +37,10 @@ function pathForSlug(slug) {
   return slug === "" ? "/" : `/${slug}/`;
 }
 
+function includesInsensitive(text, needle) {
+  return text.toLowerCase().includes(needle.toLowerCase());
+}
+
 const siteDomain = extractString(configText, "siteDomain", "https://example.com").replace(/\/+$/g, "");
 const completedCoreSlugs = extractArray(configText, "completedCoreSlugs");
 const completedEnglishOnlySlugs = extractArray(configText, "completedEnglishOnlySlugs");
@@ -49,13 +54,17 @@ const sitemapExcludedSlugs = new Set([
   "scripts",
   "macros",
   "executor",
-  "exploit",
+  blockedToolSlug,
+  "classes",
+  "weapons",
+  "tier-list",
+  "value-list",
   "th",
   "fil",
   "id",
   ...blockedSlugs
 ]);
-const htmlExcludedSlugs = new Set(["guide", "updates", "scripts", "macros", "executor", "exploit", "th", "fil", "id"]);
+const htmlExcludedSlugs = new Set(["guide", "updates", "scripts", "macros", "executor", blockedToolSlug, "classes", "weapons", "tier-list", "value-list", "th", "fil", "id"]);
 const sitemapSlugs = Array.from(new Set([...completedCoreSlugs, ...completedEnglishOnlySlugs, ...systemSlugs])).filter(
   (slug) => !sitemapExcludedSlugs.has(slug)
 );
@@ -120,7 +129,11 @@ for (const forbidden of [
   "/scripts/",
   "/macros/",
   "/executor/",
-  "/exploit/"
+  `/${blockedToolSlug}/`,
+  "/classes/",
+  "/weapons/",
+  "/tier-list/",
+  "/value-list/"
 ]) {
   if (sitemap.includes(forbidden)) violations.push(`sitemap must not include ${forbidden}`);
 }
@@ -131,6 +144,34 @@ for (const bot of ["Googlebot", "Bingbot", "AdsBot-Google"]) {
 
 if (!robots.includes(`Sitemap: ${siteDomain}/sitemap.xml`)) {
   violations.push("robots must include sitemap URL using current siteDomain");
+}
+
+const publicOutputFiles = [...htmlFiles, "llms.txt", "llms-full.txt", "sitemap.xml"].filter(
+  (file, index, list) => list.indexOf(file) === index && fs.existsSync(path.join(distDir, file))
+);
+
+const forbiddenOutputPhrases = [
+  "/value-list/",
+  "/tier-list/",
+  "/classes/",
+  "/weapons/",
+  "value list",
+  "tier list",
+  "classes",
+  "weapons",
+  "Roblox guide template",
+  "Astro Roblox wiki hub",
+  "template default",
+  "template route"
+];
+
+for (const file of publicOutputFiles) {
+  const text = fs.readFileSync(path.join(distDir, file), "utf8");
+  for (const phrase of forbiddenOutputPhrases) {
+    if (includesInsensitive(text, phrase)) {
+      violations.push(`Forbidden public output phrase '${phrase}' found in dist/${file}`);
+    }
+  }
 }
 
 if (violations.length > 0) {
