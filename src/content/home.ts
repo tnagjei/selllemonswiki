@@ -8,7 +8,9 @@ export const wikiLinks = [
   { title: "Progression", slug: "progression", description: "Research reported growth paths, milestones, and strategies." },
   { title: "Income Sources", slug: "income-sources", description: "Track reported income sources without fabricating costs or multipliers." },
   { title: "Rebirths", slug: "rebirths", description: "Research reported rebirth mechanics and bonuses." },
-  { title: "Deals", slug: "deals", description: "Track reported deal and haggling mechanics without fabricating rates or prices." }
+  { title: "Deals", slug: "deals", description: "Track reported deal and haggling mechanics without fabricating rates or prices." },
+  { title: "Beginner Guide", slug: "beginner-guide", description: "Get started on your lemon stand and make your first $10K easily." },
+  { title: "Money Fast", slug: "money-fast", description: "Master the fastest active and passive methods to earn cash quickly." }
 ];
 
 export const homeContent = {
@@ -46,16 +48,16 @@ export const homeContent = {
   ],
   wikiLinks,
   progressionFunnel: [
-    { step: "1", title: "Beginner Guide", desc: "Learn the basics, grow your first lemons, and build your foundation.", href: "/progression/" },
-    { step: "2", title: "Make Money Fast", desc: "Discover the fastest ways to earn cash and scale your income early.", href: "/income-sources/" },
+    { step: "1", title: "Beginner Guide", desc: "Learn the basics, grow your first lemons, and build your foundation.", href: "/beginner-guide/" },
+    { step: "2", title: "Make Money Fast", desc: "Discover the fastest ways to earn cash and scale your income early.", href: "/money-fast/" },
     { step: "3", title: "Best Progression", desc: "Optimize your upgrades, unlock key systems, and maximize your profits.", href: "/progression/" },
     { step: "4", title: "Rebirth Guide", desc: "Reset to gain powerful permanent boosts and accelerate your growth.", href: "/rebirths/" },
     { step: "5", title: "Deals & Haggling", desc: "Master NPC negotiation choices and strategy for better returns.", href: "/deals/" }
   ],
   secrets: [
-    { name: "Sewer Key", desc: "Unlocks underground sewer system with hidden loot and rare items.", href: "/progression/" },
+    { name: "Sewer Key", desc: "Unlocks underground sewer system with hidden loot and rare items.", href: "/beginner-guide/" },
     { name: "UFO Key", desc: "Triggers UFO event zone with special spawn mechanics.", href: "/deals/" },
-    { name: "Secret Areas", desc: "Unmarked zones with hidden interactions and rewards.", href: "/income-sources/" }
+    { name: "Secret Areas", desc: "Unmarked zones with hidden interactions and rewards.", href: "/money-fast/" }
   ],
   tierListData: {
     S: {

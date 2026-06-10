@@ -1,213 +1,99 @@
 ---
 // input: siteConfig, evidenceNotice from config and reported-guides
-// output: High-fidelity dual-tabbed guide showing Fast Money Guide and 8-Tier Income Bible
-// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/income-sources.astro (更新规则：文件变更需同步本注释与所属目录 README)
+// output: Dedicated 8-tier income sources list and automation strategy guide
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/income-sources.astro (更新规则：文件变更需同步本目录 README与文件头注释)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice } from "../data/reported-guides";
 ---
 
-<SiteLayout title="Sell Lemons Income Sources | How to Make Money Fast Guide" description="Maximize your cash scaling with our ultimate Sell Lemons income sources guide. Learn the best fast money methods, 100% offline farming tips, 8-tier progression, and void weather cheats.">
+<SiteLayout title="Sell Lemons Income Sources | 8-Tier Base Production Guide" description="Maximize cash yields in Sell Lemons. Explore the 8-tier base production hierarchy (Lemon Stand to Space LemonX) and discover optimal manager automation priorities.">
   <main>
     <!-- Page Hero Section -->
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
-          <p class="eyebrow">Income & Profit</p>
+          <p class="eyebrow">Income & Buildings</p>
           <h1>The Ultimate Sell Lemons Income Bible</h1>
-          <p>Stop grinding backward. Switch between our Fast Money Guide to learn the best hacks for active/passive cash scaling, or the 8-Tier Income Bible to master every building from the Starter Stand to Cosmic LemonX.</p>
+          <p>Learn how all 8 income tiers stack together, how to bypass decoration-gated blocks, and the optimal recruitment sequence for automation managers.</p>
         </div>
-        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons income and profit guide hub" width="894" height="500" />
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons income sources guide" width="894" height="500" />
       </div>
     </section>
 
-    <!-- Tab Switcher Navigation -->
-    <div class="guide-switcher-section" data-guide-switcher style="max-width: 800px; margin: 32px auto 0 auto; padding: 0 24px;">
-      <p class="eyebrow" style="margin-bottom: 12px;">Choose Guide Category</p>
-      <nav class="tier-nav" aria-label="Income guide types" role="tablist">
-        <button class="tier-pill is-active" type="button" role="tab" aria-selected="true" data-guide-target="money-fast">
-          <span class="tier-pill__dot"></span>
-          <span>⚡ Fast Money Guide</span>
-        </button>
-        <button class="tier-pill" type="button" role="tab" aria-selected="false" data-guide-target="tier-bible">
-          <span class="tier-pill__dot"></span>
-          <span>🍋 8-Tier Income Bible</span>
-        </button>
-      </nav>
-    </div>
+    <!-- Main Guide Body -->
+    <article class="guide-detail">
+      <h2>The 8-Tier Sell Lemons Income Progression</h2>
+      
+      <aside class="income-rule-box" style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 32px;">
+        <strong style="color: var(--accent-color); font-size: 1.1rem; display: block; margin-bottom: 8px;">💡 The Compounding Rule: Lower Tiers Matter!</strong>
+        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">
+          In Sell Lemons, higher tiers do not replace your old ones—they multiply them! Even when you reach the endgame, your starting Lemon Stand and LemonDash delivery system provide the crucial base income that late-game space stations multiply. Never leave your early-game buildings empty. Upgrading everything together yields the fastest scaling.
+        </p>
+      </aside>
 
-    <!-- Panel 1: Fast Money Guide -->
-    <div class="guide-panel is-active" data-guide-panel="money-fast">
-      <article class="guide-detail">
-        <h2>Fastest Active & Passive Money Methods</h2>
-        <div class="guide-step-flow">
-          <section class="guide-step-card">
-            <h3>📈 1. Active Profit: The LemonDash Negotiation Loop</h3>
-            <ul>
-              <li><strong>The Player Need:</strong> Jump from slow early pennies to massive, explosive cash delivery spikes.</li>
-              <li><strong>The Blueprint Action:</strong> Unlock the Tier 2 LemonDash Delivery Garage ($17K). When NPCs send phone offers, NEVER click auto-accept! Always hit the counter-offer button and adjust the price upward by 25% to 35%.</li>
-              <li><strong>The ROI Meta:</strong> The NPC will compromise halfway, immediately turning a standard run into an easy $8,000+ payday. This is the single highest-yield active manual method in the early-to-mid game.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>💤 2. Passive Income: The "Burst & Sleep" Offline Loop</h3>
-            <ul>
-              <li><strong>The Player Need:</strong> Keep making money passively without keeping your screen on 24/7.</li>
-              <li><strong>The Blueprint Action:</strong> Take advantage of Sell Lemons' unique 100% offline income system. Unlike generic tycoon games that tax or cap away-from-keyboard earnings, this game credits your full base cash rate indefinitely while you are logged off.</li>
-              <li><strong>The ROI Meta:</strong> Adopt a "Burst and Sleep" playstyle: log in, claim 100% of your accumulated offline bankroll, immediately reinvest it into high-tier automated generators, and log right back out. Playing actively online adds zero mathematical efficiency.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>🛸 3. Rebirth Scaling: The 350% Investor Reset Rule</h3>
-            <ul>
-              <li><strong>The Player Need:</strong> Scale your prestige multiplier to blast through future run costs.</li>
-              <li><strong>The Blueprint Action:</strong> Trigger an Evolution (Rebirth) cycle to claim Alien Investor multipliers. However, never reset your progress when your pending investor bonus is below 200%.</li>
-              <li><strong>The ROI Meta:</strong> The community golden standard is 350%+. Resetting at or above this sweet spot scales your permanent multipliers so heavily that you can re-buy and automate your entire starting base setup in under 60 seconds.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>⛈️ 4. Active Event: The Void Weather Stacking Method</h3>
-            <ul>
-              <li><strong>The Player Need:</strong> Maximize profits during rare active gameplay sessions.</li>
-              <li><strong>The Blueprint Action:</strong> Watch for a glitching sky alert indicating a "Void Weather" event. This event applies a temporary 3x to 8x global multiplier to all active income sources.</li>
-              <li><strong>The ROI Meta:</strong> As soon as Void Weather activates, jump online, dump your liquid capital into upgrades, and pop your Lemon Labs Time-Skips. The event multiplier stacks with the time-skip booster, multiplying your earnings exponentially.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>⚠️ 5. Decoration Gates: Bypassing Hidden Progress Traps</h3>
-            <ul>
-              <li><strong>The Player Need:</strong> Prevent your progression from grinding to a halt due to missing upgrade buttons.</li>
-              <li><strong>The Blueprint Action:</strong> The game hides critical milestone upgrade buttons behind cosmetic base decorations. In Tier 3 Depot and Tier 5 Labs, buying decorations (like walls, roofs, and lights) is mandatory.</li>
-              <li><strong>The ROI Meta:</strong> If your cash flow stops scaling and no buttons are visible, buy the nearest decor items and physically walk through the facility to force the hidden upgrade buttons to spawn.</li>
-            </ul>
-          </section>
-        </div>
-
-        <!-- What to Do Next Section -->
-        <section class="guide-what-next" aria-labelledby="guide-what-next-title-1">
-          <header class="guide-what-next__head">
-            <span class="guide-what-next__icon" aria-hidden="true">🎯</span>
-            <h2 id="guide-what-next-title-1">What to Do Next</h2>
-          </header>
-          <div class="guide-what-next__divider" aria-hidden="true">
-            <span></span>
-            <span class="guide-what-next__diamond"></span>
-            <span></span>
-          </div>
-          <a class="guide-what-next__cta" href="/rebirths/">
-            <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
-            <span class="guide-what-next__cta-copy">
-              <strong>👉 Master Rebirth Strategies</strong>
-              <span>Learn the optimal Evolve milestones and secure permanent Alien multipliers.</span>
-            </span>
-            <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-          </a>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>🟢 Early Game: Startup Industry</h3>
+          <ul>
+            <li><strong>Tier 1: Lemon Stand (The Starter Stand)</strong> — Click to sell lemons for $1, collect loose cash spawning on the floor, and upgrade Juicers ($450) and Cash Registers ($2,100) immediately to automate early clicks.</li>
+            <li><strong>Tier 2: LemonDash (Logistics Delivery)</strong> — Deliver juice orders using vehicles. Upgrade Delivery Fees and Vehicle Speed. Always use counter-offers (25%-35% markup) to boost payouts.</li>
+          </ul>
         </section>
 
-        <RelatedGuides currentSlug="income-sources" />
-      </article>
-    </div>
-
-    <!-- Panel 2: 8-Tier Income Bible -->
-    <div class="guide-panel" data-guide-panel="tier-bible">
-      <article class="guide-detail">
-        <h2>The 8-Tier Production Progression</h2>
-        
-        <aside class="income-rule-box" style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; margin-bottom: 32px;">
-          <strong style="color: var(--accent-color); font-size: 1.1rem; display: block; margin-bottom: 8px;">💡 The Compounding Rule: Lower Tiers Matter!</strong>
-          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-muted);">
-            In Sell Lemons, higher tiers do not replace lower ones; they multiply them. Early-game structures like the Lemon Stand and LemonDash provide the crucial base cash that late-game space stations scale into octillions. Always keep your lower tiers fully upgraded!
-          </p>
-        </aside>
-
-        <div class="guide-step-flow">
-          <section class="guide-step-card">
-            <h3>🟢 Early Game: Startup Industry</h3>
-            <ul>
-              <li><strong>Tier 1: Lemon Stand (The Starter Stand)</strong> — Click to sell lemons for $1, collect loose cash spawning on the floor, and upgrade Juicers ($450) and Cash Registers ($2,100) immediately to automate early clicks.</li>
-              <li><strong>Tier 2: LemonDash (Logistics Delivery)</strong> — Deliver juice orders using vehicles. Upgrade Delivery Fees and Vehicle Speed. Always use counter-offers (25%-35% markup) to boost payouts.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>🔵 Mid Game: Factory & Stock Trading</h3>
-            <ul>
-              <li><strong>Tier 3: Lemon Depot (Bulk Factory)</strong> — Processes bulk orders for millions. Beware of decoration gates: buy the Depot Roof and walls to spawn hidden upgrade buttons.</li>
-              <li><strong>Tier 4: Lemon Trading (Futures Market)</strong> — Buy low and sell high. High risk; market crashes can wipe out your wallet. Keep 50% cash reserves until you hire the Trading Manager for safety.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>🟣 Late Game to Endgame: Infinite Scaling</h3>
-            <ul>
-              <li><strong>Tier 5: Lemon Labs (Research)</strong> — Unlocks massive multipliers that survive Rebirth resets. Explore all floors after big upgrades to find hidden buttons.</li>
-              <li><strong>Tier 6: Lemon Robotics (Tick Automators)</strong> — Robotic arms that automate click routines. At Evolution 60+, dump your starting cash here to fund all lower tiers instantly.</li>
-              <li><strong>Tier 7: Lemon Republic (Sovereign Power)</strong> — Business becomes a nation-state. Unlocks massive global multipliers affecting all 6 previous tiers simultaneously. Maximize sovereignty before returning to Labs.</li>
-              <li><strong>Tier 8: LemonX (Cosmic Zone)</strong> — Space lemon harvesting on the extraterrestrial map. Complete the Good Samaritan event to get the UFO Key, allowing access to the cosmic zone and the Purity Fruit.</li>
-            </ul>
-          </section>
-
-          <section class="guide-step-card">
-            <h3>🤖 Manager Recruitment Sequence</h3>
-            <p>Deploy your capital efficiently by hiring automation managers in this order:</p>
-            <ol style="margin-left: 20px; line-height: 1.8; color: var(--text-muted);">
-              <li><strong>Stand Automator (Tier 1):</strong> Crucial early game purchase to eliminate click strain.</li>
-              <li><strong>LemonDash Manager (Tier 2):</strong> Buy only after upgrading delivery fees and speed.</li>
-              <li><strong>Depot Manager (Tier 3):</strong> Hire only after unlocking major depot multiplier upgrades.</li>
-              <li><strong>Trading/Robotics Managers (Endgame):</strong> Secure once your capital is stable and global multipliers are active.</li>
-            </ol>
-          </section>
-        </div>
-
-        <!-- What to Do Next Section -->
-        <section class="guide-what-next" aria-labelledby="guide-what-next-title-2">
-          <header class="guide-what-next__head">
-            <span class="guide-what-next__icon" aria-hidden="true">🔄</span>
-            <h2 id="guide-what-next-title-2">What to Do Next</h2>
-          </header>
-          <div class="guide-what-next__divider" aria-hidden="true">
-            <span></span>
-            <span class="guide-what-next__diamond"></span>
-            <span></span>
-          </div>
-          <a class="guide-what-next__cta" href="/deals/">
-            <span class="guide-what-next__cta-arrow" aria-hidden="true">🔑</span>
-            <span class="guide-what-next__cta-copy">
-              <strong>👉 Explore Map Secrets</strong>
-              <span>Solve the sewer mazes, claim the UFO key, and unlock hidden endgame biomes.</span>
-            </span>
-            <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-          </a>
+        <section class="guide-step-card">
+          <h3>🔵 Mid Game: Factory & Stock Trading</h3>
+          <ul>
+            <li><strong>Tier 3: Lemon Depot (Bulk Factory)</strong> — Processes bulk orders for millions. Beware of decoration gates: buy the Depot Roof and walls to spawn hidden upgrade buttons.</li>
+            <li><strong>Tier 4: Lemon Trading (Futures Market)</strong> — Buy low and sell high. High risk; market crashes can wipe out your wallet. Keep 50% cash reserves until you hire the Trading Manager for safety.</li>
+          </ul>
         </section>
 
-        <RelatedGuides currentSlug="income-sources" />
-      </article>
-    </div>
+        <section class="guide-step-card">
+          <h3>🟣 Late Game to Endgame: Infinite Scaling</h3>
+          <ul>
+            <li><strong>Tier 5: Lemon Labs (Research)</strong> — Unlocks massive multipliers that survive Rebirth resets. Explore all floors after big upgrades to find hidden buttons.</li>
+            <li><strong>Tier 6: Lemon Robotics (Tick Automators)</strong> — Robotic arms that automate click routines. At Evolution 60+, dump your starting cash here to fund all lower tiers instantly.</li>
+            <li><strong>Tier 7: Lemon Republic (Sovereign Power)</strong> — Business becomes a nation-state. Unlocks massive global multipliers affecting all 6 previous tiers simultaneously. Maximize sovereignty before returning to Labs.</li>
+            <li><strong>Tier 8: LemonX (Cosmic Zone)</strong> — Space lemon harvesting on the extraterrestrial map. Complete the Good Samaritan event to get the UFO Key, allowing access to the cosmic zone and the Purity Fruit.</li>
+          </ul>
+        </section>
 
-    <!-- Inline Script for Guide Switcher -->
-    <script is:inline>
-      document.querySelectorAll("[data-guide-switcher]").forEach((container) => {
-        const pills = Array.from(container.querySelectorAll("[data-guide-target]"));
-        const panels = Array.from(document.querySelectorAll("[data-guide-panel]"));
-        pills.forEach((pill) => {
-          pill.addEventListener("click", () => {
-            const target = pill.getAttribute("data-guide-target");
-            pills.forEach((p) => {
-              const active = p === pill;
-              p.classList.toggle("is-active", active);
-              p.setAttribute("aria-selected", active ? "true" : "false");
-            });
-            panels.forEach((panel) => {
-              panel.classList.toggle("is-active", panel.getAttribute("data-guide-panel") === target);
-            });
-          });
-        });
-      });
-    </script>
+        <section class="guide-step-card">
+          <h3>🤖 Manager Recruitment Sequence</h3>
+          <p>Deploy your capital efficiently by hiring automation managers in this order:</p>
+          <ol style="margin-left: 20px; line-height: 1.8; color: var(--text-muted);">
+            <li><strong>Stand Automator (Tier 1):</strong> Crucial early game purchase to eliminate click strain.</li>
+            <li><strong>LemonDash Manager (Tier 2):</strong> Buy only after upgrading delivery fees and speed.</li>
+            <li><strong>Depot Manager (Tier 3):</strong> Hire only after unlocking major depot multiplier upgrades.</li>
+            <li><strong>Trading/Robotics Managers (Endgame):</strong> Secure once your capital is stable and global multipliers are active.</li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- What to Do Next Section -->
+      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
+        <header class="guide-what-next__head">
+          <span class="guide-what-next__icon" aria-hidden="true">🔑</span>
+          <h2 id="guide-what-next-title">What to Do Next</h2>
+        </header>
+        <div class="guide-what-next__divider" aria-hidden="true">
+          <span></span>
+          <span class="guide-what-next__diamond"></span>
+          <span></span>
+        </div>
+        <a class="guide-what-next__cta" href="/deals/">
+          <span class="guide-what-next__cta-arrow" aria-hidden="true">🔑</span>
+          <span class="guide-what-next__cta-copy">
+            <strong>👉 Discover Map Secrets</strong>
+            <span>Solve the sewer mazes, get the UFO key, and unlock hidden endgame areas.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="income-sources" />
+    </article>
   </main>
 </SiteLayout>

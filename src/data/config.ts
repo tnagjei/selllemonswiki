@@ -45,3 +45,4 @@ export const siteConfig = {
     accentColor: "#facc15"
   }
 };
+
