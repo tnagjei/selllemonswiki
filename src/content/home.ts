@@ -30,9 +30,10 @@ export const homeContent = {
     `${siteConfig.gameName} codes`,
     `${siteConfig.gameName} guide`,
     `${siteConfig.gameName} wiki`,
-    `${siteConfig.gameName} beginners guide`,
-    `${siteConfig.gameName} Roblox`,
-    `${siteConfig.gameName} value list`
+    `${siteConfig.gameName} progression`,
+    `${siteConfig.gameName} income sources`,
+    `${siteConfig.gameName} rebirths`,
+    `${siteConfig.gameName} deals`
   ],
   wikiLinks,
   guideMap: [
