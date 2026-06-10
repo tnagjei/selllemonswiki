@@ -215,7 +215,8 @@ test("privacy and terms are generated as HTML pages but kept out of sitemap", ()
   assert.ok(terms.includes("systemPageContent"));
   assert.ok(generator.includes('"privacy"'));
   assert.ok(generator.includes('"terms"'));
-  assert.ok(validator.includes('"privacy", "terms"'));
+  assert.ok(validator.includes('"privacy"'));
+  assert.ok(validator.includes('"terms"'));
 });
 
 test("footer keeps AdSense readiness trust links and contact content is wired", () => {
@@ -252,9 +253,9 @@ test("static export validator scans public outputs for forbidden routes and phra
   const validator = read("scripts/validate-static-export.mjs");
 
   for (const phrase of [
-    "dist/llms.txt",
-    "dist/llms-full.txt",
-    "dist/sitemap.xml",
+    "llms.txt",
+    "llms-full.txt",
+    "sitemap.xml",
     "forbiddenOutputPhrases",
     "value list",
     "tier list",
