@@ -1,4 +1,4 @@
-// input: siteConfig, gameData
+// input: siteConfig, gameData, tangjei414@gmail.com
 // output: systemPageContent data structure containing static texts for system pages (About, Privacy, Terms, Contact, Editorial Policy)
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/content/system-pages.ts (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";

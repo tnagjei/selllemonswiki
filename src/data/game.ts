@@ -5,8 +5,9 @@ export const gameData = {
   robloxUrl: "https://www.roblox.com/games/79268393072444/Sell-Lemons",
   creatorName: "BloxByte Games",
   universeId: null,
-  rootPlaceId: 79268393072444,
+  rootPlaceId: "79268393072444",
   maxPlayers: null,
+  title: "Sell Lemons",
   officialTitle: "Sell Lemons",
   genre: "simulator",
   sourceConfidence: [

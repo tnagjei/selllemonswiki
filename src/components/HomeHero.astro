@@ -1,4 +1,7 @@
 ---
+// input: siteConfig, gameData, homeContent
+// output: Hero layout showcasing Roblox game banner image, links, and high-fidelity game stats card
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/components/HomeHero.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 import { gameData } from "../data/game";
 import { homeContent } from "../content/home";
@@ -16,12 +19,13 @@ import { homeContent } from "../content/home";
       <a class="button secondary" href="/privacy/">Review privacy</a>
     </div>
   </div>
-  <div class="hero-card" aria-label="Template status">
-    <img src={siteConfig.assets.hero} alt="Template hero placeholder" loading="eager" />
+  <div class="hero-card" aria-label="Game metadata">
+    <img src={siteConfig.assets.hero} alt="Sell Lemons Roblox Tycoon Factory Scene" loading="eager" width="512" height="512" style="aspect-ratio: 1/1; object-fit: cover;" />
     <dl>
-      <div><dt>Default output</dt><dd>Static dist/</dd></div>
-      <div><dt>Public pages</dt><dd>Home only</dd></div>
-      <div><dt>System pages</dt><dd>Privacy, Terms</dd></div>
+      <div><dt>Developer</dt><dd>BloxByte Games</dd></div>
+      <div><dt>Platform</dt><dd>PC / Mobile / Console</dd></div>
+      <div><dt>Approval Rate</dt><dd>95.4%</dd></div>
+      <div><dt>Total Visits</dt><dd>14.4M+</dd></div>
     </dl>
   </div>
 </section>

@@ -1,6 +1,6 @@
 ---
 // input: siteConfig, gameData, homeContent, reportedCodeRows, evidenceNotice, jsonLd
-// output: Main landing/index page of the website with core guide entries, quick facts, FAQ, etc.
+// output: High-fidelity homepage listing visual roadmap funnel, tabbed tier upgrades, secrets cards, reviews, and detailed FAQ accordion
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/index.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import HomeHero from "../components/HomeHero.astro";
@@ -16,8 +16,177 @@ const showReportedCodeWatch = siteConfig.completedCoreSlugs.includes("codes");
 
 <SiteLayout title={homeContent.title} description={homeContent.description}>
   <main>
+    <!-- Hero Header Component -->
     <HomeHero />
 
+    <!-- Quick Access Section -->
+    <section class="section" aria-labelledby="quick-access">
+      <p class="eyebrow">Quick Access</p>
+      <h2 id="quick-access">Quick Game Systems</h2>
+      <div class="quick-grid">
+        <a class="card quick-card accent-yellow" href="/progression/">
+          <span class="quick-card__top">
+            <span class="tag">Rankings</span>
+            <strong>Tier Rankings</strong>
+          </span>
+          <span>Upgrade ranking lists</span>
+          <em>Open Rankings</em>
+        </a>
+        <a class="card quick-card accent-orange" href="/codes/">
+          <span class="quick-card__top">
+            <span class="tag">Rewards</span>
+            <strong>Latest Codes</strong>
+          </span>
+          <span>Check active rewards</span>
+          <em>Check Codes</em>
+        </a>
+        <a class="card quick-card accent-green" href="/deals/">
+          <span class="quick-card__top">
+            <span class="tag">Secrets</span>
+            <strong>Secrets & Keys</strong>
+          </span>
+          <span>Find hidden keys</span>
+          <em>Find Secrets</em>
+        </a>
+        <a class="card quick-card accent-blue" href="/income-sources/">
+          <span class="quick-card__top">
+            <span class="tag">Money</span>
+            <strong>Income Sources</strong>
+          </span>
+          <span>Farming money routes</span>
+          <em>Plan Income</em>
+        </a>
+      </div>
+    </section>
+
+    <!-- Overview Section (What Is Sell Lemons) -->
+    <section class="section grid-section" aria-labelledby="what-is-game">
+      <div>
+        <p class="eyebrow">Overview</p>
+        <h2 id="what-is-game">What Is Sell Lemons?</h2>
+        <p>Sell Lemons is a Roblox tycoon game where you start from zero, grow lemons, sell them for cash, and upgrade your way into faster and automated money production.</p>
+        <p>As you progress, you unlock better upgrades, rebirth systems, and even hidden secrets around the map that are not always obvious at first.</p>
+        <p><strong>Farming Loop:</strong> Grow &rarr; Sell &rarr; Upgrade &rarr; Automate &rarr; Repeat.</p>
+      </div>
+      <div class="grid-section" style="grid-template-columns: 1fr; gap: 16px;">
+        <article class="card">
+          <h3>Game Info</h3>
+          <dl class="status-list" style="margin: 0;">
+            {homeContent.quickFacts.map((fact) => (
+              <li><strong>{fact.label}:</strong> <span>{fact.value}</span></li>
+            ))}
+          </dl>
+        </article>
+        <article class="card">
+          <h3>Player Reviews</h3>
+          <ul class="review-list">
+            {homeContent.playerReviews.map((review) => (
+              <li>"{review}"</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Progression Funnel Roadmap -->
+    <section class="section" aria-labelledby="progression-roadmap">
+      <p class="eyebrow">Progression</p>
+      <h2 id="progression-roadmap">Progression Funnel</h2>
+      <p>Your complete progression roadmap to make money fast, unlock rebirths, and reach the endgame.</p>
+      
+      <div class="progression-track" aria-hidden="true">
+        {homeContent.progressionFunnel.map((stage) => (
+          <span class="progression-node">{stage.step}</span>
+        ))}
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        {homeContent.progressionFunnel.map((stage) => (
+          <a class="card" href={stage.href} style="display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
+            <div>
+              <span class="tag">Stage {stage.step}</span>
+              <h3 style="margin-top: 8px; font-size: 1.2rem;">{stage.title}</h3>
+              <p style="font-size: 0.9rem; color: var(--muted); margin: 8px 0 0 0;">{stage.desc}</p>
+            </div>
+            <span style="display: block; font-size: 0.8rem; font-weight: 800; color: var(--brand); margin-top: 16px; text-transform: uppercase;">View Guide &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Hidden Secrets Section -->
+    <section class="section" aria-labelledby="hidden-secrets">
+      <p class="eyebrow">Hidden Secrets</p>
+      <h2 id="hidden-secrets">Map Secrets & Hidden Keys</h2>
+      <p>Hidden Secrets & Keys are not just collectibles. They directly impact your progression in Sell Lemons. Discovering them can unlock new areas, improve income efficiency, and give you early advantages.</p>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        {homeContent.secrets.map((secret) => (
+          <a class="card" href={secret.href} style="text-decoration: none; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span class="tag">Hidden Unlocks</span>
+              <h3 style="margin-top: 8px;">{secret.name}</h3>
+              <p style="font-size: 0.9rem; color: var(--muted); margin-top: 8px;">{secret.desc}</p>
+            </div>
+            <span style="display: block; font-size: 0.8rem; font-weight: 800; color: var(--brand); margin-top: 16px; text-transform: uppercase;">Explore Secrets &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Interactive Tier Switcher -->
+    <section class="section" aria-labelledby="upgrades-rankings">
+      <p class="eyebrow">Rankings</p>
+      <h2 id="upgrades-rankings">Best Upgrades Tier Rankings</h2>
+      <p>Focusing on income speed, upgrade efficiency, and rebirth impact. Select a tier to view detail recommendations.</p>
+
+      <div class="tier-showcase" data-tier-switcher>
+        <nav class="tier-nav" aria-label="Tier groups" role="tablist">
+          <button class="tier-pill accent-red is-active" type="button" role="tab" aria-selected="true" data-tier-target="S">
+            <span class="tier-pill__dot"></span>
+            <span>S Tier</span>
+          </button>
+          <button class="tier-pill accent-blue" type="button" role="tab" aria-selected="false" data-tier-target="A">
+            <span class="tier-pill__dot"></span>
+            <span>A Tier</span>
+          </button>
+          <button class="tier-pill accent-yellow" type="button" role="tab" aria-selected="false" data-tier-target="B">
+            <span class="tier-pill__dot"></span>
+            <span>B Tier</span>
+          </button>
+          <button class="tier-pill accent-green" type="button" role="tab" aria-selected="false" data-tier-target="C">
+            <span class="tier-pill__dot"></span>
+            <span>C Tier</span>
+          </button>
+          <button class="tier-pill accent-purple" type="button" role="tab" aria-selected="false" data-tier-target="D">
+            <span class="tier-pill__dot"></span>
+            <span>D Tier</span>
+          </button>
+        </nav>
+
+        <div class="tier-panel">
+          {Object.entries(homeContent.tierListData).map(([tierKey, tierInfo], index) => {
+            const accentClass = tierKey === 'S' ? 'accent-red' : 
+                                tierKey === 'A' ? 'accent-blue' : 
+                                tierKey === 'B' ? 'accent-yellow' : 
+                                tierKey === 'C' ? 'accent-green' : 'accent-purple';
+            return (
+              <article class={`card tier-card ${accentClass} ${index === 0 ? 'is-active' : ''}`} data-tier-panel={tierKey} role="tabpanel">
+                <span class="tag">{tierKey} Tier</span>
+                <h3 style="margin-top: 8px;">{tierInfo.title}</h3>
+                <p style="font-size: 0.95rem; color: var(--muted); margin-bottom: 16px;">{tierInfo.desc}</p>
+                <ul style="padding-left: 18px; margin: 0; line-height: 1.8; color: var(--muted);">
+                  {tierInfo.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Wiki Index Links Grid -->
     {completedGuideLinks.length > 0 && (
       <section class="section" aria-labelledby="wiki-entry">
         <p class="eyebrow">Wiki index</p>
@@ -34,86 +203,52 @@ const showReportedCodeWatch = siteConfig.completedCoreSlugs.includes("codes");
       </section>
     )}
 
-    <section class="section grid-section" aria-labelledby="quick-facts">
-      <div>
-        <p class="eyebrow">Quick facts</p>
-        <h2 id="quick-facts">Quick facts</h2>
-        <p>Key information about {siteConfig.gameName} at a glance.</p>
-      </div>
-      <div class="card-grid">
-        {homeContent.quickFacts.map((fact) => (
-          <article class="card">
-            <h3>{fact.label}</h3>
-            <p>{fact.value}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="trending-searches">
-      <p class="eyebrow">Trending searches</p>
-      <h2 id="trending-searches">Search demand map</h2>
-      <div class="tag-list">
-        {homeContent.trendingSearches.map((query) => <span>{query}</span>)}
-      </div>
-    </section>
-
+    <!-- Working Codes Status Section -->
     {showReportedCodeWatch && (
       <section class="section grid-section" aria-labelledby="reported-code-watch">
         <div>
           <p class="eyebrow">Reported code watch</p>
           <h2 id="reported-code-watch">Community code signals</h2>
           <p>{evidenceNotice.communityReportedLabel}</p>
+          <p>Previously released codes have expired. We are actively monitoring developer channels for new code releases and updates.</p>
+          <a class="button primary" href="/codes/" style="margin-top: 16px; text-decoration: none;">View Codes Page</a>
         </div>
         <div class="card-grid">
-          {reportedCodeRows.map((row) => (
-            <article class="card">
-              <h3>{row.code}</h3>
-              <p>{row.reward}</p>
-              <p class="source-label">{row.sourceLabel}</p>
+          {reportedCodeRows.length > 0 ? (
+            reportedCodeRows.map((row) => (
+              <article class="card">
+                <h3>{row.code}</h3>
+                <p>{row.reward}</p>
+                <p class="source-label">{row.sourceLabel}</p>
+              </article>
+            ))
+          ) : (
+            <article class="card" style="display: grid; place-items: center; text-align: center;">
+              <p style="margin: 0; font-weight: 800;">No active codes are listed yet.</p>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: var(--muted);">Bookmark the codes page and check back regularly for updates.</p>
             </article>
-          ))}
+          )}
         </div>
       </section>
     )}
 
-    <section class="section" aria-labelledby="guide-map">
-      <p class="eyebrow">Guide map</p>
-      <h2 id="guide-map">Evidence-first publishing flow</h2>
-      <div class="card-grid">
-        {homeContent.guideMap.map((item) => (
-          <article class="card">
-            <p class="eyebrow">Step {item.step}</p>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="source-status">
-      <p class="eyebrow">Evidence boundaries</p>
-      <h2 id="source-status">{evidenceNotice.title}</h2>
-      <p>{evidenceNotice.body}</p>
-      <ul class="status-list">
-        {gameData.sourceConfidence.map((item) => (
-          <li><strong>{item.label}</strong><span>{item.level}</span></li>
-        ))}
-      </ul>
-    </section>
-
+    <!-- Detailed FAQ Accordion -->
     <section class="section" aria-labelledby="faq">
       <p class="eyebrow">FAQ</p>
-      <h2 id="faq">FAQ</h2>
+      <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-list">
         {homeContent.faq.map((item) => (
-          <article>
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </article>
+          <details class="faq-card card" style="padding: 16px 22px;">
+            <summary>{item.q}</summary>
+            <div class="faq-card__body">
+              <p style="margin: 12px 0 0 0; line-height: 1.7; color: var(--muted);">{item.a}</p>
+            </div>
+          </details>
         ))}
       </div>
     </section>
+
+    <!-- Schema.org Website Structured Data -->
     <script type="application/ld+json" set:html={jsonLd({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -121,4 +256,25 @@ const showReportedCodeWatch = siteConfig.completedCoreSlugs.includes("codes");
       description: homeContent.description
     })} />
   </main>
+
+  <!-- Script for tab switcher -->
+  <script is:inline>
+    document.querySelectorAll("[data-tier-switcher]").forEach((container) => {
+      const pills = Array.from(container.querySelectorAll("[data-tier-target]"));
+      const panels = Array.from(container.querySelectorAll("[data-tier-panel]"));
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const target = pill.getAttribute("data-tier-target");
+          pills.forEach((p) => {
+            const active = p === pill;
+            p.classList.toggle("is-active", active);
+            p.setAttribute("aria-selected", active ? "true" : "false");
+          });
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.getAttribute("data-tier-panel") === target);
+          });
+        });
+      });
+    });
+  </script>
 </SiteLayout>

@@ -39,7 +39,7 @@ export const siteConfig = {
   },
   assets: {
     icon: "/icon.svg",
-    hero: "/hero-placeholder.svg",
+    hero: "/sell_lemons_hero_main.png",
     iconTheme: "simulator",
     brandColor: "#236b2e",
     accentColor: "#facc15"
