@@ -1,0 +1,30 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import { siteConfig } from "../data/config";
+import { evidenceNotice, reportedDeals } from "../data/reported-guides";
+---
+
+<SiteLayout title={`Deals | ${siteConfig.siteName}`} description={`Pending deal and haggling mechanic research for ${siteConfig.gameName}.`}>
+  <main class="content-page">
+    <section class="prose-block">
+      <p class="eyebrow">Deals</p>
+      <h1>{siteConfig.gameName} Deals</h1>
+      <p>{evidenceNotice.body}</p>
+      <p>This page tracks reported deal and haggling mechanic research for {siteConfig.gameName}. Pricing, multipliers, and negotiation outcomes are not verified unless supported by official evidence.</p>
+    </section>
+    <section class="section">
+      <h2>Reported deal research</h2>
+      <div class="card-grid">
+        {reportedDeals.map((item) => (
+          <article class="card">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <p class="source-label">{item.sourceLabel}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <RelatedGuides currentSlug="deals" />
+  </main>
+</SiteLayout>

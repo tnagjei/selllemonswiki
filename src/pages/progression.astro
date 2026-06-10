@@ -1,0 +1,30 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import { siteConfig } from "../data/config";
+import { evidenceNotice, reportedProgression } from "../data/reported-guides";
+---
+
+<SiteLayout title={`Progression Guide | ${siteConfig.siteName}`} description={`Pending progression research for ${siteConfig.gameName}. Growth path and milestone tracking.`}>
+  <main class="content-page">
+    <section class="prose-block">
+      <p class="eyebrow">Progression</p>
+      <h1>{siteConfig.gameName} Progression Guide</h1>
+      <p>{evidenceNotice.body}</p>
+      <p>This page tracks reported growth-path research for {siteConfig.gameName}. Progression milestones, unlock order, and growth strategies listed below are based on community reports unless otherwise noted.</p>
+    </section>
+    <section class="section">
+      <h2>Reported progression research</h2>
+      <div class="card-grid">
+        {reportedProgression.map((item) => (
+          <article class="card">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <p class="source-label">{item.sourceLabel}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <RelatedGuides currentSlug="progression" />
+  </main>
+</SiteLayout>

@@ -3,14 +3,14 @@ import path from "node:path";
 
 const root = process.cwd();
 const args = process.argv.slice(2);
-const WIKI_HUB_SLUGS = ["", "codes", "tier-list", "classes", "weapons", "value-list"];
+const WIKI_HUB_SLUGS = ["", "codes", "progression", "income-sources", "rebirths", "deals"];
 const MINIMAL_SLUGS = [""];
 const WIKI_PAGE_FILES = [
   "src/pages/codes.astro",
-  "src/pages/tier-list.astro",
-  "src/pages/classes.astro",
-  "src/pages/weapons.astro",
-  "src/pages/value-list.astro"
+  "src/pages/progression.astro",
+  "src/pages/income-sources.astro",
+  "src/pages/rebirths.astro",
+  "src/pages/deals.astro"
 ];
 const ICON_THEMES = ["default", "magic", "farm", "anime", "combat", "racing", "simulator"];
 
@@ -144,13 +144,13 @@ try {
   defaultLocale: "en",
   availableLocales: ["en", "th", "fil", "id"],
   completedLocales: ["en"],
-  coreSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"],
+  coreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
   completedCoreSlugs: ${JSON.stringify(completedCoreSlugs)},
   englishOnlySlugs: [],
   completedEnglishOnlySlugs: [],
   systemSlugs: ["about", "contact", "editorial-policy"],
   blockedSlugs: ["scripts", "macros", "executor", "exploit"],
-  navigationSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"],
+  navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
   publisher: {
     displayName: ${q(siteName)},
     responseTime: "We usually review messages within 7 business days.",
@@ -212,15 +212,15 @@ try {
 
 export const wikiLinks = [
   { title: "Codes", slug: "codes", description: "Track official and community-reported code status without inventing active rewards." },
-  { title: "Tier List", slug: "tier-list", description: "Compare community-reported rankings without presenting them as official." },
-  { title: "Classes", slug: "classes", description: "Map reported class roles and evidence status." },
-  { title: "Weapons", slug: "weapons", description: "Organize reported weapons without fake stats, DPS, or rarity claims." },
-  { title: "Value List", slug: "value-list", description: "Record reported value priority without fabricating trading prices or odds." }
+  { title: "Progression", slug: "progression", description: "Research reported growth paths, milestones, and strategies." },
+  { title: "Income Sources", slug: "income-sources", description: "Track reported income sources without fabricating costs or multipliers." },
+  { title: "Rebirths", slug: "rebirths", description: "Research reported rebirth mechanics and bonuses." },
+  { title: "Deals", slug: "deals", description: "Track reported deal and haggling mechanics without fabricating rates or prices." }
 ];
 
 export const homeContent = {
   title: \`\${siteConfig.siteName} | Roblox Wiki Hub\`,
-  description: \`\${siteConfig.siteName} is an evidence-first Roblox wiki hub for codes, tier lists, classes, weapons, and value tracking.\`,
+  description: \`\${siteConfig.siteName} is an evidence-first Roblox wiki hub for codes, progression, income sources, rebirths, and deals.\`,
   hero: {
     eyebrow: "Roblox wiki hub",
     title: \`\${siteConfig.gameName} Wiki Hub\`,
@@ -234,20 +234,20 @@ export const homeContent = {
   ],
   trendingSearches: [
     \`\${siteConfig.gameName} codes\`,
-    \`\${siteConfig.gameName} tier list\`,
-    \`\${siteConfig.gameName} classes\`,
-    \`\${siteConfig.gameName} weapons\`,
-    \`\${siteConfig.gameName} value list\`
+    \`\${siteConfig.gameName} progression\`,
+    \`\${siteConfig.gameName} income sources\`,
+    \`\${siteConfig.gameName} rebirths\`,
+    \`\${siteConfig.gameName} deals\`
   ],
   wikiLinks,
   guideMap: [
-    { step: "1", title: "Start from the hub", body: "The homepage is the pillar page and links directly to every completed cluster page." },
-    { step: "2", title: "Move through clusters", body: "Each cluster page links back to the hub and to related cluster pages." },
-    { step: "3", title: "Keep evidence labels visible", body: "Pages enter sitemap only after completedCoreSlugs includes them and evidence boundaries are present." }
+    { step: "1", title: "Start from the hub", body: "The homepage links directly to every completed guide page." },
+    { step: "2", title: "Move through guide pages", body: "Each guide page links back to the hub and to related guide pages." },
+    { step: "3", title: "Keep evidence labels visible", body: "Every page shows whether information is verified, community-reported, or pending." }
   ],
   faq: [
     { q: "Are community-reported codes verified?", a: "No. They are research signals until independently confirmed." },
-    { q: "Can the wiki hub add more pages?", a: "Yes, but every public cluster page must stay linked from the hub and remain within three clicks." }
+    { q: "Can the wiki hub add more pages?", a: "Yes, but every public guide page must stay linked from the hub and remain within three clicks." }
   ]
 };`
   );

@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Roblox guide template icon">
-  <rect width="512" height="512" rx="112" fill="#17241f" />
-  <circle cx="256" cy="256" r="156" fill="#2d8a4e" />
-  <path d="M160 284 256 120l96 164h-58l-38-70-38 70h-58Z" fill="#facc15" />
-  <path d="M170 342h172v42H170z" fill="#ffffff" opacity="0.92" />
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Sell Lemons Wiki icon">
+  <rect width="512" height="512" rx="112" fill="#236b2e" />
+  <circle cx="256" cy="256" r="170" fill="#ffffff" opacity="0.08" />
+  <rect x="128" y="132" width="256" height="256" rx="46" fill="#facc15" /><circle cx="256" cy="260" r="82" fill="#ffffff" opacity="0.84" /><path d="M256 190v70l54 36" stroke="#17241f" stroke-width="34" stroke-linecap="round" fill="none" />
+  <rect x="154" y="360" width="204" height="70" rx="35" fill="#236b2e" opacity="0.88" />
+  <text x="256" y="410" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#ffffff">SL</text>
 </svg>

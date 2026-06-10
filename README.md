@@ -1,8 +1,8 @@
-# Roblox Guide Site Template Astro
+# Sell Lemons Wiki
 
-Astro + Cloudflare Pages Roblox wiki hub template.
+Astro + Cloudflare Pages Roblox wiki hub for Sell Lemons.
 
-This repository is a lightweight static-site template for new Roblox guide sites. It uses static output and deploys to Cloudflare Pages with `dist/`.
+This repository is a static-site wiki hub for the Roblox game Sell Lemons. It uses static output and deploys to Cloudflare Pages with `dist/`.
 
 ## Default navigation
 
@@ -11,10 +11,10 @@ The default navigation is configuration-driven:
 ```text
 Home
 Codes
-Tier List
-Classes
-Weapons
-Value List
+Progression
+Income Sources
+Rebirths
+Deals
 Language
 ```
 
@@ -51,10 +51,10 @@ Publishes:
 ```text
 /
 /codes/
-/tier-list/
-/classes/
-/weapons/
-/value-list/
+/progression/
+/income-sources/
+/rebirths/
+/deals/
 /about/
 /contact/
 /editorial-policy/
@@ -75,7 +75,7 @@ Before review, verify:
 /privacy/ exists, outputs HTML, and remains noindex
 /terms/ exists, outputs HTML, and remains noindex
 Footer links to About, Contact, Privacy, Terms, and Editorial Policy
-sitemap.xml includes /, /codes/, /tier-list/, /classes/, /weapons/, /value-list/, /about/, /contact/, and /editorial-policy/
+sitemap.xml includes /, /codes/, /progression/, /income-sources/, /rebirths/, /deals/, /about/, /contact/, and /editorial-policy/
 sitemap.xml excludes /privacy/, /terms/, /guide/, /updates/, /scripts/, /macros/, /executor/, /exploit/, /th/, /fil/, and /id/
 No fake active codes, rewards, value rows, or official claims are published
 No unsafe exploit, executor, macro, or script pages are generated
@@ -105,7 +105,7 @@ Verified content requires official Roblox page, Roblox public API, official chan
 
 Community-reported content is only a research signal and must not be presented as verified.
 
-Do not invent active codes, rewards, class stats, weapon stats, rankings, value rows, or official claims.
+Do not invent active codes, rewards, income source stats, rebirth multipliers, deal rates, or official claims.
 
 ## Themed icons
 
@@ -141,14 +141,14 @@ Example initialization:
 
 ```bash
 npm run init:new-site -- \
-  --site-name "Example Game Guide" \
-  --game-name "Example Game" \
-  --domain "https://example.com" \
-  --contact-email "admin@example.com" \
-  --roblox-url "https://www.roblox.com/games/123/example" \
+  --site-name "Sell Lemons Wiki" \
+  --game-name "Sell Lemons" \
+  --domain "https://selllemonswiki.online" \
+  --contact-email "tangjei414@gmail.com" \
+  --roblox-url "https://www.roblox.com/games/79268393072444/Sell-Lemons" \
   --launch-mode wiki-hub \
-  --icon-theme magic \
-  --brand-color "#17241f" \
+  --icon-theme simulator \
+  --brand-color "#236b2e" \
   --accent-color "#facc15"
 ```
 
@@ -172,9 +172,9 @@ site.webmanifest
 
 ## GA4 event tracking
 
-This template includes a minimal GA4 event helper for reusable event tracking.
+This site includes a minimal GA4 event helper for reusable event tracking.
 
-Default template event names:
+Default event names:
 
 ```text
 copy_action
@@ -216,10 +216,10 @@ Default sitemap routes are:
 ```text
 /
 /codes/
-/tier-list/
-/classes/
-/weapons/
-/value-list/
+/progression/
+/income-sources/
+/rebirths/
+/deals/
 /about/
 /contact/
 /editorial-policy/

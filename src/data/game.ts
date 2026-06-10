@@ -1,13 +1,13 @@
 export const gameData = {
-  robloxUrl: "https://www.roblox.com/",
-  creatorName: "Example Creator",
+  robloxUrl: "https://www.roblox.com/games/79268393072444/Sell-Lemons",
+  creatorName: "BloxByte Games",
   universeId: null,
-  rootPlaceId: null,
+  rootPlaceId: 79268393072444,
   maxPlayers: null,
-  officialTitle: "Example Roblox Game",
-  genre: "Roblox adventure",
+  officialTitle: "Sell Lemons",
+  genre: "simulator",
   sourceConfidence: [
-    { label: "Roblox game page", level: "pending" },
+    { label: "Roblox game page", level: "verified" },
     { label: "Roblox public API", level: "pending" },
     { label: "Official channels", level: "pending" },
     { label: "In-game checks", level: "pending" }
@@ -16,7 +16,7 @@ export const gameData = {
     verifiedActiveCodes: [],
     pendingCodes: [],
     communityReportedCodes: [],
-    officialStatus: "No verified official active codes yet",
+    officialStatus: "No verified active codes are listed yet",
     verificationPolicy: "Do not publish active codes as verified without official or in-game proof."
   }
 };

@@ -8,7 +8,7 @@ export const systemPageContent = {
     sections: [
       {
         heading: "What this site is",
-        body: `${siteConfig.siteName} is an independent fan guide for ${siteConfig.gameName}. It is built to help players find structured information about codes, tier lists, classes, weapons, and value-list research without presenting unverified claims as facts.`
+        body: `${siteConfig.siteName} is an independent fan guide for ${siteConfig.gameName}. It is built to help players find structured information about codes, progression, income sources, rebirths, and deals without presenting unverified claims as facts.`
       },
       {
         heading: "Independent fan guide disclaimer",
@@ -20,7 +20,7 @@ export const systemPageContent = {
       },
       {
         heading: "Source and evidence boundaries",
-        body: `Active codes, rewards, value rows, weapon stats, rankings, and official claims should not be published as verified unless supporting evidence exists. Community-reported information must stay clearly labeled.`
+        body: `Active codes, rewards, income source stats, rebirth multipliers, deal rates, and official claims should not be published as verified unless supporting evidence exists. Community-reported information must stay clearly labeled.`
       },
       {
         heading: "Contact",
@@ -63,8 +63,8 @@ export const systemPageContent = {
         body: `Active codes and rewards must not be marked as verified unless official or in-game evidence supports them. Community-reported codes can be tracked only as unverified research signals.`
       },
       {
-        heading: "Tier lists and values",
-        body: `Tier lists, weapon pages, and value-list pages should explain whether information is verified, community-reported, or pending. The template must not invent trading values, DPS, crate odds, or official rankings.`
+        heading: "Game mechanics and values",
+        body: `Income source stats, rebirth multipliers, deal rates, and progression details should explain whether information is verified, community-reported, or pending. This site must not invent stats, costs, odds, or official claims.`
       },
       {
         heading: "Unsafe content boundary",
@@ -85,20 +85,24 @@ export const systemPageContent = {
         body: `${siteConfig.siteName} does not require Roblox passwords, private Roblox account details, identity documents, payment details, or account recovery information.`
       },
       {
-        heading: "Analytics and advertising",
-        body: `A deployed site may use Google Analytics 4, Google AdSense, or other configured services. These services may use cookies, device identifiers, browser information, IP-derived location signals, and usage events to measure traffic or serve ads.`
+        heading: "Google Analytics 4",
+        body: `This site may use Google Analytics 4 to measure traffic and understand how visitors interact with content. Google Analytics 4 may collect device identifiers, browser information, IP-derived location signals, and usage events. This data helps improve site content and structure.`
+      },
+      {
+        heading: "Google AdSense",
+        body: `This site may use Google AdSense to display advertisements. Google AdSense may use cookies and device identifiers to serve ads based on prior visits to this site or other websites. Ad personalization settings can be managed through Google Ad Settings.`
       },
       {
         heading: "Cookies and third-party services",
         body: `Cookies and similar technologies may be used by analytics, advertising, hosting, or security providers. Review configured scripts before launch and keep this policy aligned with the services used on the site.`
       },
       {
-        heading: "Children privacy boundary",
+        heading: "Children privacy",
         body: `This site is a general Roblox guide site and does not knowingly request personal information from children. Users should not submit private account details or personal contact information through this site.`
       },
       {
         heading: "User choices",
-        body: `Users can manage cookies through browser settings. Some third-party services may provide their own privacy controls or opt-out tools.`
+        body: `Users can manage cookies through browser settings. Some third-party services may provide their own privacy controls or opt-out tools. Google provides ad personalization controls at https://adssettings.google.com.`
       },
       {
         heading: "Contact",
@@ -115,7 +119,11 @@ export const systemPageContent = {
         body: `${siteConfig.siteName} is an independent fan guide. It is not affiliated with Roblox Corporation or the developers of ${siteConfig.gameName}. Roblox trademarks and game assets belong to their respective owners.`
       },
       {
-        heading: "Guide content accuracy",
+        heading: "Roblox trademark notice",
+        body: `Roblox is a registered trademark of Roblox Corporation. ${siteConfig.gameName} and related game assets are the property of their respective creators. This site uses these names for informational and commentary purposes only.`
+      },
+      {
+        heading: "Content accuracy",
         body: `The site aims to separate verified information from community-reported and pending information. Game information can change, and no page should present unsupported claims as official facts.`
       },
       {
@@ -124,7 +132,7 @@ export const systemPageContent = {
       },
       {
         heading: "Safety boundary",
-        body: `This template does not support exploit executors, unsafe downloads, account-risk behavior, or requests for private Roblox account credentials.`
+        body: `This site does not support exploit executors, unsafe downloads, account-risk behavior, or requests for private Roblox account credentials.`
       },
       {
         heading: "Contact",

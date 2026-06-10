@@ -1,0 +1,30 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import { siteConfig } from "../data/config";
+import { evidenceNotice, reportedIncomeSources } from "../data/reported-guides";
+---
+
+<SiteLayout title={`Income Sources | ${siteConfig.siteName}`} description={`Community-reported income source research for ${siteConfig.gameName}.`}>
+  <main class="content-page">
+    <section class="prose-block">
+      <p class="eyebrow">Income sources</p>
+      <h1>{siteConfig.gameName} Income Sources</h1>
+      <p>{evidenceNotice.body}</p>
+      <p>This page tracks reported income sources for {siteConfig.gameName}. Costs, multipliers, and unlock requirements are not verified unless supported by official evidence.</p>
+    </section>
+    <section class="section">
+      <h2>Reported income sources</h2>
+      <div class="card-grid">
+        {reportedIncomeSources.map((item) => (
+          <article class="card">
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+            <p class="source-label">{item.sourceLabel}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+    <RelatedGuides currentSlug="income-sources" />
+  </main>
+</SiteLayout>

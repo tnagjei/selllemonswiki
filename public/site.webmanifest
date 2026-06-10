@@ -1,10 +1,10 @@
 {
-  "name": "Example Game Guide",
-  "short_name": "Game Guide",
+  "name": "Sell Lemons Wiki",
+  "short_name": "Sell Lemons",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f8f7ef",
-  "theme_color": "#17241f",
+  "background_color": "#236b2e",
+  "theme_color": "#236b2e",
   "icons": [
     {
       "src": "/icon-192.png",

@@ -34,8 +34,8 @@ const showReportedCodeWatch = siteConfig.completedCoreSlugs.includes("codes");
     <section class="section grid-section" aria-labelledby="quick-facts">
       <div>
         <p class="eyebrow">Quick facts</p>
-        <h2 id="quick-facts">Launch facts</h2>
-        <p>Use this hub to publish only the pages that pass source and static export checks.</p>
+        <h2 id="quick-facts">Quick facts</h2>
+        <p>Key information about {siteConfig.gameName} at a glance.</p>
       </div>
       <div class="card-grid">
         {homeContent.quickFacts.map((fact) => (
@@ -101,7 +101,7 @@ const showReportedCodeWatch = siteConfig.completedCoreSlugs.includes("codes");
 
     <section class="section" aria-labelledby="faq">
       <p class="eyebrow">FAQ</p>
-      <h2 id="faq">Template FAQ</h2>
+      <h2 id="faq">FAQ</h2>
       <div class="faq-list">
         {homeContent.faq.map((item) => (
           <article>

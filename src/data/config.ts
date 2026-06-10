@@ -1,22 +1,22 @@
 export const siteConfig = {
-  siteName: "Example Game Guide",
-  gameName: "Example Roblox Game",
-  siteDomain: "https://example.com",
-  contactEmail: "example@example.com",
-  primaryKeyword: "Example Roblox Game guide",
+  siteName: "Sell Lemons Wiki",
+  gameName: "Sell Lemons",
+  siteDomain: "https://selllemonswiki.online",
+  contactEmail: "tangjei414@gmail.com",
+  primaryKeyword: "Sell Lemons wiki",
   launchMode: "wiki-hub",
   defaultLocale: "en",
   availableLocales: ["en", "th", "fil", "id"],
   completedLocales: ["en"],
-  coreSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"],
-  completedCoreSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"],
+  coreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
+  completedCoreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
   englishOnlySlugs: [],
   completedEnglishOnlySlugs: [],
   systemSlugs: ["about", "contact", "editorial-policy"],
   blockedSlugs: ["scripts", "macros", "executor", "exploit"],
-  navigationSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"],
+  navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
   publisher: {
-    displayName: "Example Publisher",
+    displayName: "Sell Lemons Wiki Team",
     responseTime: "We usually review messages within 7 business days.",
     country: ""
   },
@@ -37,8 +37,8 @@ export const siteConfig = {
   assets: {
     icon: "/icon.svg",
     hero: "/hero-placeholder.svg",
-    iconTheme: "default",
-    brandColor: "#17241f",
+    iconTheme: "simulator",
+    brandColor: "#236b2e",
     accentColor: "#facc15"
   }
 };

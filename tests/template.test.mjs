@@ -8,13 +8,13 @@ function read(file) {
 
 const wikiFiles = [
   "src/pages/codes.astro",
-  "src/pages/tier-list.astro",
-  "src/pages/classes.astro",
-  "src/pages/weapons.astro",
-  "src/pages/value-list.astro"
+  "src/pages/progression.astro",
+  "src/pages/income-sources.astro",
+  "src/pages/rebirths.astro",
+  "src/pages/deals.astro"
 ];
 
-const wikiSlugs = ["codes", "tier-list", "classes", "weapons", "value-list"];
+const wikiSlugs = ["codes", "progression", "income-sources", "rebirths", "deals"];
 
 const requiredFiles = [
   "astro.config.mjs",
@@ -44,7 +44,7 @@ const requiredFiles = [
   ...wikiFiles
 ];
 
-test("required Astro wiki hub template files exist", () => {
+test("required Astro wiki hub files exist", () => {
   for (const file of requiredFiles) {
     assert.equal(fs.existsSync(file), true, `${file} should exist`);
   }
@@ -59,28 +59,44 @@ test("package scripts include favicon generation, initialization, and validation
   assert.ok(packageJson.scripts.check.includes("validate:static-export"));
 });
 
-test("template defaults to wiki-hub launch mode", () => {
+test("config uses wiki-hub launch mode with valid settings", () => {
   const config = read("src/data/config.ts");
+  const allowedIconThemes = ["default", "magic", "farm", "anime", "combat", "racing", "simulator"];
 
   assert.ok(config.includes('launchMode: "wiki-hub"'));
   assert.ok(config.includes('completedLocales: ["en"]'));
   assert.ok(config.includes('availableLocales: ["en", "th", "fil", "id"]'));
-  assert.ok(config.includes('completedCoreSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"]'));
-  assert.ok(config.includes('navigationSlugs: ["", "codes", "tier-list", "classes", "weapons", "value-list"]'));
-  assert.ok(config.includes('iconTheme: "default"'));
-  assert.ok(config.includes('brandColor: "#17241f"'));
-  assert.ok(config.includes('accentColor: "#facc15"'));
+  assert.ok(config.includes('completedCoreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]'));
+  assert.ok(config.includes('navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"]'));
   assert.ok(config.includes("completedEnglishOnlySlugs: []"));
   assert.ok(config.includes('systemSlugs: ["about", "contact", "editorial-policy"]'));
   assert.ok(config.includes("publisher:"));
   assert.ok(config.includes("systemPages:"));
+
+  // iconTheme must be in allowed list
+  const iconThemeMatch = config.match(/iconTheme:\s*["']([^"']*)["']/);
+  assert.ok(iconThemeMatch, "iconTheme must be set");
+  assert.ok(allowedIconThemes.includes(iconThemeMatch[1]), `iconTheme '${iconThemeMatch[1]}' must be in allowed list`);
+
+  // brandColor and accentColor must be valid hex
+  const brandColorMatch = config.match(/brandColor:\s*["'](#[0-9a-fA-F]{6})["']/);
+  assert.ok(brandColorMatch, "brandColor must be a valid hex color");
+  const accentColorMatch = config.match(/accentColor:\s*["'](#[0-9a-fA-F]{6})["']/);
+  assert.ok(accentColorMatch, "accentColor must be a valid hex color");
+
+  // Must not use template placeholder values
+  assert.equal(config.includes('"Example Game Guide"'), false, "siteName must not be template placeholder");
+  assert.equal(config.includes('"Example Roblox Game"'), false, "gameName must not be template placeholder");
+  assert.equal(config.includes('"https://example.com"'), false, "siteDomain must not be template placeholder");
+  assert.equal(config.includes('"example@example.com"'), false, "contactEmail must not be template placeholder");
+  assert.equal(config.includes('"Example Publisher"'), false, "displayName must not be template placeholder");
 });
 
 test("navigation exposes wiki hub links and language candidates", () => {
   const navigation = read("src/lib/navigation.ts");
   const header = read("src/components/Header.astro");
 
-  for (const label of ["Codes", "Tier List", "Classes", "Weapons", "Value List", "English", "Thai", "Filipino", "Indonesian"]) {
+  for (const label of ["Codes", "Progression", "Income Sources", "Rebirths", "Deals", "English", "Thai", "Filipino", "Indonesian"]) {
     assert.ok(navigation.includes(label), `navigation must include ${label}`);
   }
 
@@ -119,7 +135,7 @@ test("cluster pages link back to hub and related cluster pages", () => {
   }
 });
 
-test("init-new-site supports minimal, wiki-hub, and themed icon options", () => {
+test("init-new-site supports launch modes and themed icon options", () => {
   const script = read("scripts/init-new-site.mjs");
 
   assert.ok(script.includes("--launch-mode minimal"));
@@ -236,9 +252,12 @@ test("unsafe pages and removed legacy pages are not generated", () => {
     "src/pages/executor.astro",
     "src/pages/exploit.astro",
     "src/pages/guide.astro",
-    "src/pages/updates.astro"
+    "src/pages/updates.astro",
+    "src/pages/classes.astro",
+    "src/pages/weapons.astro",
+    "src/pages/tier-list.astro"
   ]) {
-    assert.equal(fs.existsSync(file), false, `${file} must not exist by default`);
+    assert.equal(fs.existsSync(file), false, `${file} must not exist`);
   }
 
   const config = read("src/data/config.ts");

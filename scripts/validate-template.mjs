@@ -3,7 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const violations = [];
-const wikiHubSlugs = ["", "codes", "tier-list", "classes", "weapons", "value-list"];
+const wikiHubSlugs = ["", "codes", "progression", "income-sources", "rebirths", "deals"];
 const expectedLocales = ["en", "th", "fil", "id"];
 const allowedIconThemes = ["default", "magic", "farm", "anime", "combat", "racing", "simulator"];
 
@@ -24,10 +24,10 @@ const requiredFiles = [
   "src/pages/privacy.astro",
   "src/pages/terms.astro",
   "src/pages/codes.astro",
-  "src/pages/tier-list.astro",
-  "src/pages/classes.astro",
-  "src/pages/weapons.astro",
-  "src/pages/value-list.astro",
+  "src/pages/progression.astro",
+  "src/pages/income-sources.astro",
+  "src/pages/rebirths.astro",
+  "src/pages/deals.astro",
   "src/layouts/SiteLayout.astro",
   "src/components/Header.astro",
   "src/components/TrackedLink.astro",
@@ -59,7 +59,10 @@ const forbiddenPaths = [
   "src/pages/updates.astro",
   "src/pages/th.astro",
   "src/pages/fil.astro",
-  "src/pages/id.astro"
+  "src/pages/id.astro",
+  "src/pages/classes.astro",
+  "src/pages/weapons.astro",
+  "src/pages/tier-list.astro"
 ];
 
 function exists(file) {
@@ -86,7 +89,7 @@ for (const file of requiredFiles) {
 }
 
 for (const file of forbiddenPaths) {
-  if (exists(file)) violations.push(`Forbidden Astro template path exists: ${file}`);
+  if (exists(file)) violations.push(`Forbidden path exists: ${file}`);
 }
 
 if (exists("package.json")) {
@@ -120,8 +123,8 @@ if (exists("src/data/config.ts")) {
   const brandColor = extractString(config, "brandColor");
   const accentColor = extractString(config, "accentColor");
 
-  if (launchMode !== "wiki-hub") violations.push("template default launchMode must be wiki-hub");
-  if (completedCoreSlugs.join(",") !== wikiHubSlugs.join(",")) violations.push("template default completedCoreSlugs must match wiki hub slugs");
+  if (launchMode !== "wiki-hub") violations.push("launchMode must be wiki-hub");
+  if (completedCoreSlugs.join(",") !== wikiHubSlugs.join(",")) violations.push("completedCoreSlugs must match wiki hub slugs");
   if (navigationSlugs.join(",") !== wikiHubSlugs.join(",")) violations.push("navigationSlugs must match wiki hub slugs");
   if (!completedCoreSlugs.every((slug) => coreSlugs.includes(slug))) violations.push("completedCoreSlugs must be a subset of coreSlugs");
   if (availableLocales.join(",") !== expectedLocales.join(",")) violations.push("availableLocales must be en, th, fil, id");
@@ -183,7 +186,7 @@ if (exists("src/components/Footer.astro")) {
 
 if (exists("src/lib/navigation.ts")) {
   const nav = read("src/lib/navigation.ts");
-  for (const label of ["Codes", "Tier List", "Classes", "Weapons", "Value List", "English", "Thai", "Filipino", "Indonesian"]) {
+  for (const label of ["Codes", "Progression", "Income Sources", "Rebirths", "Deals", "English", "Thai", "Filipino", "Indonesian"]) {
     if (!nav.includes(label)) violations.push(`navigation must include ${label}`);
   }
   for (const label of ["Guide", "Updates"]) {
@@ -264,10 +267,10 @@ const scannedFiles = [
   "src/pages/privacy.astro",
   "src/pages/terms.astro",
   "src/pages/codes.astro",
-  "src/pages/tier-list.astro",
-  "src/pages/classes.astro",
-  "src/pages/weapons.astro",
-  "src/pages/value-list.astro",
+  "src/pages/progression.astro",
+  "src/pages/income-sources.astro",
+  "src/pages/rebirths.astro",
+  "src/pages/deals.astro",
   "README.md"
 ];
 

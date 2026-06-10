@@ -6,7 +6,7 @@ const configPath = path.join(root, "src/data/config.ts");
 const gamePath = path.join(root, "src/data/game.ts");
 const violations = [];
 const warnings = [];
-const wikiHubSlugs = ["", "codes", "tier-list", "classes", "weapons", "value-list"];
+const wikiHubSlugs = ["", "codes", "progression", "income-sources", "rebirths", "deals"];
 const systemSlugs = ["about", "contact", "editorial-policy"];
 const expectedLocales = ["en", "th", "fil", "id"];
 const requiredSystemFiles = [
@@ -26,7 +26,10 @@ const forbiddenDefaultPages = [
   "src/pages/exploit.astro",
   "src/pages/th.astro",
   "src/pages/fil.astro",
-  "src/pages/id.astro"
+  "src/pages/id.astro",
+  "src/pages/classes.astro",
+  "src/pages/weapons.astro",
+  "src/pages/tier-list.astro"
 ];
 
 function read(file) {

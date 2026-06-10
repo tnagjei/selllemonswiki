@@ -10,10 +10,10 @@ export const localeLabels = {
 export const defaultNavItems = [
   { slug: "", label: "Home", href: "/" },
   { slug: "codes", label: "Codes", href: "/codes/" },
-  { slug: "tier-list", label: "Tier List", href: "/tier-list/" },
-  { slug: "classes", label: "Classes", href: "/classes/" },
-  { slug: "weapons", label: "Weapons", href: "/weapons/" },
-  { slug: "value-list", label: "Value List", href: "/value-list/" }
+  { slug: "progression", label: "Progression", href: "/progression/" },
+  { slug: "income-sources", label: "Income Sources", href: "/income-sources/" },
+  { slug: "rebirths", label: "Rebirths", href: "/rebirths/" },
+  { slug: "deals", label: "Deals", href: "/deals/" }
 ];
 
 export function getMainNavItems() {
