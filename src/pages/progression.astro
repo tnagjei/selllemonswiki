@@ -1,6 +1,6 @@
 ---
 // input: siteConfig, evidenceNotice from config and reported-guides
-// output: High-fidelity step-by-step progression guide matching competitor framework
+// output: High-fidelity tabbed guides showing both beginner walkthrough and best progression path
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/progression.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
@@ -8,93 +8,225 @@ import { siteConfig } from "../data/config";
 import { evidenceNotice } from "../data/reported-guides";
 ---
 
-<SiteLayout title="Sell Lemons Progression Guide | Fastest Upgrades & Tycoon Path" description="Learn Sell Lemons progression with early-game Juicer priorities, Cash Register automation, LemonDash logistics minigame, and Depot decoration secrets.">
+<SiteLayout title="Sell Lemons Progression Guide | Beginner Starter & Speedrun Path" description="Master progression in Sell Lemons with early-game Juicer priorities, Cash Register automation, LemonDash logistics minigame, and Depot decoration secrets.">
   <main>
     <!-- Page Hero Section -->
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
-          <p class="eyebrow">Starter Path</p>
-          <h1>Ultimate Starter Walkthrough: Speedrun to Your First $10K</h1>
-          <p>Welcome to Sell Lemons! Stop smashing low-yield buttons blindly. This zero-fluff walkthrough targets your exact early-game milestones—telling you exactly how to automate your stand, exploit NPC phone haggling, and break the early tycoon loop.</p>
+          <p class="eyebrow">Roblox Tycoon</p>
+          <h1>Sell Lemons Progression Guide & Walkthroughs</h1>
+          <p>Learn how to scale from $1 to centillions! Switch between the Beginner Guide to secure your first $10K, or the Best Progression Guide to optimize your Rebirth, Evolve, and Ascension speedruns.</p>
         </div>
-        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons starter progression guide" width="894" height="500" />
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons progression guide hub" width="894" height="500" />
       </div>
     </section>
 
-    <!-- Detailed Guide Content -->
-    <article class="guide-detail">
-      <h2>The 4-Step Actionable Walkthrough</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>Step 1: The $450 Juicer & Early Ground Cash Grab</h3>
-          <ul>
-            <li><strong>Player Objective:</strong> Skip manual grinding and secure your absolute first chunk of pocket cash.</li>
-            <li><strong>Action Blueprint:</strong> When you spawn at your tiny Level 1 Lemon Stand, don't waste time looking around. Click the stand to generate $1 bills, but keep your eyes glued to the floor! Ground cash spawns passively and walking over it accounts for 20% to 40% of your pre-automation income. Hoard every dollar until you hit exactly $450 to buy the Juicer upgrade.</li>
-            <li><strong>ROI Optimization:</strong> The Juicer instantly doubles your stand's payout. This is mathematically verified as the single highest return on investment in the entire early-game meta.</li>
-          </ul>
-        </section>
+    <!-- Tab Switcher Navigation -->
+    <div class="guide-switcher-section" data-guide-switcher style="max-width: 800px; margin: 32px auto 0 auto; padding: 0 24px;">
+      <p class="eyebrow" style="margin-bottom: 12px;">Choose Walkthrough Type</p>
+      <nav class="tier-nav" aria-label="Guide types" role="tablist">
+        <button class="tier-pill is-active" type="button" role="tab" aria-selected="true" data-guide-target="beginner">
+          <span class="tier-pill__dot"></span>
+          <span>Beginner Guide (First $10K)</span>
+        </button>
+        <button class="tier-pill" type="button" role="tab" aria-selected="false" data-guide-target="best">
+          <span class="tier-pill__dot"></span>
+          <span>Best Progression (Optimal Path)</span>
+        </button>
+      </nav>
+    </div>
 
-        <section class="guide-step-card">
-          <h3>Step 2: The $2,100 Milestone — Breaking Finger Fatigue</h3>
-          <ul>
-            <li><strong>Player Objective:</strong> Escape manual clicking entirely so you can actively explore the map.</li>
-            <li><strong>Action Blueprint:</strong> Now that your Juicer is running, push hard to accumulate your first milestone: $2,100. Do not spend cash on aesthetic base fences or signs yet. The second you hit $2,100, buy the Cash Register Automator.</li>
-            <li><strong>ROI Optimization:</strong> This automator completely eliminates the manual clicking requirement. It permanently frees up your action economy, allowing your base to print cash automatically while you roam around tracking down map secrets.</li>
-          </ul>
-        </section>
+    <!-- Panel 1: Beginner Guide -->
+    <div class="guide-panel is-active" data-guide-panel="beginner">
+      <article class="guide-detail">
+        <h2>The 4-Step Actionable Walkthrough</h2>
+        <div class="guide-step-flow">
+          <section class="guide-step-card">
+            <h3>Step 1: The $450 Juicer & Early Ground Cash Grab</h3>
+            <ul>
+              <li><strong>The Player Need:</strong> How to skip manual grinding and secure your absolute first chunk of pocket cash.</li>
+              <li><strong>The Blueprint Action:</strong> When you spawn at your tiny Level 1 Lemon Stand, don't waste time looking around. Click the stand to generate $1 bills, but keep your eyes glued to the floor! Ground cash spawns passively and walking over it accounts for 20% to 40% of your pre-automation income. Hoard every dollar until you hit exactly $450 to buy the Juicer upgrade.</li>
+              <li><strong>The ROI Meta:</strong> The Juicer instantly doubles your stand's payout. This is mathematically verified as the single highest return on investment in the entire early-game meta.</li>
+            </ul>
+          </section>
 
-        <section class="guide-step-card">
-          <h3>Step 3: Squeezing Your First $10K via the LemonDash Haggling Meta</h3>
-          <ul>
-            <li><strong>Player Objective:</strong> Trigger massive, explosive burst payouts to rocket past the slow early-game grind.</li>
-            <li><strong>Action Blueprint:</strong> Save up $17,000 to purchase the LemonDash Delivery Garage. This unlocks the delivery logistics minigame, which completely dwarfs the Lemon Stand's income speed. NPCs will start pinging your phone with delivery orders.</li>
-            <li><strong>ROI Optimization:</strong> NEVER auto-accept a phone offer! NPCs will try to lowball you. Always use the counter-offer option to haggle. Countering by 25% to 35% above their initial price will force them to meet you halfway, easily netting you $8,000+ per delivery and securing your first massive capital pool within seconds.</li>
-          </ul>
-        </section>
+          <section class="guide-step-card">
+            <h3>Step 2: The $2,100 Milestone — Breaking Finger Fatigue</h3>
+            <ul>
+              <li><strong>The Player Need:</strong> How to escape manual clicking entirely so you can actively explore the map.</li>
+              <li><strong>The Blueprint Action:</strong> Now that your Juicer is running, push hard to accumulate your first milestone: $2,100. Do not spend cash on aesthetic base fences or signs yet. The second you hit $2,100, smash the button for the Cash Register Automator.</li>
+              <li><strong>The ROI Meta:</strong> This automator completely eliminates the manual clicking requirement. It permanently frees up your action economy, allowing your base to print cash automatically while you roam around tracking down map secrets.</li>
+            </ul>
+          </section>
 
-        <section class="guide-step-card">
-          <h3>Step 4: The Lemon Depot Decoration Trap Clearance</h3>
-          <ul>
-            <li><strong>Player Objective:</strong> Stop your cash flow from completely plateauing when you unlock the third tier.</li>
-            <li><strong>Action Blueprint:</strong> Once you enter the wholesale Lemon Depot district, your progression might suddenly screech to a halt. This is due to the developer's infamous Decoration Gate System.</li>
-            <li><strong>ROI Optimization:</strong> Many essential milestone upgrades are hidden until you purchase specific decorations. Buying the Depot Roof alone reveals 3 critical, high-yield progression buttons. If your build menu looks empty, buy the walls, roof, and lights, then walk physically through the warehouse to watch the hidden upgrade buttons spawn!</li>
-          </ul>
-        </section>
-      </div>
+          <section class="guide-step-card">
+            <h3>Step 3: Squeezing Your First $10K via the LemonDash Haggling Meta</h3>
+            <ul>
+              <li><strong>The Player Need:</strong> Trigger massive, explosive burst payouts to rocket past the slow early-game grind.</li>
+              <li><strong>The Blueprint Action:</strong> Save up $17,000 to purchase the LemonDash Delivery Garage. This unlocks the delivery logistics minigame, which completely dwarfs the Lemon Stand's income speed. NPCs will start pinging your phone with delivery orders.</li>
+              <li><strong>The ROI Meta:</strong> NEVER auto-accept a phone offer! NPCs will try to lowball you. Always use the counter-offer option to haggle. Countering by 25% to 35% above their initial price will force them to meet you halfway, easily netting you $8,000+ per delivery and securing your first massive capital pool within seconds.</li>
+            </ul>
+          </section>
 
-      <h2>Golden Idle Strategies</h2>
-      <section class="guide-step-card">
-        <h3>💡 Strategy A: Burst-and-Sleep Offline Compound</h3>
-        <p>Unlike generic tycoon games that nerf your earnings by half or cap your progress while you're away, Sell Lemons grants you 100% full offline income indefinitely. Collect your accumulated offline bank roll, spend it all on high-yield automated tiers, and log out.</p>
-      </section>
-      <section class="guide-step-card">
-        <h3>🔄 Strategy B: The 350% Evolve Rule</h3>
-        <p>NEVER Evolve (Rebirth) under a 200% investor bonus. Rebuilding without a heavy multiplier is a massive waste of time. Wait until your pending bonus hits the community-recognized 350%+ sweet spot. Once you reset at 350%, your powerful multipliers will let you buy back your automated stand loops in less than 60 seconds!</p>
-      </section>
-
-      <!-- What to Do Next Section -->
-      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
-        <header class="guide-what-next__head">
-          <span class="guide-what-next__icon" aria-hidden="true">🎯</span>
-          <h2 id="guide-what-next-title">What to Do Next</h2>
-        </header>
-        <div class="guide-what-next__divider" aria-hidden="true">
-          <span></span>
-          <span class="guide-what-next__diamond"></span>
-          <span></span>
+          <section class="guide-step-card">
+            <h3>Step 4: The Lemon Depot Decoration Trap Clearance</h3>
+            <ul>
+              <li><strong>The Player Need:</strong> Stop your cash flow from completely plateauing when you unlock the third tier.</li>
+              <li><strong>The Blueprint Action:</strong> Once you enter the wholesale Lemon Depot district, your progression might suddenly screech to a halt. This is due to the developer's infamous Decoration Gate System.</li>
+              <li><strong>The ROI Meta:</strong> Many essential milestone upgrades are hidden until you purchase specific decorations. Buying the Depot Roof alone reveals 3 critical, high-yield progression buttons. If your build menu looks empty, buy the walls, roof, and lights, then walk physically through the warehouse to watch the hidden upgrade buttons spawn!</li>
+            </ul>
+          </section>
         </div>
-        <a class="guide-what-next__cta" href="/income-sources/">
-          <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
-          <span class="guide-what-next__cta-copy">
-            <strong>👉 Scale Income Fast</strong>
-            <span>Unlock the best income sources and maximize your money scaling loops.</span>
-          </span>
-          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-        </a>
-      </section>
 
-      <RelatedGuides currentSlug="progression" />
-    </article>
+        <h2>The Golden Idle Strategies</h2>
+        <section class="guide-step-card">
+          <h3>💤 Strategy A: The Burst-and-Sleep Offline Exploit</h3>
+          <p>Unlike generic tycoon games that nerf your earnings by half or cap your progress while you're away, Sell Lemons grants you 100% full offline income indefinitely.</p>
+          <ul>
+            <li><strong>The Meta Loop:</strong> Log in, collect 100% of your accumulated offline bank roll, burst-spend all your capital on your highest-yielding automated tiers, and log right back out. Active online play adds no mathematical advantage over offline compounding during mid-game progression!</li>
+          </ul>
+        </section>
+
+        <section class="guide-step-card">
+          <h3>🔄 Strategy B: The 350% Evolve Rule</h3>
+          <p>When early scaling begins to drag, you need to use the Evolution (Rebirth) system to gain permanent Alien Investor percentage multipliers.</p>
+          <ul>
+            <li><strong>The Meta Loop:</strong> NEVER Evolve under a 200% investor bonus. Rebuilding without a heavy multiplier is a massive waste of time. Wait until your pending bonus hits the community-recognized 350%+ sweet spot. Once you reset at 350%, your powerful multipliers will let you buy back your automated stand loops in less than 60 seconds!</li>
+          </ul>
+        </section>
+
+        <!-- What to Do Next Section -->
+        <section class="guide-what-next" aria-labelledby="guide-what-next-title-1">
+          <header class="guide-what-next__head">
+            <span class="guide-what-next__icon" aria-hidden="true">🎯</span>
+            <h2 id="guide-what-next-title-1">What to Do Next</h2>
+          </header>
+          <div class="guide-what-next__divider" aria-hidden="true">
+            <span></span>
+            <span class="guide-what-next__diamond"></span>
+            <span></span>
+          </div>
+          <a class="guide-what-next__cta" href="/income-sources/">
+            <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
+            <span class="guide-what-next__cta-copy">
+              <strong>👉 Scale Income Fast</strong>
+              <span>Unlock the best income sources and maximize your money scaling loops.</span>
+            </span>
+            <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+          </a>
+        </section>
+
+        <RelatedGuides currentSlug="progression" />
+      </article>
+    </div>
+
+    <!-- Panel 2: Best Progression Guide -->
+    <div class="guide-panel" data-guide-panel="best">
+      <article class="guide-detail">
+        <h2>The Optimal Speedrun Roadmap</h2>
+        <div class="guide-step-flow">
+          <section class="guide-step-card">
+            <h3>1. Early Game Progression</h3>
+            <ul>
+              <li><strong>The Baseline Loop:</strong> You spawn with a single $1 Lemon Stand. Do not waste early capital on aesthetic base fences. Grind clicks and prioritize collecting passive ground cash (which accounts for 20% to 40% of your pre-automation budget).</li>
+              <li><strong>The Breakout Milestone:</strong> Rush exactly $450 for the Juicer (the highest ROI multiplier in the early game), followed immediately by $2,100 for the Cash Register Automator to remove click fatigue.</li>
+              <li><strong>The Logistics Leap:</strong> Accumulate $17,000 to unlock LemonDash. This shifts your meta from slow pennies to massive lump-sum delivery payouts. Always counter-offer NPCs by 25% to 35% to walk away with $8,000+ per delivery.</li>
+            </ul>
+          </section>
+
+          <section class="guide-step-card">
+            <h3>2. Mid Game Progression</h3>
+            <ul>
+              <li><strong>The Wholesale Explosion:</strong> Unlocking the Lemon Depot triggers your first "millions per second" cash generation wave. However, this is where 90% of players completely plateau.</li>
+              <li><strong>Smashing the Decoration Gates:</strong> CRITICAL WARNING! Many essential factory upgrades are completely invisible until you buy specific building decorations. Purchasing the Depot Roof alone unmasks 3 major upgrade buttons. If your cash flow stops moving, buy the walls, roof, and lights, then walk physically through the warehouse to unlock the hidden nodes.</li>
+              <li><strong>The Market Buffer:</strong> Introduce Lemon Trading (Tier 4) as supplemental cash. Never go "all-in" due to abrupt market crash algorithms; keep at least 50% liquid capital in reserve until you hire the Trading Manager.</li>
+            </ul>
+          </section>
+
+          <section class="guide-step-card">
+            <h3>3. When To Rebirth</h3>
+            <ul>
+              <li><strong>The 200% Red Line:</strong> NEVER trigger an Evolution (Rebirth) cycle if your pending Alien Investor bonus is below 200%. Rebuilding your infrastructure without a heavy multiplier backing you is a massive efficiency drag.</li>
+              <li><strong>The 350% Golden Sweet Spot:</strong> The definitive community-recognized sweet spot is 350%+ Investor Bonus. Resetting at this threshold scales your permanent multipliers so hard that you can fully re-buy and automate your entire surface stand setup in less than 60 seconds.</li>
+              <li><strong>The Secret Recovery Map:</strong> Before resetting, ensure you have the Sewer Key. Dropping into the underground maze post-Rebirth to harvest the Cosmic Cash Vine ensures instant financial recovery.</li>
+            </ul>
+          </section>
+
+          <section class="guide-step-card">
+            <h3>4. When To Ascend</h3>
+            <ul>
+              <li><strong>The Macro Prestige Shift:</strong> Unlike rapid Evolutions, Ascension is a rare, macro-level prestige layer that resets your baseline economic scale, rocketing your cash targets from trillions to cosmic centillions.</li>
+              <li><strong>The Trigger Requirements:</strong> Only trigger an Ascension loop once your surface infrastructure is fully maxed, your permanent Lemon Labs upgrades are locked in, and you are generating stable centillion-tier cash from the extraterrestrial LemonX zone.</li>
+              <li><strong>The Multiplier Payoff:</strong> Activating Ascension rewards you with a massive 7.77x global output multiplier and unlocks the mythical Forever Purchase power!</li>
+            </ul>
+          </section>
+
+          <section class="guide-step-card">
+            <h3>5. Best Upgrade Priority</h3>
+            <p>To maintain the absolute fastest progression speed, optimize your capital deployment using this strict priority hierarchy:</p>
+            <ol>
+              <li><strong>Permanent Lab Multipliers (🔬 Tier 5):</strong> Always maximize these first because they survive Rebirth/Evolution resets and compound across every future run.</li>
+              <li><strong>Global Republic Multipliers (🌍 Tier 7):</strong> Massive ROI since every dollar spent here multiplies the baseline cash generation of ALL preceding lower tiers simultaneously.</li>
+              <li><strong>Base Automation Nodes:</strong> Hire managers in a structured sequence: Stand Automator ➜ LemonDash Manager (only after vehicle maxing) ➜ Depot Manager.</li>
+              <li><strong>High Evolution (60+) Skip Meta:</strong> Once you clear Evolution 60+, completely skip sequential grinding. Use your massive starting investor capital to bypass early stands entirely and jump straight into buying Lemon Robotics (Tier 6) or LemonX (Tier 8) to break the server economy in seconds.</li>
+            </ol>
+          </section>
+
+          <section class="guide-step-card">
+            <h3>6. Endgame Roadmap</h3>
+            <ul>
+              <li><strong>The Celestial Hunt:</strong> Your absolute final endgame objective is collecting the mythical Purity Fruit, an achievement currently held by only 54 elite players worldwide.</li>
+              <li><strong>The Alien Vault Strategy:</strong> Secure the UFO Key by maxing out the Good Samaritan event at the Help Station. Take the key into the hidden space biome to unlock the highest-value extraterrestrial scaling nodes.</li>
+              <li><strong>The Ultimate Synergy:</strong> Funnel 100% of your late-game capital into stacking LemonX multipliers with Ascension buffs. This synergy is the absolute mathematical meta required to conquer the endgame ladder.</li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- What to Do Next Section -->
+        <section class="guide-what-next" aria-labelledby="guide-what-next-title-2">
+          <header class="guide-what-next__head">
+            <span class="guide-what-next__icon" aria-hidden="true">🔄</span>
+            <h2 id="guide-what-next-title-2">What to Do Next</h2>
+          </header>
+          <div class="guide-what-next__divider" aria-hidden="true">
+            <span></span>
+            <span class="guide-what-next__diamond"></span>
+            <span></span>
+          </div>
+          <a class="guide-what-next__cta" href="/rebirths/">
+            <span class="guide-what-next__cta-arrow" aria-hidden="true">🔄</span>
+            <span class="guide-what-next__cta-copy">
+              <strong>👉 Unlock Rebirth System → Rebirth Guide</strong>
+              <span>Calculate the optimal time to reset and maximize your long-term income growth.</span>
+            </span>
+            <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+          </a>
+        </section>
+
+        <RelatedGuides currentSlug="progression" />
+      </article>
+    </div>
+
+    <!-- Inline Script for Guide Switcher -->
+    <script is:inline>
+      document.querySelectorAll("[data-guide-switcher]").forEach((container) => {
+        const pills = Array.from(container.querySelectorAll("[data-guide-target]"));
+        const panels = Array.from(document.querySelectorAll("[data-guide-panel]"));
+        pills.forEach((pill) => {
+          pill.addEventListener("click", () => {
+            const target = pill.getAttribute("data-guide-target");
+            pills.forEach((p) => {
+              const active = p === pill;
+              p.classList.toggle("is-active", active);
+              p.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            panels.forEach((panel) => {
+              panel.classList.toggle("is-active", panel.getAttribute("data-guide-panel") === target);
+            });
+          });
+        });
+      });
+    </script>
   </main>
 </SiteLayout>
