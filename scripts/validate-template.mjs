@@ -33,6 +33,8 @@ const requiredFiles = [
   "src/pages/deals.astro",
   "src/layouts/SiteLayout.astro",
   "src/components/Header.astro",
+  "src/components/Footer.astro",
+  "src/components/RelatedGuides.astro",
   "src/components/TrackedLink.astro",
   "src/components/CopyButton.astro",
   "src/components/ToolEventTracker.astro",
@@ -65,7 +67,34 @@ const forbiddenPaths = [
   "src/pages/id.astro",
   "src/pages/classes.astro",
   "src/pages/weapons.astro",
-  "src/pages/tier-list.astro"
+  "src/pages/tier-list.astro",
+  "src/pages/value-list.astro"
+];
+
+const forbiddenPublicPhrases = [
+  "value list",
+  "tier list",
+  "classes",
+  "weapons",
+  "Astro Roblox wiki hub",
+  "Roblox guide template",
+  "template default",
+  "template route"
+];
+
+const publicContentFiles = [
+  "src/content/home.ts",
+  "src/data/reported-guides.ts",
+  "src/content/system-pages.ts",
+  "src/components/Header.astro",
+  "src/components/Footer.astro",
+  "src/components/RelatedGuides.astro",
+  "src/pages/index.astro",
+  "src/pages/codes.astro",
+  "src/pages/progression.astro",
+  "src/pages/income-sources.astro",
+  "src/pages/rebirths.astro",
+  "src/pages/deals.astro"
 ];
 
 function exists(file) {
@@ -74,6 +103,10 @@ function exists(file) {
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
+}
+
+function includesInsensitive(text, needle) {
+  return text.toLowerCase().includes(needle.toLowerCase());
 }
 
 function extractArray(source, key) {
@@ -144,6 +177,11 @@ if (exists("src/data/config.ts")) {
   }
   if (!["scripts", "macros", "executor", "exploit"].every((slug) => blockedSlugs.includes(slug))) {
     violations.push("blockedSlugs must include scripts, macros, executor, exploit");
+  }
+  for (const slug of ["classes", "weapons", "tier-list", "value-list"]) {
+    if (coreSlugs.includes(slug) || completedCoreSlugs.includes(slug) || navigationSlugs.includes(slug) || systemSlugs.includes(slug)) {
+      violations.push(`${slug} must not be part of public v1 slugs`);
+    }
   }
   if (!allowedIconThemes.includes(iconTheme)) violations.push("assets.iconTheme must be a supported theme");
   if (!/^#[0-9a-fA-F]{6}$/.test(brandColor)) violations.push("assets.brandColor must be a hex color");
@@ -217,6 +255,7 @@ if (exists("src/data/reported-guides.ts")) {
   if (reported.includes("verifiedActiveCodes")) violations.push("reported guide data must not define verified active codes");
   if (!reported.includes("community-reported")) violations.push("reported guide data must label community-reported content");
   if (!reported.includes("not independently verified")) violations.push("reported guide data must state not independently verified");
+  if (!reported.includes('status: "pending"')) violations.push("reported guide research leads must default to pending");
 }
 
 if (exists("src/lib/analytics.ts")) {
@@ -232,13 +271,16 @@ if (exists("scripts/generate-seo-files.mjs")) {
   if (!generator.includes("excludedSitemapSlugs")) {
     violations.push("generate-seo-files must exclude privacy, terms, unsafe, locale, and legacy slugs");
   }
+  for (const slug of ["classes", "weapons", "tier-list", "value-list"]) {
+    if (!generator.includes(`"${slug}"`)) violations.push(`generate-seo-files must explicitly exclude ${slug}`);
+  }
 }
 
 if (exists("scripts/validate-static-export.mjs")) {
   const validator = read("scripts/validate-static-export.mjs");
   if (!validator.includes("systemSlugs")) violations.push("validate-static-export must check allowed systemSlugs");
-  for (const forbidden of ["/privacy/", "/terms/", "/guide/", "/updates/", "/scripts/", "/macros/", "/executor/", "/exploit/", "/th/", "/fil/", "/id/"]) {
-    if (!validator.includes(forbidden)) violations.push(`validate-static-export must reject ${forbidden} in sitemap`);
+  for (const forbidden of ["/privacy/", "/terms/", "/guide/", "/updates/", "/scripts/", "/macros/", "/executor/", "/exploit/", "/classes/", "/weapons/", "/tier-list/", "/value-list/", "/th/", "/fil/", "/id/"]) {
+    if (!validator.includes(forbidden)) violations.push(`validate-static-export must reject ${forbidden} in public output`);
   }
 }
 
@@ -273,8 +315,7 @@ const scannedFiles = [
   "src/pages/progression.astro",
   "src/pages/income-sources.astro",
   "src/pages/rebirths.astro",
-  "src/pages/deals.astro",
-  "README.md"
+  "src/pages/deals.astro"
 ];
 
 for (const file of scannedFiles) {
@@ -282,6 +323,14 @@ for (const file of scannedFiles) {
   const text = read(file);
   for (const needle of forbiddenContent) {
     if (text.includes(needle)) violations.push(`Forbidden content '${needle}' found in ${file}`);
+  }
+}
+
+for (const file of publicContentFiles) {
+  if (!exists(file)) continue;
+  const text = read(file);
+  for (const phrase of forbiddenPublicPhrases) {
+    if (includesInsensitive(text, phrase)) violations.push(`Forbidden public phrase '${phrase}' found in ${file}`);
   }
 }
 
