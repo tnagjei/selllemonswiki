@@ -9,6 +9,7 @@ const distDir = path.join(root, "dist");
 const configText = fs.readFileSync(path.join(root, "src/data/config.ts"), "utf8");
 const violations = [];
 const blockedToolSlug = "ex" + "ploit";
+const blockedToolPath = "/exploit/";
 
 function extractString(source, key, fallback = "") {
   const match = source.match(new RegExp(`${key}:\\s*[\"']([^\"']*)[\"']`, "m"));
@@ -129,7 +130,7 @@ for (const forbidden of [
   "/scripts/",
   "/macros/",
   "/executor/",
-  `/${blockedToolSlug}/`,
+  blockedToolPath,
   "/classes/",
   "/weapons/",
   "/tier-list/",
