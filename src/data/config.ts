@@ -36,7 +36,9 @@ export const siteConfig = {
     adsenseClient: "",
     clarityId: "x576g94ju8",
     thirdPartyAdScripts: [],
-    smartLink: "https://www.effectivecpmnetwork.com/bd1dpr43?key=37a38b995720f98233d9fa8cde15c66"
+    smartLink: "https://www.effectivecpmnetwork.com/bd1dpr43?key=37a38b995720f98233d9fa8cde15c66",
+    nativeBannerScript: "https://pl29708726.effectivecpmnetwork.com/c02c96835811063bd6ef36dd598ac1ae/invoke.js",
+    nativeBannerContainerId: "container-c02c96835811063bd6ef36dd598ac1ae"
   },
   assets: {
     icon: "/icon.svg",

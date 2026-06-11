@@ -58,6 +58,12 @@ const canonical = `${siteConfig.siteDomain.replace(/\/+$/g, "")}${Astro.url.path
   </head>
   <body>
     <Header />
+    {siteConfig.analytics.nativeBannerScript && siteConfig.analytics.nativeBannerContainerId && (
+      <div class="native-banner-container">
+        <script async="async" data-cfasync="false" src={siteConfig.analytics.nativeBannerScript} is:inline></script>
+        <div id={siteConfig.analytics.nativeBannerContainerId}></div>
+      </div>
+    )}
     <slot />
     <Footer />
   </body>

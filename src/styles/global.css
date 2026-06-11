@@ -935,5 +935,22 @@ details.faq-card[open] summary {
   to { transform: rotate(8deg); }
 }
 
+.native-banner-container {
+  max-width: 1120px;
+  margin: 24px auto 0 auto;
+  padding: 0 24px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  overflow: hidden;
+}
+.native-banner-container > div {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
 
 
