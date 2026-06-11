@@ -4,6 +4,7 @@
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/progression.astro (更新规则：文件变更需同步本目录 README与文件头注释)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import ArticleAd from "../components/ArticleAd.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice } from "../data/reported-guides";
 ---
@@ -24,6 +25,7 @@ import { evidenceNotice } from "../data/reported-guides";
 
     <!-- Main Guide Body -->
     <article class="guide-detail">
+      <ArticleAd />
       <h2>The Optimal Speedrun Roadmap</h2>
       <div class="guide-step-flow">
         <section class="guide-step-card">
