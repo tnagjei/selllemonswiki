@@ -66,5 +66,8 @@ const canonical = `${siteConfig.siteDomain.replace(/\/+$/g, "")}${Astro.url.path
     )}
     <slot />
     <Footer />
+    {siteConfig.analytics.socialBarScript && (
+      <script src={siteConfig.analytics.socialBarScript} is:inline></script>
+    )}
   </body>
 </html>
