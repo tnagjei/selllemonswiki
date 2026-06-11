@@ -35,6 +35,15 @@ const canonical = `${siteConfig.siteDomain.replace(/\/+$/g, "")}${Astro.url.path
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={siteConfig.assets.hero} />
     <meta name="twitter:card" content="summary_large_image" />
+    {siteConfig.analytics.clarityId && (
+      <script type="text/javascript" is:inline define:vars={{ clarityId: siteConfig.analytics.clarityId }}>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+clarityId;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", clarityId);
+      </script>
+    )}
   </head>
   <body>
     <Header />
