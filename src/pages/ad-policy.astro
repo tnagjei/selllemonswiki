@@ -1,0 +1,24 @@
+---
+// input: systemPageContent.adPolicy from content/system-pages.ts
+// output: Public ad policy page explaining advertising, code claims, and content boundaries
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/ad-policy.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { systemPageContent } from "../content/system-pages";
+
+const page = systemPageContent.adPolicy;
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <main class="content-page">
+    <section class="prose-block">
+      <p class="eyebrow">Ad Policy</p>
+      <h1>{page.title}</h1>
+      {page.sections.map((section) => (
+        <>
+          <h2>{section.heading}</h2>
+          <p>{section.body}</p>
+        </>
+      ))}
+    </section>
+  </main>
+</SiteLayout>

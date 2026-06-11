@@ -1,0 +1,65 @@
+---
+// input: Reported ascension requirements, rewards, and planning cautions from site research
+// output: Sell Lemons ascension guide page with requirements, rewards, and Forever Purchase advice
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/ascension.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons Ascension Guide | Requirements and Rewards" description="Plan Sell Lemons ascension with reported requirements, rewards, Forever Purchase timing, and reset preparation for Roblox progression.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Endgame Reset</p>
+          <h1>Sell Lemons Ascension Guide</h1>
+          <p>Ascension is a late-game reset layer. Use this page to check the reported readiness signals, understand the reward tradeoff, and avoid using Forever Purchase on a weak button.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons ascension requirements and rewards" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <p class="evidence-note">Evidence boundary: ascension values are community-reported unless confirmed in-game. Keep screenshots or direct checks before treating numbers as verified.</p>
+
+      <h2>Ascension Readiness</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Complete the stairway path</h3>
+          <p>Players report that stairway completion is a major gate before ascension. If the option does not appear, inspect unfinished buttons and hidden decoration gates first.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Clear required tycoon buttons</h3>
+          <p>Ascension planning is not only wallet cash. The game can depend on total build completion, optional blockers, and late-stage progression nodes.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Plan the first Forever Purchase</h3>
+          <p>Choose a button that compounds through future resets. A global cash or speed upgrade is usually easier to justify than a slow late-game source.</p>
+        </section>
+      </div>
+
+      <h2>Reward Tradeoff</h2>
+      <div class="mini-table">
+        <span>Reported reward: global cash multiplier</span>
+        <span>Reported reward: one Forever Purchase token</span>
+        <span>Reported cost: higher future purchase prices</span>
+        <span>Planning risk: weak permanent unlock choice</span>
+      </div>
+
+      <section class="guide-what-next" aria-labelledby="ascension-next">
+        <header class="guide-what-next__head">
+          <h2 id="ascension-next">What to Do Next</h2>
+        </header>
+        <a class="guide-what-next__cta" href="/evolution/">
+          <span class="guide-what-next__cta-copy">
+            <strong>Review Evolution Timing</strong>
+            <span>Check whether your evolution loop is ready before forcing an ascension push.</span>
+          </span>
+          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
+        </a>
+      </section>
+
+      <RelatedGuides currentSlug="ascension" />
+    </article>
+  </main>
+</SiteLayout>

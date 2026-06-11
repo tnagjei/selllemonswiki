@@ -11,7 +11,13 @@ export const wikiLinks = [
   { title: "Deals", slug: "deals", description: "Track reported deal and haggling mechanics without fabricating rates or prices." },
   { title: "Beginner Guide", slug: "beginner-guide", description: "Get started on your lemon stand and make your first $10K easily." },
   { title: "Money Fast", slug: "money-fast", description: "Master the fastest active and passive methods to earn cash quickly." },
-  { title: "Best Upgrades", slug: "best-upgrades", description: "Check the best upgrades, automators, and gamepasses rankings." }
+  { title: "Best Upgrades", slug: "best-upgrades", description: "Compare free-to-play, light spender, and endgame upgrade priorities." },
+  { title: "Profit Calculator", slug: "profit-calculator", description: "Estimate upgrade ROI before spending cash on a low-impact purchase." },
+  { title: "Sewer Maze Map", slug: "sewer-maze-map", description: "Follow the sewer route, lever order, and key checkpoints from one map page." },
+  { title: "Lever Sequence", slug: "lever-sequence", description: "Use a step checklist for the sewer lever puzzle and reset warnings." },
+  { title: "Evolution", slug: "evolution", description: "Plan the 42x speed loop, Void route, and late-game reset timing." },
+  { title: "Ascension", slug: "ascension", description: "Review ascension requirements, rewards, and Forever Purchase planning." },
+  { title: "Badge Tracker", slug: "badge-tracker", description: "Track reported badges and keep verified, pending, and community notes separate." }
 ];
 
 export const homeContent = {
@@ -45,7 +51,10 @@ export const homeContent = {
     "Sell Lemons progression",
     "Sell Lemons income sources",
     "Sell Lemons rebirths",
-    "Sell Lemons deals"
+    "Sell Lemons deals",
+    "Sell Lemons profit calculator",
+    "Sell Lemons maze map",
+    "Sell Lemons lever sequence"
   ],
   wikiLinks,
   progressionFunnel: [
@@ -56,9 +65,9 @@ export const homeContent = {
     { step: "5", title: "Deals & Haggling", desc: "Master NPC negotiation choices and strategy for better returns.", href: "/deals/" }
   ],
   secrets: [
-    { name: "Sewer Key", desc: "Unlocks underground sewer system with hidden loot and rare items.", href: "/beginner-guide/" },
-    { name: "UFO Key", desc: "Triggers UFO event zone with special spawn mechanics.", href: "/deals/" },
-    { name: "Secret Areas", desc: "Unmarked zones with hidden interactions and rewards.", href: "/money-fast/" }
+    { name: "Sewer Key", desc: "Opens the underground route and prepares the maze checklist.", href: "/sewer-key/" },
+    { name: "UFO Key", desc: "Connects the Good Samaritan route with UFO unlock planning.", href: "/ufo-key/" },
+    { name: "Sewer Maze Map", desc: "Gives players a mobile-readable route before starting the puzzle.", href: "/sewer-maze-map/" }
   ],
   tierListData: {
     S: {

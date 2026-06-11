@@ -1,0 +1,81 @@
+---
+// input: Reported badge names, status labels, and player checklist state saved in localStorage
+// output: Sell Lemons badge tracker page with evidence-labeled badge progress checkboxes
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/badge-tracker.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const badges = [
+  { name: "Good Samaritan", status: "community-reported", note: "Reported route tied to the sewer and UFO key path." },
+  { name: "UFO Key", status: "pending", note: "Track after the Good Samaritan route is complete." },
+  { name: "Cosmic Cash Vines", status: "pending", note: "Reported vault route reward inside the underground area." },
+  { name: "First Ascension", status: "pending", note: "Late-game milestone tied to stairway completion and reset readiness." }
+];
+---
+
+<SiteLayout title="Sell Lemons Badge Tracker | Sewer, UFO and Badge Checklist" description="Track Sell Lemons badges with community-reported labels, pending checks, sewer route notes, UFO key progress, and reset milestones.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Evidence Tracker</p>
+          <h1>Sell Lemons Badge Tracker</h1>
+          <p>Use this tracker to separate completed player progress from verified evidence. A checkbox is personal progress, not proof that the badge route is current for everyone.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons badge tracker checklist" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <section class="tool-panel" aria-labelledby="badge-tracker-title">
+        <div>
+          <p class="eyebrow">Badge Checklist</p>
+          <h2 id="badge-tracker-title">Reported Badge Progress</h2>
+          <p class="evidence-note">A status of pending means the site has not independently verified the live route. Keep labels conservative until direct proof exists.</p>
+        </div>
+        <ol class="checklist" id="badgeTracker">
+          {badges.map((badge, index) => (
+            <li>
+              <label>
+                <input type="checkbox" data-badge={String(index)} />
+                <span><strong>{badge.name}</strong> <em>{badge.status}</em> {badge.note}</span>
+              </label>
+            </li>
+          ))}
+        </ol>
+        <button class="button secondary tool-button" type="button" id="resetBadgeTracker">Reset Tracker</button>
+      </section>
+
+      <h2>Badge Route Links</h2>
+      <div class="mini-table">
+        <a href="/sewer-maze-map/">Open sewer maze map</a>
+        <a href="/lever-sequence/">Use lever checklist</a>
+        <a href="/ufo-key/">Follow UFO key route</a>
+        <a href="/ascension/">Check ascension milestone</a>
+      </div>
+
+      <RelatedGuides currentSlug="badge-tracker" />
+    </article>
+  </main>
+
+  <script is:inline>
+    const storageKey = "sell-lemons-badge-tracker";
+    const boxes = Array.from(document.querySelectorAll("#badgeTracker input[type='checkbox']"));
+    const saved = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+
+    boxes.forEach((box) => {
+      box.checked = saved.has(box.dataset.badge);
+      box.addEventListener("change", () => {
+        const checked = boxes.filter((item) => item.checked).map((item) => item.dataset.badge);
+        localStorage.setItem(storageKey, JSON.stringify(checked));
+      });
+    });
+
+    document.getElementById("resetBadgeTracker")?.addEventListener("click", () => {
+      boxes.forEach((box) => {
+        box.checked = false;
+      });
+      localStorage.removeItem(storageKey);
+    });
+  </script>
+</SiteLayout>

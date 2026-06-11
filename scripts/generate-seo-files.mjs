@@ -39,7 +39,7 @@ const siteDomain = extractString(configText, "siteDomain", "https://example.com"
 const primaryKeyword = extractString(configText, "primaryKeyword", "Example Roblox Game guide");
 const launchMode = extractString(configText, "launchMode", "minimal");
 const completedLocales = extractArray(configText, "completedLocales");
-const completedCoreSlugs = [...extractArray(configText, "completedCoreSlugs"), "beginner-guide", "money-fast", "best-upgrades"];
+const completedCoreSlugs = extractArray(configText, "completedCoreSlugs");
 const completedEnglishOnlySlugs = extractArray(configText, "completedEnglishOnlySlugs");
 const systemSlugs = extractArray(configText, "systemSlugs");
 const blockedSlugs = extractArray(configText, "blockedSlugs");
@@ -129,6 +129,9 @@ const llms = [
   `- [Income Sources](${absoluteUrl(siteDomain, "/income-sources/")}): Income paths, money growth, upgrade choices, and scaling notes.`,
   `- [Rebirths](${absoluteUrl(siteDomain, "/rebirths/")}): Rebirth planning, reset notes, bonuses, and progression tips.`,
   `- [Deals](${absoluteUrl(siteDomain, "/deals/")}): Deal notes, offer timing, profit tips, and better return strategies.`,
+  `- [Profit Calculator](${absoluteUrl(siteDomain, "/profit-calculator/")}): Upgrade ROI estimates and next-purchase planning.`,
+  `- [Sewer Maze Map](${absoluteUrl(siteDomain, "/sewer-maze-map/")}): Map-first sewer route, lever order, and key planning.`,
+  `- [Lever Sequence](${absoluteUrl(siteDomain, "/lever-sequence/")}): Checklist for the reported sewer lever route.`,
   "",
   "## 常用资源",
   `- [常见问题](${absoluteUrl(siteDomain, "/")}): Frequently asked questions on the homepage.`,
@@ -137,6 +140,7 @@ const llms = [
   "## 可选",
   `- [关于我们](${absoluteUrl(siteDomain, "/about/")}): About the Sell Lemons Wiki fan site project.`,
   `- [编辑方针](${absoluteUrl(siteDomain, "/editorial-policy/")}): Editorial policy and source standards.`,
+  `- [广告政策](${absoluteUrl(siteDomain, "/ad-policy/")}): Advertising and guide-content boundary.`,
   ""
 ].join("\n");
 
@@ -148,6 +152,7 @@ const llmsFull = [
   `- Launch mode: ${launchMode}`,
   `- Completed locales: ${completedLocales.join(", ")}`,
   `- Completed core slugs: ${completedCoreSlugs.join(", ")}`,
+  `- Completed English-only slugs: ${completedEnglishOnlySlugs.join(", ")}`,
   `- Roblox URL: ${robloxUrl}`,
   "",
   "## Publishing boundary",

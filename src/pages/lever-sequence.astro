@@ -1,0 +1,93 @@
+---
+// input: Reported lever colors and player checklist state saved in localStorage
+// output: Sell Lemons lever sequence page with reset warnings and a step checklist
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/lever-sequence.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+
+const leverSteps = [
+  "Confirm you are in the correct sewer puzzle branch before touching any lever.",
+  "Find the blue lever room and mark the nearby return path.",
+  "Move to the red lever branch only after the first room is complete.",
+  "Check the green lever room and return to the main split.",
+  "Finish the purple lever branch, then approach the vault door.",
+  "If the vault does not open, reset from the main split instead of guessing."
+];
+---
+
+<SiteLayout title="Sell Lemons Lever Sequence | Sewer Maze UFO Key Order" description="Use the Sell Lemons lever sequence checklist for sewer maze order, reset warnings, UFO key prep, and mobile puzzle tracking.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Checklist Tool</p>
+          <h1>Sell Lemons Lever Sequence</h1>
+          <p>Track each lever step before opening the vault or moving toward the UFO key route. The checklist saves locally in your browser so you can refresh without losing progress.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons lever sequence checklist" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <section class="tool-panel" aria-labelledby="lever-checklist-title">
+        <div>
+          <p class="eyebrow">Start Lever Checklist</p>
+          <h2 id="lever-checklist-title">Sewer Lever Order</h2>
+          <p class="evidence-note">Reported route only: use the checklist as a player aid, not as official proof of the current live maze state.</p>
+        </div>
+        <ol class="checklist" id="leverChecklist">
+          {leverSteps.map((step, index) => (
+            <li>
+              <label>
+                <input type="checkbox" data-step={String(index)} />
+                <span>{step}</span>
+              </label>
+            </li>
+          ))}
+        </ol>
+        <button class="button secondary tool-button" type="button" id="resetLeverChecklist">Reset Checklist</button>
+      </section>
+
+      <h2>Reset Warnings</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Wrong branch</h3>
+          <p>If a room does not match the route you expected, return to the main split. Randomly pulling another lever makes the next state harder to diagnose.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Missing vault response</h3>
+          <p>If the vault door does not respond, assume one step is incomplete. Re-check the sequence from the first branch rather than skipping straight to the UFO route.</p>
+        </section>
+      </div>
+
+      <div class="mini-table">
+        <a href="/sewer-maze-map/">Open maze map</a>
+        <a href="/sewer-key/">Prepare sewer key</a>
+        <a href="/ufo-key/">Continue to UFO key</a>
+      </div>
+
+      <RelatedGuides currentSlug="lever-sequence" />
+    </article>
+  </main>
+
+  <script is:inline>
+    const storageKey = "sell-lemons-lever-sequence";
+    const boxes = Array.from(document.querySelectorAll("#leverChecklist input[type='checkbox']"));
+    const saved = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+
+    boxes.forEach((box) => {
+      box.checked = saved.has(box.dataset.step);
+      box.addEventListener("change", () => {
+        const checked = boxes.filter((item) => item.checked).map((item) => item.dataset.step);
+        localStorage.setItem(storageKey, JSON.stringify(checked));
+      });
+    });
+
+    document.getElementById("resetLeverChecklist")?.addEventListener("click", () => {
+      boxes.forEach((box) => {
+        box.checked = false;
+      });
+      localStorage.removeItem(storageKey);
+    });
+  </script>
+</SiteLayout>

@@ -1,0 +1,52 @@
+---
+// input: Reported evolution timing, 42x speed notes, and Void route planning assumptions
+// output: Sell Lemons evolution guide page for reset timing and progression decisions
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/evolution.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons Evolution Guide | 42x Speed and Void Route" description="Use a Sell Lemons evolution guide to plan 42x speed resets, Void route timing, investor scaling, and late-game progression choices.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Reset Planning</p>
+          <h1>Sell Lemons Evolution Guide</h1>
+          <p>Evolution sits between regular rebirth planning and ascension. The main decision is whether your next reset speeds up the route enough to justify rebuilding.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons evolution guide with speed route planning" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <p class="evidence-note">Reported mechanic: players describe evolution as a major speed layer. Treat exact multiplier and requirement numbers as pending unless checked in-game.</p>
+
+      <h2>Evolution Decision Flow</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>1. Confirm rebuild speed</h3>
+          <p>Reset only when your early income and key unlock path can rebuild quickly. If the first stages still feel slow, upgrade income sources and automation first.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>2. Check investor scaling</h3>
+          <p>Investor progress matters because it supports later reset layers. Compare your current route against the rebirth guide before pressing a reset button.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>3. Watch the Void route</h3>
+          <p>Void-related upgrades and event timing can change which purchase is best. Use the profit calculator when comparing a slow source against a global multiplier.</p>
+        </section>
+      </div>
+
+      <h2>Internal Planning Links</h2>
+      <div class="mini-table">
+        <a href="/profit-calculator/">Calculate upgrade ROI</a>
+        <a href="/rebirths/">Review rebirth timing</a>
+        <a href="/ascension/">Prepare ascension</a>
+        <a href="/money-fast/">Improve cash route speed</a>
+      </div>
+
+      <RelatedGuides currentSlug="evolution" />
+    </article>
+  </main>
+</SiteLayout>

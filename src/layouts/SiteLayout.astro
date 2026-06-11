@@ -1,4 +1,7 @@
 ---
+// input: title, description, noindex flag, siteConfig metadata, and page slot content
+// output: Shared HTML document shell with SEO metadata, header, page slot, and footer
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/layouts/SiteLayout.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -58,16 +61,7 @@ const canonical = `${siteConfig.siteDomain.replace(/\/+$/g, "")}${Astro.url.path
   </head>
   <body>
     <Header />
-    {siteConfig.analytics.nativeBannerScript && siteConfig.analytics.nativeBannerContainerId && (
-      <div class="native-banner-container">
-        <script async="async" data-cfasync="false" src={siteConfig.analytics.nativeBannerScript} is:inline></script>
-        <div id={siteConfig.analytics.nativeBannerContainerId}></div>
-      </div>
-    )}
     <slot />
     <Footer />
-    {siteConfig.analytics.socialBarScript && (
-      <script src={siteConfig.analytics.socialBarScript} is:inline></script>
-    )}
   </body>
 </html>

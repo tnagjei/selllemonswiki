@@ -1,0 +1,116 @@
+---
+// input: User-entered current income, upgrade cost, income gain, and multiplier assumptions
+// output: Static Sell Lemons ROI calculator page with a client-side priority estimate
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/profit-calculator.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons Profit Calculator | Best Upgrade ROI Tool" description="Use a Sell Lemons profit calculator to compare upgrade cost, income gain, ROI, and next purchase choices for Roblox progression routes.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">ROI Tool</p>
+          <h1>Sell Lemons Profit Calculator</h1>
+          <p>Compare upgrade cost against expected income gain before spending cash. This tool keeps the math visible so a player can avoid low-impact purchases during a fast Sell Lemons route.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons profit calculator upgrade ROI tool" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <section class="tool-panel" aria-labelledby="calculator-title">
+        <div>
+          <p class="eyebrow">Calculate Best Upgrade</p>
+          <h2 id="calculator-title">Upgrade ROI Estimate</h2>
+          <p class="evidence-note">Use reported or personal in-game numbers only. If an upgrade value is not verified, treat the result as a planning estimate.</p>
+        </div>
+        <div class="calculator-grid">
+          <label>
+            Current income per minute
+            <input id="currentIncome" type="number" min="0" step="1" value="10000" />
+          </label>
+          <label>
+            Upgrade cost
+            <input id="upgradeCost" type="number" min="0" step="1" value="50000" />
+          </label>
+          <label>
+            Added income per minute
+            <input id="incomeGain" type="number" min="0" step="1" value="2500" />
+          </label>
+          <label>
+            Active multiplier
+            <input id="multiplier" type="number" min="0" step="0.1" value="1" />
+          </label>
+        </div>
+        <button class="button primary tool-button" type="button" id="calculateRoi">Calculate Best Upgrade</button>
+        <div class="result-panel" id="roiResult" aria-live="polite">
+          Enter your upgrade numbers, then run the estimate.
+        </div>
+      </section>
+
+      <h2>How to Read the ROI Result</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Payback time</h3>
+          <p>Payback time means how many minutes the upgrade needs to earn back its own cost. A shorter payback is usually better for early progression.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Multiplier check</h3>
+          <p>Run the same upgrade once with no multiplier and once with your active event, evolution, or investor multiplier. This helps separate normal upgrades from event-only purchases.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Next purchase rule</h3>
+          <p>If two upgrades have similar payback, choose the one that unlocks a manager, route, income source, or reset milestone. Pure cash gain is not the only progression value.</p>
+        </section>
+      </div>
+
+      <h2>Useful Internal Routes</h2>
+      <div class="mini-table">
+        <a href="/income-sources/">Compare income sources</a>
+        <a href="/best-upgrades/">Check upgrade priority</a>
+        <a href="/money-fast/">Plan fastest money routes</a>
+        <a href="/rebirths/">Review rebirth timing</a>
+      </div>
+
+      <RelatedGuides currentSlug="profit-calculator" />
+    </article>
+  </main>
+
+  <script is:inline>
+    const readNumber = (id) => {
+      const value = Number(document.getElementById(id)?.value || 0);
+      return Number.isFinite(value) && value >= 0 ? value : 0;
+    };
+
+    const result = document.getElementById("roiResult");
+    const calculate = () => {
+      const currentIncome = readNumber("currentIncome");
+      const upgradeCost = readNumber("upgradeCost");
+      const incomeGain = readNumber("incomeGain");
+      const multiplier = Math.max(readNumber("multiplier"), 0);
+      const effectiveGain = incomeGain * multiplier;
+
+      if (!result) return;
+      if (upgradeCost <= 0 || effectiveGain <= 0) {
+        result.textContent = "Add a positive upgrade cost and income gain to calculate ROI.";
+        return;
+      }
+
+      const paybackMinutes = upgradeCost / effectiveGain;
+      const newIncome = currentIncome + effectiveGain;
+      const roi = (effectiveGain / upgradeCost) * 100;
+      const priority = paybackMinutes <= 10 ? "High priority" : paybackMinutes <= 30 ? "Medium priority" : "Low priority";
+
+      result.innerHTML = `
+        <strong>${priority}</strong>
+        <span>Payback: ${paybackMinutes.toFixed(1)} minutes</span>
+        <span>Estimated new income: ${Math.round(newIncome).toLocaleString()} per minute</span>
+        <span>ROI per minute: ${roi.toFixed(2)}%</span>
+      `;
+    };
+
+    document.getElementById("calculateRoi")?.addEventListener("click", calculate);
+  </script>
+</SiteLayout>

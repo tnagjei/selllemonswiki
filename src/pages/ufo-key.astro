@@ -1,0 +1,50 @@
+---
+// input: Reported UFO key route context, Good Samaritan badge notes, and related sewer pages
+// output: Sell Lemons UFO key guide page separated from general deals content
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/ufo-key.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons UFO Key Guide | Good Samaritan Badge Route" description="Follow a Sell Lemons UFO key guide with Good Samaritan badge notes, sewer route links, map prep, and evidence-labeled steps.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">UFO Route</p>
+          <h1>Sell Lemons UFO Key Guide</h1>
+          <p>The UFO key route deserves its own page because it has a different intent from deals and haggling. Use this as a clean path from sewer prep to Good Samaritan progress.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons UFO key and Good Samaritan route" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <p class="evidence-note">Evidence boundary: this route is tracked as community-reported until a current in-game check confirms the exact sequence.</p>
+
+      <h2>UFO Key Route</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>1. Prepare sewer access</h3>
+          <p>Start with sewer key planning and the maze map. The UFO route is easier when you are not solving every underground objective at once.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>2. Track Good Samaritan progress</h3>
+          <p>Keep the badge tracker open while you complete reported help-station and sewer steps. Marking progress locally helps separate personal completion from public verification.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>3. Confirm the final unlock</h3>
+          <p>Do not publish the final reward as verified from memory. Capture a current in-game confirmation if the route changes after an update.</p>
+        </section>
+      </div>
+
+      <div class="mini-table">
+        <a href="/sewer-key/">Prepare sewer key</a>
+        <a href="/sewer-maze-map/">Open maze map</a>
+        <a href="/badge-tracker/">Track badge progress</a>
+      </div>
+
+      <RelatedGuides currentSlug="ufo-key" />
+    </article>
+  </main>
+</SiteLayout>

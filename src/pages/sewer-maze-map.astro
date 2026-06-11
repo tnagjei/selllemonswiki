@@ -1,0 +1,64 @@
+---
+// input: Reported sewer route checkpoints, lever puzzle context, and related key pages
+// output: Sell Lemons sewer maze map guide page for map-first puzzle navigation
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/sewer-maze-map.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons Maze Map | Sewer Route and UFO Key Steps" description="Follow a Sell Lemons maze map for the sewer route, lever order, UFO key checkpoints, and mobile-readable puzzle steps.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Map First</p>
+          <h1>Sell Lemons Maze Map</h1>
+          <p>Use this sewer maze map as a route-first reference before entering the underground puzzle. The goal is to reduce backtracking, missed levers, and wrong-key resets.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons sewer maze map route reference" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <section class="route-map" aria-label="Sewer maze route map">
+        <div>Entry</div>
+        <div>Main Split</div>
+        <div>Lever Rooms</div>
+        <div>Vault Door</div>
+        <div>UFO Route</div>
+      </section>
+
+      <p class="evidence-note">Evidence boundary: exact maze layouts can shift after updates. Treat this as a planning route and confirm final turns in-game before marking a step verified.</p>
+
+      <h2>Sewer Route Steps</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>1. Enter with a clear objective</h3>
+          <p>Decide whether you are chasing the sewer key route, the Cosmic Cash Vine vault, or the UFO key route. Mixing goals is why players lose track of the maze.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>2. Mark the main split</h3>
+          <p>Use the first large branch as your reset point. If you reach a dead end or pull the wrong lever, return to this split before trying the next branch.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>3. Solve levers before the vault</h3>
+          <p>The lever route should be completed as a checklist. Open the dedicated lever sequence page on mobile before entering the vault section.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>4. Separate UFO key progress</h3>
+          <p>The UFO key path belongs after the Good Samaritan route. Do not assume a vault step also completes the UFO objective unless the game confirms it.</p>
+        </section>
+      </div>
+
+      <h2>Route Cluster</h2>
+      <div class="mini-table">
+        <a href="/lever-sequence/">Open lever sequence checklist</a>
+        <a href="/sewer-key/">Prepare sewer key entry</a>
+        <a href="/ufo-key/">Follow UFO key route</a>
+        <a href="/deals/">Return to deals and secrets hub</a>
+      </div>
+
+      <RelatedGuides currentSlug="sewer-maze-map" />
+    </article>
+  </main>
+</SiteLayout>

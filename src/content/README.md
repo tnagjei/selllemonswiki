@@ -6,4 +6,4 @@
 
 ## Files
 - home.ts：首页文案数据，提供快照数据、常见问题 (FAQ) 列表以及趋势搜索词。
-- system-pages.ts：独立粉丝站的 About, Contact, Privacy, Terms, Editorial Policy 详细条款数据。
+- system-pages.ts：独立粉丝站的 About, Contact, Privacy, Terms, Editorial Policy, Ad Policy 详细条款数据。

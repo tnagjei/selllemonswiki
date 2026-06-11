@@ -1,0 +1,50 @@
+---
+// input: Reported sewer key route requirements and related maze pages
+// output: Sell Lemons sewer key guide page separated from general deals content
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/sewer-key.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+---
+
+<SiteLayout title="Sell Lemons Sewer Key Guide | Maze Entry and Route Prep" description="Use a Sell Lemons sewer key guide to prepare maze entry, lever route checks, UFO key planning, and underground progression steps.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Hidden Route</p>
+          <h1>Sell Lemons Sewer Key Guide</h1>
+          <p>The sewer key should be treated as the entry point for underground route planning, not as a general deals topic. Prepare the map and lever checklist before starting.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons sewer key route guide" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <p class="evidence-note">Status: community-reported. Do not present exact key requirements as verified unless you have a current in-game check.</p>
+
+      <h2>Sewer Key Route Prep</h2>
+      <div class="guide-step-flow">
+        <section class="guide-step-card">
+          <h3>Check your route goal</h3>
+          <p>Players use the sewer entry for more than one objective. Decide whether you are preparing the vault route, the UFO key route, or badge progress.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Open the map first</h3>
+          <p>Use the maze map before entering. This reduces time lost in repeated dead ends and keeps the route mobile-readable.</p>
+        </section>
+        <section class="guide-step-card">
+          <h3>Bring the lever checklist</h3>
+          <p>If your objective touches the vault, complete the lever sequence in order. Guessing after a wrong pull is slower than resetting from the main split.</p>
+        </section>
+      </div>
+
+      <div class="mini-table">
+        <a href="/sewer-maze-map/">Open maze map</a>
+        <a href="/lever-sequence/">Open lever sequence</a>
+        <a href="/ufo-key/">Continue to UFO key</a>
+      </div>
+
+      <RelatedGuides currentSlug="sewer-key" />
+    </article>
+  </main>
+</SiteLayout>

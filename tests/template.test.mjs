@@ -19,6 +19,17 @@ function includesInsensitive(text, needle) {
 
 const blockedToolSlug = "ex" + "ploit";
 const wikiSlugs = ["", "codes", "progression", "income-sources", "rebirths", "deals"];
+const pPlanSlugs = [
+  "profit-calculator",
+  "sewer-maze-map",
+  "lever-sequence",
+  "ascension",
+  "evolution",
+  "badge-tracker",
+  "sewer-key",
+  "ufo-key",
+  "ad-policy"
+];
 const corePageFiles = [
   "src/pages/index.astro",
   "src/pages/codes.astro",
@@ -87,6 +98,7 @@ test("required Sell Lemons Wiki files exist", () => {
     "public/icon.svg",
     "public/hero-placeholder.svg",
     ...corePageFiles,
+    ...pPlanSlugs.map((slug) => `src/pages/${slug}.astro`),
     ...systemPageFiles
   ];
 
@@ -124,6 +136,20 @@ test("core config remains locked to Sell Lemons v1 scope", () => {
 
   for (const slug of ["classes", "weapons", "tier-list", "value-list"]) {
     assert.equal(config.includes(`"${slug}"`), false, `${slug} must not be in config public slugs`);
+  }
+});
+
+test("P-level SEO routes are configured as completed English-only pages", () => {
+  const config = read("src/data/config.ts");
+  const home = read("src/content/home.ts");
+
+  for (const slug of pPlanSlugs) {
+    assert.ok(config.includes(`"${slug}"`), `config must include ${slug}`);
+    assert.equal(exists(`src/pages/${slug}.astro`), true, `${slug} page should exist`);
+  }
+
+  for (const slug of ["profit-calculator", "sewer-maze-map", "lever-sequence", "ascension", "evolution", "badge-tracker"]) {
+    assert.ok(home.includes(`slug: "${slug}"`), `home wikiLinks must include ${slug}`);
   }
 });
 

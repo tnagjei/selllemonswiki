@@ -1,4 +1,7 @@
 ---
+// input: siteConfig route completion lists and wikiLinks from content/home.ts
+// output: Related guide cards for completed guide pages except the current page
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/components/RelatedGuides.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 import { wikiLinks } from "../content/home";
 
@@ -8,7 +11,7 @@ interface Props {
 }
 
 const { currentSlug = "", title = "Related guides" } = Astro.props;
-const completed = new Set(siteConfig.completedCoreSlugs);
+const completed = new Set([...siteConfig.completedCoreSlugs, ...siteConfig.completedEnglishOnlySlugs]);
 const relatedLinks = wikiLinks.filter((link) => link.slug !== currentSlug && completed.has(link.slug));
 ---
 

@@ -15,7 +15,7 @@ Progression
 Income Sources
 Rebirths
 Deals
-Language
+Tools
 ```
 
 Language candidates are:
@@ -28,6 +28,7 @@ Indonesian
 ```
 
 Only English is completed by default. Thai, Filipino, and Indonesian are language candidates only. They must not generate pages or enter sitemap until localized content is completed.
+Unfinished language candidates are hidden from the first-screen header until localized pages are complete.
 
 ## Launch modes
 
@@ -55,6 +56,18 @@ Publishes:
 /income-sources/
 /rebirths/
 /deals/
+/beginner-guide/
+/money-fast/
+/best-upgrades/
+/profit-calculator/
+/sewer-maze-map/
+/lever-sequence/
+/ascension/
+/evolution/
+/badge-tracker/
+/sewer-key/
+/ufo-key/
+/ad-policy/
 /about/
 /contact/
 /editorial-policy/
@@ -74,8 +87,8 @@ Before review, verify:
 /editorial-policy/ exists and explains verification, corrections, and unsafe content boundaries
 /privacy/ exists, outputs HTML, and remains noindex
 /terms/ exists, outputs HTML, and remains noindex
-Footer links to About, Contact, Privacy, Terms, and Editorial Policy
-sitemap.xml includes /, /codes/, /progression/, /income-sources/, /rebirths/, /deals/, /about/, /contact/, and /editorial-policy/
+Footer links to About, Contact, Privacy, Terms, Editorial Policy, and Ad Policy
+sitemap.xml includes /, /codes/, /progression/, /income-sources/, /rebirths/, /deals/, English guide/tool pages, /about/, /contact/, /editorial-policy/, and /ad-policy/
 sitemap.xml excludes /privacy/, /terms/, /guide/, /updates/, /scripts/, /macros/, /executor/, /exploit/, /th/, /fil/, and /id/
 No fake active codes, rewards, value rows, or official claims are published
 No unsafe exploit, executor, macro, or script pages are generated
@@ -220,6 +233,18 @@ Default sitemap routes are:
 /income-sources/
 /rebirths/
 /deals/
+/beginner-guide/
+/money-fast/
+/best-upgrades/
+/profit-calculator/
+/sewer-maze-map/
+/lever-sequence/
+/ascension/
+/evolution/
+/badge-tracker/
+/sewer-key/
+/ufo-key/
+/ad-policy/
 /about/
 /contact/
 /editorial-policy/

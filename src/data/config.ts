@@ -13,8 +13,34 @@ export const siteConfig = {
   completedLocales: ["en"],
   coreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
   completedCoreSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
-  englishOnlySlugs: [],
-  completedEnglishOnlySlugs: [],
+  englishOnlySlugs: [
+    "beginner-guide",
+    "money-fast",
+    "best-upgrades",
+    "profit-calculator",
+    "sewer-maze-map",
+    "lever-sequence",
+    "ascension",
+    "evolution",
+    "badge-tracker",
+    "sewer-key",
+    "ufo-key",
+    "ad-policy"
+  ],
+  completedEnglishOnlySlugs: [
+    "beginner-guide",
+    "money-fast",
+    "best-upgrades",
+    "profit-calculator",
+    "sewer-maze-map",
+    "lever-sequence",
+    "ascension",
+    "evolution",
+    "badge-tracker",
+    "sewer-key",
+    "ufo-key",
+    "ad-policy"
+  ],
   systemSlugs: ["about", "contact", "editorial-policy"],
   blockedSlugs: ["scripts", "macros", "executor", "exploit"],
   navigationSlugs: ["", "codes", "progression", "income-sources", "rebirths", "deals"],
@@ -29,18 +55,18 @@ export const siteConfig = {
     privacy: true,
     terms: true,
     editorialPolicy: true,
-    adPolicy: false
+    adPolicy: true
   },
   analytics: {
     googleAnalyticsId: "G-PM2981L1DT",
     adsenseClient: "",
     clarityId: "x576g94ju8",
     thirdPartyAdScripts: [],
-    smartLink: "https://www.effectivecpmnetwork.com/bd1dpr43?key=37a38b995720f98233d9fa8cde15c66",
-    nativeBannerScript: "https://pl29708726.effectivecpmnetwork.com/c02c96835811063bd6ef36dd598ac1ae/invoke.js",
-    nativeBannerContainerId: "container-c02c96835811063bd6ef36dd598ac1ae",
-    socialBarScript: "https://pl29708727.effectivecpmnetwork.com/13/8f/c9/138fc9fec3c6ea7c57884654673a04d4.js",
-    articleAdKey: "29835ac295492b0a3bd11e598a5ad437"
+    smartLink: "",
+    nativeBannerScript: "",
+    nativeBannerContainerId: "",
+    socialBarScript: "",
+    articleAdKey: ""
   },
   assets: {
     icon: "/icon.svg",
@@ -50,4 +76,3 @@ export const siteConfig = {
     accentColor: "#facc15"
   }
 };
-

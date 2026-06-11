@@ -1,5 +1,5 @@
 // input: siteConfig, gameData, tangjei414@gmail.com
-// output: systemPageContent data structure containing static texts for system pages (About, Privacy, Terms, Contact, Editorial Policy)
+// output: systemPageContent data structure containing static texts for system pages (About, Privacy, Terms, Contact, Editorial Policy, Ad Policy)
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/content/system-pages.ts (更新规则：文件变更需同步本注释与所属目录 README)
 import { siteConfig } from "../data/config";
 import { gameData } from "../data/game";
@@ -76,6 +76,28 @@ export const systemPageContent = {
       {
         heading: "Corrections",
         body: `Corrections are reviewed through the contact email: ${siteConfig.contactEmail}. The goal is to improve accuracy without overstating certainty.`
+      }
+    ]
+  },
+  adPolicy: {
+    title: "Ad Policy",
+    description: `Advertising and content boundary policy for ${siteConfig.siteName}.`,
+    sections: [
+      {
+        heading: "Advertising boundary",
+        body: `${siteConfig.siteName} does not use ads as a browser verification step, code unlock step, reward gate, or Roblox account security check. Any future ad placement must be visually separate from guide content.`
+      },
+      {
+        heading: "Codes and rewards",
+        body: `Ads must not claim to unlock private code lists, reward databases, Robux, account boosts, or verified rewards. Code status remains governed by the editorial evidence policy.`
+      },
+      {
+        heading: "External links",
+        body: `External advertising or sponsor links, if used, should be labeled clearly and should not imitate site navigation, game controls, or security prompts.`
+      },
+      {
+        heading: "Corrections",
+        body: `Report confusing, unsafe, or mislabeled ads to ${siteConfig.contactEmail}. ${siteConfig.publisher.responseTime}`
       }
     ]
   },

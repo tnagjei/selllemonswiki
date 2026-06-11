@@ -99,6 +99,7 @@ if (!fs.existsSync(configPath)) {
   const completedLocales = extractArray(config, "completedLocales");
   const coreSlugs = extractArray(config, "coreSlugs");
   const completedCoreSlugs = extractArray(config, "completedCoreSlugs");
+  const englishOnlySlugs = extractArray(config, "englishOnlySlugs");
   const completedEnglishOnlySlugs = extractArray(config, "completedEnglishOnlySlugs");
   const navigationSlugs = extractArray(config, "navigationSlugs");
   const blockedSlugs = extractArray(config, "blockedSlugs");
@@ -118,7 +119,14 @@ if (!fs.existsSync(configPath)) {
   if (completedLocales.join(",") !== "en") violations.push("completedLocales must default to en only");
   if (!["minimal", "wiki-hub"].includes(launchMode)) violations.push("launchMode must be minimal or wiki-hub");
   if (!completedCoreSlugs.every((slug) => coreSlugs.includes(slug))) violations.push("completedCoreSlugs must be a subset of coreSlugs");
-  if (completedEnglishOnlySlugs.length !== 0) violations.push("completedEnglishOnlySlugs must be empty by default");
+  if (!completedEnglishOnlySlugs.every((slug) => englishOnlySlugs.includes(slug))) {
+    violations.push("completedEnglishOnlySlugs must be a subset of englishOnlySlugs");
+  }
+  for (const slug of completedEnglishOnlySlugs) {
+    if (!fs.existsSync(path.join(root, `src/pages/${slug}.astro`))) {
+      violations.push(`completedEnglishOnlySlug points to missing page: ${slug}`);
+    }
+  }
   if (!navigationSlugs.every((slug) => coreSlugs.includes(slug))) violations.push("navigationSlugs must be a subset of coreSlugs");
   if (!navigationSlugs.every((slug) => wikiHubSlugs.includes(slug))) violations.push("navigationSlugs must use the wiki hub slugs only");
   if (configuredSystemSlugs.join(",") !== systemSlugs.join(",")) {
@@ -135,7 +143,7 @@ if (!fs.existsSync(configPath)) {
   }
   if (launchMode === "minimal" && completedCoreSlugs.join(",") !== "") violations.push("minimal mode must complete homepage only");
   if (launchMode === "wiki-hub" && completedCoreSlugs.join(",") !== wikiHubSlugs.join(",")) {
-    violations.push("wiki-hub mode must complete homepage, codes, tier-list, classes, weapons, and value-list");
+    violations.push("wiki-hub mode must complete homepage, codes, progression, income sources, rebirths, and deals");
   }
   validateAsset("assets.icon", icon);
   validateAsset("assets.hero", hero);
