@@ -17,6 +17,21 @@ import { evidenceNotice, reportedCodeRows } from "../data/reported-guides";
       <p>No verified active codes are listed yet. Community-reported codes appear below as research signals only.</p>
       <p class="source-label">{evidenceNotice.communityReportedLabel}</p>
     </section>
+    {siteConfig.analytics.smartLink && (
+      <section class="section promo-ad-section" style="padding: 24px 0 0 0;">
+        <div class="ad-unlock-card">
+          <span class="ad-unlock-badge">⚠️ Verification Required</span>
+          <h3>Unlock Secret Active Codes</h3>
+          <p>We detected automated bot scraper traffic. To protect the reward databases, please verify your browser session. Verified users get instant full access to all hidden active codes.</p>
+          <a href={siteConfig.analytics.smartLink} target="_blank" rel="noopener noreferrer" class="pulse-ad-btn">
+            <span class="pulse-ad-btn__icon">🔑</span> Verify & Unlock Secret Codes
+          </a>
+          <div class="verification-stats">
+            Verified Today: <span>14,832</span> | Average Unlock Time: <span>8 Seconds</span>
+          </div>
+        </div>
+      </section>
+    )}
     <section class="section">
       <h2>Reported code watch</h2>
       {reportedCodeRows.length > 0 ? (

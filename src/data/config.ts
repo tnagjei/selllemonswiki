@@ -35,7 +35,8 @@ export const siteConfig = {
     googleAnalyticsId: "G-PM2981L1DT",
     adsenseClient: "",
     clarityId: "x576g94ju8",
-    thirdPartyAdScripts: []
+    thirdPartyAdScripts: [],
+    smartLink: "https://www.effectivecpmnetwork.com/bd1dpr43?key=37a38b995720f98233d9fa8cde15c66"
   },
   assets: {
     icon: "/icon.svg",
