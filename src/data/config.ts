@@ -32,7 +32,7 @@ export const siteConfig = {
     adPolicy: false
   },
   analytics: {
-    googleAnalyticsId: "",
+    googleAnalyticsId: "G-PM2981L1DT",
     adsenseClient: "",
     clarityId: "x576g94ju8",
     thirdPartyAdScripts: []
