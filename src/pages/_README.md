@@ -11,9 +11,9 @@
 - progression.astro：最佳升级路线，包含重生、飞升等里程碑路线规划
 - money-fast.astro：快速致富秘籍，包含 LemonDash 送单加价技巧和离线倍率挂机攻略
 - best-upgrades.astro：升级优先级排行，包含 S 到 D 等级的加点评估和流派加点推荐
-- profit-calculator.astro：收益计算器页面，用于估算升级成本、收益和回本时间
-- sewer-maze-map.astro：地下迷宫地图页，用于承接 maze map 和 sewer maze map 搜索意图
-- lever-sequence.astro：拉杆顺序轻工具页，提供本地保存的步骤勾选清单
+- profit-calculator.astro：收益计算器页面，用于估算升级 ROI、目标时间、游玩时长收益和公式边界
+- sewer-maze-map.astro：地下迷宫地图页，用于按 Sewer Key、UFO Key、Cosmic Cash Vine 拆分路线和恢复步骤
+- lever-sequence.astro：拉杆顺序轻工具页，提供 Sewer Key 与 UFO Key 双路线本地勾选清单
 - ascension.astro：飞升指南页，解释飞升前置条件、奖励和永久购买规划
 - evolution.astro：进化指南页，解释 42x speed 路线、Void 规划和重置时机
 - badge-tracker.astro：徽章追踪页，区分 community-reported、pending 和个人进度

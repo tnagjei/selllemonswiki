@@ -237,6 +237,7 @@ p {
 }
 
 @media (max-width: 760px) {
+
   .site-header,
   .site-footer,
   .hero,
@@ -260,6 +261,7 @@ p {
 details.faq-card {
   transition: all 0.2s ease-in-out;
 }
+
 details.faq-card summary {
   cursor: pointer;
   font-weight: 800;
@@ -270,19 +272,23 @@ details.faq-card summary {
   justify-content: space-between;
   align-items: center;
 }
+
 details.faq-card summary::after {
   content: "＋";
   font-size: 1.1rem;
   transition: transform 0.2s;
 }
+
 details.faq-card[open] summary::after {
   content: "－";
 }
+
 details.faq-card[open] summary {
   border-bottom: 1px solid var(--line);
   margin-bottom: 12px;
   padding-bottom: 12px;
 }
+
 .faq-card__body {
   padding-top: 4px;
 }
@@ -294,6 +300,7 @@ details.faq-card[open] summary {
   color: var(--muted);
   line-height: 1.6;
 }
+
 .review-list li {
   margin-bottom: 8px;
   font-style: italic;
@@ -308,6 +315,7 @@ details.faq-card[open] summary {
   margin: 32px 0;
   padding: 0 10px;
 }
+
 .progression-track::before {
   content: "";
   position: absolute;
@@ -319,6 +327,7 @@ details.faq-card[open] summary {
   transform: translateY(-50%);
   z-index: 1;
 }
+
 .progression-node {
   width: 36px;
   height: 36px;
@@ -339,6 +348,7 @@ details.faq-card[open] summary {
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
+
 .tier-pill {
   display: inline-flex;
   align-items: center;
@@ -352,20 +362,24 @@ details.faq-card[open] summary {
   outline: none;
   transition: all 0.2s;
 }
+
 .tier-pill.is-active {
   background: var(--brand);
   color: #130f06;
   border-color: var(--brand);
 }
+
 .tier-pill__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
 }
+
 .tier-panel .tier-card {
   display: none;
 }
+
 .tier-panel .tier-card.is-active {
   display: block;
 }
@@ -385,22 +399,47 @@ details.faq-card[open] summary {
 }
 
 /* Custom accent colors for cards */
-.accent-red .tag { background: #fee2e2; color: #991b1b; }
-.accent-blue .tag { background: #dbeafe; color: #1e40af; }
-.accent-yellow .tag { background: #fef9c3; color: #854d0e; }
-.accent-green .tag { background: #dcfce7; color: #166534; }
-.accent-purple .tag { background: #f3e8ff; color: #6b21a8; }
-.accent-orange .tag { background: #ffedd5; color: #9a3412; }
+.accent-red .tag {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.accent-blue .tag {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.accent-yellow .tag {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.accent-green .tag {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.accent-purple .tag {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+.accent-orange .tag {
+  background: #ffedd5;
+  color: #9a3412;
+}
 
 /* Grid adjustments */
 .hub-grid {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
+
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
+
 .quick-card {
   display: flex;
   flex-direction: column;
@@ -408,15 +447,18 @@ details.faq-card[open] summary {
   min-height: 140px;
   text-decoration: none;
 }
+
 .quick-card strong {
   display: block;
   font-size: 1.15rem;
   margin-top: 8px;
 }
+
 .quick-card span {
   font-size: 0.9rem;
   color: var(--muted);
 }
+
 .quick-card em {
   display: block;
   font-size: 0.8rem;
@@ -435,44 +477,53 @@ details.faq-card[open] summary {
   margin: 0 auto;
   border-bottom: 1px solid var(--line);
 }
+
 .page-hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   gap: 32px;
   align-items: center;
 }
+
 @media (max-width: 760px) {
   .page-hero__grid {
     grid-template-columns: 1fr;
   }
 }
+
 .guide-detail-hero img {
   border-radius: 24px;
   max-height: 320px;
   object-fit: cover;
   width: 100%;
 }
+
 .guide-detail {
   max-width: 800px;
   margin: 0 auto;
   padding: 24px;
 }
+
 .guide-detail h2 {
   margin: 48px 0 20px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 1.8rem;
 }
+
 .guide-detail h3 {
   margin-top: 24px;
   color: var(--brand);
 }
+
 .guide-detail p {
   color: var(--muted);
   font-size: 1.05rem;
   line-height: 1.75;
 }
-.guide-detail ul, .guide-detail ol {
+
+.guide-detail ul,
+.guide-detail ol {
   display: grid;
   gap: 12px;
   margin: 16px 0;
@@ -480,39 +531,49 @@ details.faq-card[open] summary {
   color: var(--muted);
   line-height: 1.65;
 }
+
 .guide-detail li::marker {
   color: var(--brand);
   font-weight: 800;
 }
+
 .guide-detail strong {
   color: var(--text);
 }
+
 .guide-step-flow {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 24px;
 }
+
 .guide-step-card {
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: 24px;
   background: linear-gradient(180deg, rgba(250, 204, 21, 0.04), transparent), var(--panel);
 }
+
 .guide-step-card h3 {
   margin: 0 0 12px;
   color: var(--text);
 }
-.guide-step-card p, .guide-step-card li {
+
+.guide-step-card p,
+.guide-step-card li {
   color: var(--muted);
   line-height: 1.65;
 }
-.guide-step-card ul, .guide-step-card ol {
+
+.guide-step-card ul,
+.guide-step-card ol {
   display: grid;
   gap: 10px;
   margin: 12px 0 0 0;
   padding-left: 20px;
 }
+
 .guide-step-card li::marker {
   color: var(--brand);
   font-weight: 800;
@@ -553,6 +614,13 @@ details.faq-card[open] summary {
 
 .tool-button {
   justify-self: start;
+}
+
+.preset-row,
+.route-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .result-panel {
@@ -690,22 +758,26 @@ details.faq-card[open] summary {
   background: radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.1), transparent 18rem), var(--panel);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
+
 .guide-what-next__head {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
+
 .guide-what-next__head h2 {
   margin: 0;
   font-size: 1.4rem;
   border-top: none;
   padding-top: 0;
 }
+
 .guide-what-next__icon {
   display: inline-flex;
   color: var(--brand);
 }
+
 .guide-what-next__divider {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -713,17 +785,20 @@ details.faq-card[open] summary {
   gap: 12px;
   margin: 14px 0 16px;
 }
+
 .guide-what-next__divider span:first-child,
 .guide-what-next__divider span:last-child {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
+
 .guide-what-next__diamond {
   width: 8px;
   height: 8px;
   transform: rotate(45deg);
   background: var(--brand);
 }
+
 .guide-what-next__cta {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -738,30 +813,37 @@ details.faq-card[open] summary {
   background: linear-gradient(180deg, rgba(250, 204, 21, 0.1), transparent), var(--bg);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
+
 .guide-what-next__cta:hover {
   transform: translateY(-2px);
   border-color: var(--brand);
 }
+
 .guide-what-next__cta-arrow {
   display: inline-flex;
   color: var(--brand);
 }
+
 .guide-what-next__cta-copy {
   display: grid;
   gap: 4px;
 }
+
 .guide-what-next__cta-copy strong {
   font-size: 1.1rem;
 }
+
 .guide-what-next__cta-copy span {
   color: var(--muted);
   font-size: 0.92rem;
 }
+
 .guide-what-next__cta-chevron {
   color: var(--brand);
   font-size: 1.2rem;
   font-weight: bold;
 }
+
 .guide-what-next__hub {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -772,21 +854,25 @@ details.faq-card[open] summary {
   border-radius: 12px;
   background: var(--bg);
 }
+
 .guide-what-next__hub-icon {
   display: inline-flex;
   color: var(--muted);
 }
+
 .guide-what-next__hub-text {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
 }
+
 .guide-what-next__hub-link {
   color: var(--brand);
   font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
 }
+
 .guide-what-next__hub-link:hover {
   text-decoration: underline;
 }
@@ -795,19 +881,28 @@ details.faq-card[open] summary {
   .guide-what-next__cta {
     grid-template-columns: auto 1fr;
   }
+
   .guide-what-next__cta-chevron {
     display: none;
   }
+
   .guide-what-next__hub {
     grid-template-columns: auto 1fr;
   }
+
   .guide-what-next__hub-link {
     grid-column: 1 / -1;
     justify-self: start;
   }
+
   .calculator-grid,
   .mini-table,
-  .route-map {
+  .route-map,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .route-table div {
     grid-template-columns: 1fr;
   }
 }
@@ -816,13 +911,22 @@ details.faq-card[open] summary {
 .guide-panel {
   display: none;
 }
+
 .guide-panel.is-active {
   display: block;
   animation: guideFadeIn 0.3s ease-in-out;
 }
+
 @keyframes guideFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Header Navigation Dropdown CSS */
@@ -897,12 +1001,14 @@ details.faq-card[open] summary {
 
 /* Desktop Hover Expansion */
 @media (min-width: 761px) {
+
   .nav-dropdown:hover .nav-dropdown__menu,
   .nav-dropdown.is-open .nav-dropdown__menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(4px);
   }
+
   .nav-dropdown:hover .nav-dropdown__chevron,
   .nav-dropdown.is-open .nav-dropdown__chevron {
     transform: rotate(180deg);
@@ -914,11 +1020,13 @@ details.faq-card[open] summary {
   .nav-dropdown {
     width: 100%;
   }
+
   .nav-dropdown__control {
     justify-content: space-between;
     width: 100%;
     padding: 6px 0;
   }
+
   .nav-dropdown__menu {
     position: static;
     transform: none;
@@ -934,9 +1042,11 @@ details.faq-card[open] summary {
     opacity: 1;
     visibility: visible;
   }
+
   .nav-dropdown.is-open .nav-dropdown__menu {
     display: flex;
   }
+
   .nav-dropdown.is-open .nav-dropdown__chevron {
     transform: rotate(180deg);
   }
@@ -945,7 +1055,8 @@ details.faq-card[open] summary {
 /* Video Wrapper for responsive 16:9 YouTube iframe embeds */
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-bottom: 56.25%;
+  /* 16:9 ratio */
   height: 0;
   overflow: hidden;
   border-radius: 12px;

@@ -1,28 +1,77 @@
 ---
-// input: Reported lever colors and player checklist state saved in localStorage
-// output: Sell Lemons lever sequence page with reset warnings and a step checklist
+// input: Reported Sewer Key and UFO Key lever routes plus player checklist state in localStorage
+// output: Sell Lemons lever sequence page with route tabs, evidence labels, and reset warnings
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/lever-sequence.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 
-const leverSteps = [
-  "Confirm you are in the correct sewer puzzle branch before touching any lever.",
-  "Find the blue lever room and mark the nearby return path.",
-  "Move to the red lever branch only after the first room is complete.",
-  "Check the green lever room and return to the main split.",
-  "Finish the purple lever branch, then approach the vault door.",
-  "If the vault does not open, reset from the main split instead of guessing."
+const routeChecklists = [
+  {
+    id: "sewer-key",
+    label: "Sewer Key Route",
+    title: "Sewer Key Checklist",
+    status: "reported",
+    note: "Reported route for the Sewer Key and Cosmic Cash Vine gate. Blue and Teal can refer to the same first lever in different community writeups.",
+    steps: [
+      "Pull the Blue or Teal lever first.",
+      "Pull the Red lever.",
+      "Pull the Green lever.",
+      "Return to Red and turn it off.",
+      "Return to Blue or Teal and turn it off.",
+      "Pull the Purple lever.",
+      "Pull the Red lever again, then collect the Sewer Key."
+    ]
+  },
+  {
+    id: "ufo-key",
+    label: "UFO Key Route",
+    title: "UFO Key Checklist",
+    status: "reported",
+    note: "Reported route for the UFO Key and Good Samaritan badge. Treat the repeated Red and Green steps as a route state checklist, not official proof.",
+    steps: [
+      "Start from a fresh sewer route state.",
+      "Pull the Blue or Teal lever.",
+      "Pull the Red lever.",
+      "Pull the Green lever.",
+      "Return to Red and toggle it for the UFO path.",
+      "Pull the Purple lever.",
+      "Return to Red and toggle it again.",
+      "Return to Green and toggle it for the UFO path.",
+      "Return to Red and toggle it for the final UFO Key path.",
+      "Collect the UFO Key if your investor progress has unlocked it.",
+      "Use the Red and Green route steps again if the alien path stays closed.",
+      "Talk to the Alien and mark Good Samaritan as reported complete."
+    ]
+  }
+];
+
+const recoveryNotes = [
+  {
+    title: "Wrong state",
+    status: "reported",
+    note: "If a door or path does not match the current checklist step, stop pulling extra levers and restart from a fresh server or a known main split."
+  },
+  {
+    title: "Missing key",
+    status: "pending",
+    note: "If the UFO Key does not appear, community sources point to investor story progress as a possible gate, but this still needs current in-game confirmation."
+  },
+  {
+    title: "Route conflict",
+    status: "disputed",
+    note: "A simple five-color order appears in some older or broader pages, while the current SERP evidence points to longer route-specific checklists."
+  }
 ];
 ---
 
-<SiteLayout title="Sell Lemons Lever Sequence | Sewer Maze UFO Key Order" description="Use the Sell Lemons lever sequence checklist for sewer maze order, reset warnings, UFO key prep, and mobile puzzle tracking.">
+<SiteLayout title="Sell Lemons Lever Sequence: Sewer and UFO Key Checklist" description="Use a Sell Lemons lever sequence checklist for Sewer Key, UFO Key, wrong state recovery, conflict notes, and evidence-labeled mobile tracking.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Checklist Tool</p>
           <h1>Sell Lemons Lever Sequence</h1>
-          <p>Track each lever step before opening the vault or moving toward the UFO key route. The checklist saves locally in your browser so you can refresh without losing progress.</p>
+          <p>Switch between the Sewer Key and UFO Key routes before touching any lever. Each checklist saves locally in your browser, but every route claim remains reported until confirmed in-game.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons lever sequence checklist" width="894" height="500" />
       </div>
@@ -32,38 +81,69 @@ const leverSteps = [
       <section class="tool-panel" aria-labelledby="lever-checklist-title">
         <div>
           <p class="eyebrow">Start Lever Checklist</p>
-          <h2 id="lever-checklist-title">Sewer Lever Order</h2>
-          <p class="evidence-note">Reported route only: use the checklist as a player aid, not as official proof of the current live maze state.</p>
+          <h2 id="lever-checklist-title">Route Tabs</h2>
+          <p class="evidence-note">Evidence boundary: these are reported player routes. Do not call them official or verified without a current live check.</p>
         </div>
-        <ol class="checklist" id="leverChecklist">
-          {leverSteps.map((step, index) => (
-            <li>
-              <label>
-                <input type="checkbox" data-step={String(index)} />
-                <span>{step}</span>
-              </label>
-            </li>
+        <div class="route-tabs" role="tablist" aria-label="Lever route checklists">
+          {routeChecklists.map((route, index) => (
+            <button
+              class={`tier-pill ${index === 0 ? "is-active" : ""}`}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`${route.id}-checklist-panel`}
+              data-lever-tab={route.id}
+            >
+              <span class="tier-pill__dot"></span>
+              {route.label}
+            </button>
           ))}
-        </ol>
-        <button class="button secondary tool-button" type="button" id="resetLeverChecklist">Reset Checklist</button>
+        </div>
+        {routeChecklists.map((route, routeIndex) => (
+          <section
+            class={`guide-panel ${routeIndex === 0 ? "is-active" : ""}`}
+            id={`${route.id}-checklist-panel`}
+            data-lever-panel={route.id}
+            aria-labelledby={`${route.id}-checklist-title`}
+          >
+            <span class="tag">{route.status}</span>
+            <h3 id={`${route.id}-checklist-title`}>{route.title}</h3>
+            <p>{route.note}</p>
+            <ol class="checklist">
+              {route.steps.map((step, index) => (
+                <li>
+                  <label>
+                    <input type="checkbox" data-lever-check={`${route.id}-${index}`} data-route={route.id} />
+                    <span><em>{route.status}</em>{step}</span>
+                  </label>
+                </li>
+              ))}
+            </ol>
+            <button class="button secondary tool-button" type="button" data-reset-route={route.id}>Reset This Route</button>
+          </section>
+        ))}
       </section>
 
-      <h2>Reset Warnings</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>Wrong branch</h3>
-          <p>If a room does not match the route you expected, return to the main split. Randomly pulling another lever makes the next state harder to diagnose.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>Missing vault response</h3>
-          <p>If the vault door does not respond, assume one step is incomplete. Re-check the sequence from the first branch rather than skipping straight to the UFO route.</p>
-        </section>
+      <h2>Wrong State Recovery</h2>
+      <div class="info-grid">
+        {recoveryNotes.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
       </div>
+
+      <h2>Conflict Notes</h2>
+      <p class="evidence-note">The shorter five-color route is kept as disputed because it does not fully match the longer Sewer Key and UFO Key routes found in current guide sources. Blue and Teal are also treated as naming variants until the site can verify the live maze directly.</p>
 
       <div class="mini-table">
         <a href="/sewer-maze-map/">Open maze map</a>
         <a href="/sewer-key/">Prepare sewer key</a>
         <a href="/ufo-key/">Continue to UFO key</a>
+        <a href="/badge-tracker/">Track badge progress</a>
+        <a href="/deals/">Open secrets hub</a>
       </div>
 
       <RelatedGuides currentSlug="lever-sequence" />
@@ -72,22 +152,42 @@ const leverSteps = [
 
   <script is:inline>
     const storageKey = "sell-lemons-lever-sequence";
-    const boxes = Array.from(document.querySelectorAll("#leverChecklist input[type='checkbox']"));
+    const boxes = Array.from(document.querySelectorAll("[data-lever-check]"));
     const saved = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+    const saveState = () => {
+      const checked = boxes.filter((item) => item.checked).map((item) => item.dataset.leverCheck);
+      localStorage.setItem(storageKey, JSON.stringify(checked));
+    };
 
     boxes.forEach((box) => {
-      box.checked = saved.has(box.dataset.step);
-      box.addEventListener("change", () => {
-        const checked = boxes.filter((item) => item.checked).map((item) => item.dataset.step);
-        localStorage.setItem(storageKey, JSON.stringify(checked));
+      box.checked = saved.has(box.dataset.leverCheck);
+      box.addEventListener("change", saveState);
+    });
+
+    document.querySelectorAll("[data-reset-route]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const route = button.dataset.resetRoute;
+        boxes.forEach((box) => {
+          if (box.dataset.route === route) box.checked = false;
+        });
+        saveState();
       });
     });
 
-    document.getElementById("resetLeverChecklist")?.addEventListener("click", () => {
-      boxes.forEach((box) => {
-        box.checked = false;
+    const leverTabs = Array.from(document.querySelectorAll("[data-lever-tab]"));
+    const leverPanels = Array.from(document.querySelectorAll("[data-lever-panel]"));
+    leverTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.leverTab;
+        leverTabs.forEach((item) => {
+          const isActive = item.dataset.leverTab === target;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-selected", String(isActive));
+        });
+        leverPanels.forEach((panel) => {
+          panel.classList.toggle("is-active", panel.dataset.leverPanel === target);
+        });
       });
-      localStorage.removeItem(storageKey);
     });
   </script>
 </SiteLayout>

@@ -1,19 +1,55 @@
 ---
-// input: User-entered current income, upgrade cost, income gain, and multiplier assumptions
-// output: Static Sell Lemons ROI calculator page with a client-side priority estimate
+// input: User-entered income, upgrade, target cash, session length, and optional offline assumptions
+// output: Static Sell Lemons calculator page with ROI, break even, goal time, and session estimates
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/profit-calculator.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+
+const formulaNotes = [
+  {
+    title: "Break even time",
+    formula: "upgrade cost / added income per minute",
+    note: "Use this to compare whether the next purchase earns back its own cost quickly enough."
+  },
+  {
+    title: "Time to goal",
+    formula: "(target cash - current cash) / effective income per minute",
+    note: "Use this when you need a cash target for a route, rebirth, key step, or upgrade chain."
+  },
+  {
+    title: "Session cash",
+    formula: "effective income per minute x planned minutes",
+    note: "Offline income is optional and remains an editable estimate, not an official value."
+  }
+];
+
+const interpretationCards = [
+  {
+    title: "High priority",
+    status: "estimated",
+    note: "The upgrade pays back within about 10 active minutes and supports your next route."
+  },
+  {
+    title: "Medium priority",
+    status: "estimated",
+    note: "The upgrade can be useful, but compare it with a manager, route unlock, or rebirth target first."
+  },
+  {
+    title: "Low priority",
+    status: "estimated",
+    note: "The upgrade pays back slowly. Save cash unless it unlocks a required milestone."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Profit Calculator | Best Upgrade ROI Tool" description="Use a Sell Lemons profit calculator to compare upgrade cost, income gain, ROI, and next purchase choices for Roblox progression routes.">
+<SiteLayout title="Sell Lemons Profit Calculator: ROI and Goal Planner" description="Use a Sell Lemons profit calculator for ROI, break even time, time to goal, session cash estimates, offline estimates, and transparent planning formulas.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">ROI Tool</p>
           <h1>Sell Lemons Profit Calculator</h1>
-          <p>Compare upgrade cost against expected income gain before spending cash. This tool keeps the math visible so a player can avoid low-impact purchases during a fast Sell Lemons route.</p>
+          <p>Compare upgrade cost, goal timing, and session value before spending cash. Every result is an estimated planning number based on player input and visible formulas, not official game math.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons profit calculator upgrade ROI tool" width="894" height="500" />
       </div>
@@ -23,8 +59,8 @@ import RelatedGuides from "../components/RelatedGuides.astro";
       <section class="tool-panel" aria-labelledby="calculator-title">
         <div>
           <p class="eyebrow">Calculate Best Upgrade</p>
-          <h2 id="calculator-title">Upgrade ROI Estimate</h2>
-          <p class="evidence-note">Use reported or personal in-game numbers only. If an upgrade value is not verified, treat the result as a planning estimate.</p>
+          <h2 id="calculator-title">Upgrade ROI and Goal Estimate</h2>
+          <p class="evidence-note">Evidence boundary: use reported or personal in-game numbers only. Results are marked estimated because the site is not reading live Roblox account data.</p>
         </div>
         <div class="calculator-grid">
           <label>
@@ -43,6 +79,31 @@ import RelatedGuides from "../components/RelatedGuides.astro";
             Active multiplier
             <input id="multiplier" type="number" min="0" step="0.1" value="1" />
           </label>
+          <label>
+            Current cash
+            <input id="currentCash" type="number" min="0" step="1" value="0" />
+          </label>
+          <label>
+            Target cash
+            <input id="targetCash" type="number" min="0" step="1" value="250000" />
+          </label>
+          <label>
+            Session minutes
+            <input id="sessionMinutes" type="number" min="0" step="1" value="30" />
+          </label>
+          <label>
+            Offline minutes
+            <input id="offlineMinutes" type="number" min="0" step="1" value="0" />
+          </label>
+          <label>
+            Offline estimate rate
+            <input id="offlineRate" type="number" min="0" max="100" step="1" value="0" />
+          </label>
+        </div>
+        <div class="preset-row" aria-label="Session duration presets">
+          <button class="button secondary" type="button" data-session-preset="15">15 minutes</button>
+          <button class="button secondary" type="button" data-session-preset="30">30 minutes</button>
+          <button class="button secondary" type="button" data-session-preset="60">60 minutes</button>
         </div>
         <button class="button primary tool-button" type="button" id="calculateRoi">Calculate Best Upgrade</button>
         <div class="result-panel" id="roiResult" aria-live="polite">
@@ -50,20 +111,27 @@ import RelatedGuides from "../components/RelatedGuides.astro";
         </div>
       </section>
 
-      <h2>How to Read the ROI Result</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>Payback time</h3>
-          <p>Payback time means how many minutes the upgrade needs to earn back its own cost. A shorter payback is usually better for early progression.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>Multiplier check</h3>
-          <p>Run the same upgrade once with no multiplier and once with your active event, evolution, or investor multiplier. This helps separate normal upgrades from event-only purchases.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>Next purchase rule</h3>
-          <p>If two upgrades have similar payback, choose the one that unlocks a manager, route, income source, or reset milestone. Pure cash gain is not the only progression value.</p>
-        </section>
+      <h2>Formula Notes</h2>
+      <div class="info-grid">
+        {formulaNotes.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">estimated</span>
+            <h3>{item.title}</h3>
+            <p><strong>{item.formula}</strong></p>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <h2>How to Read the Result</h2>
+      <div class="info-grid">
+        {interpretationCards.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
       </div>
 
       <h2>Useful Internal Routes</h2>
@@ -84,33 +152,65 @@ import RelatedGuides from "../components/RelatedGuides.astro";
       return Number.isFinite(value) && value >= 0 ? value : 0;
     };
 
+    const formatCash = (value) => Math.round(value).toLocaleString();
+    const formatDuration = (minutes) => {
+      if (!Number.isFinite(minutes)) return "not enough income data";
+      if (minutes <= 0) return "ready now";
+      if (minutes < 60) return `${minutes.toFixed(1)} minutes`;
+      const hours = minutes / 60;
+      return `${hours.toFixed(1)} hours`;
+    };
+
     const result = document.getElementById("roiResult");
     const calculate = () => {
       const currentIncome = readNumber("currentIncome");
       const upgradeCost = readNumber("upgradeCost");
       const incomeGain = readNumber("incomeGain");
       const multiplier = Math.max(readNumber("multiplier"), 0);
+      const currentCash = readNumber("currentCash");
+      const targetCash = readNumber("targetCash");
+      const sessionMinutes = readNumber("sessionMinutes");
+      const offlineMinutes = readNumber("offlineMinutes");
+      const offlineRate = Math.min(readNumber("offlineRate"), 100) / 100;
       const effectiveGain = incomeGain * multiplier;
+      const effectiveIncome = currentIncome * multiplier;
 
       if (!result) return;
-      if (upgradeCost <= 0 || effectiveGain <= 0) {
-        result.textContent = "Add a positive upgrade cost and income gain to calculate ROI.";
+      if (upgradeCost <= 0 || effectiveGain <= 0 || effectiveIncome <= 0) {
+        result.textContent = "Add positive income, upgrade cost, income gain, and multiplier values to calculate an estimated result.";
         return;
       }
 
       const paybackMinutes = upgradeCost / effectiveGain;
       const newIncome = currentIncome + effectiveGain;
       const roi = (effectiveGain / upgradeCost) * 100;
+      const remainingCash = Math.max(targetCash - currentCash, 0);
+      const goalMinutes = remainingCash / effectiveIncome;
+      const sessionCash = effectiveIncome * sessionMinutes;
+      const offlineCash = currentIncome * offlineRate * offlineMinutes;
+      const upgradeSessionNet = effectiveGain * sessionMinutes - upgradeCost;
       const priority = paybackMinutes <= 10 ? "High priority" : paybackMinutes <= 30 ? "Medium priority" : "Low priority";
 
       result.innerHTML = `
-        <strong>${priority}</strong>
-        <span>Payback: ${paybackMinutes.toFixed(1)} minutes</span>
-        <span>Estimated new income: ${Math.round(newIncome).toLocaleString()} per minute</span>
+        <strong>${priority} · estimated</strong>
+        <span>Break even time: ${formatDuration(paybackMinutes)} estimated</span>
+        <span>Time to target: ${formatDuration(goalMinutes)} estimated</span>
+        <span>Session cash: ${formatCash(sessionCash)} estimated active cash</span>
+        <span>Offline estimate: ${formatCash(offlineCash)} optional cash at your chosen rate</span>
+        <span>Estimated new income: ${formatCash(newIncome)} per minute</span>
+        <span>Upgrade session net: ${formatCash(upgradeSessionNet)}</span>
         <span>ROI per minute: ${roi.toFixed(2)}%</span>
       `;
     };
 
+    document.querySelectorAll("[data-session-preset]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const sessionInput = document.getElementById("sessionMinutes");
+        if (!sessionInput) return;
+        sessionInput.value = button.dataset.sessionPreset || "30";
+        calculate();
+      });
+    });
     document.getElementById("calculateRoi")?.addEventListener("click", calculate);
   </script>
 </SiteLayout>

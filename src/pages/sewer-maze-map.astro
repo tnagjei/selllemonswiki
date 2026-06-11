@@ -1,19 +1,100 @@
 ---
-// input: Reported sewer route checkpoints, lever puzzle context, and related key pages
-// output: Sell Lemons sewer maze map guide page for map-first puzzle navigation
+// input: Reported sewer objectives, route checkpoints, lever puzzle context, and related key pages
+// output: Sell Lemons sewer maze map guide page with objective routes and mobile steps
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/sewer-maze-map.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+
+const routePlans = [
+  {
+    id: "sewer-key",
+    label: "Sewer Key",
+    status: "reported",
+    title: "Sewer Key Route",
+    summary: "Use this route when the goal is the hidden key and the gate that leads toward the Cosmic Cash Vine.",
+    checkpoints: [
+      { label: "Entry", value: "Use a reported street manhole and confirm you are in the sewer maze before touching levers." },
+      { label: "Main Split", value: "Return to the first large split after each lever if the path becomes confusing." },
+      { label: "Lever Rooms", value: "Blue or Teal, Red, Green, Red off, Blue or Teal off, Purple, Red." },
+      { label: "Key Pickup", value: "Collect the Sewer Key after the final Red step opens the reported branch." },
+      { label: "Reward Gate", value: "Use the key at the sewer gate. Reward details remain reported, not verified." }
+    ],
+    mobileSteps: [
+      "Open the lever checklist before entering the maze.",
+      "Complete only the Sewer Key sequence.",
+      "Do not switch into the UFO route halfway through.",
+      "Collect the Sewer Key before checking the gate.",
+      "If the gate stays closed, reset the route state before guessing."
+    ]
+  },
+  {
+    id: "ufo-key",
+    label: "UFO Key",
+    status: "reported",
+    title: "UFO Key Route",
+    summary: "Use this route when the goal is the alternate key and the Good Samaritan badge path.",
+    checkpoints: [
+      { label: "Entry", value: "Enter from a manhole, then confirm the route state is fresh or reset." },
+      { label: "Main Split", value: "Use the split as a checkpoint because Red and Green are revisited more than once." },
+      { label: "Lever Rooms", value: "Blue or Teal, Red, Green, Red, Purple, Red, Green, Red as the compact reported order." },
+      { label: "Key Pickup", value: "Look for the UFO Key only after the reported investor progress gate is met." },
+      { label: "Reward Gate", value: "Return toward the alien path, then use the related Red and Green steps if the path stays shut." }
+    ],
+    mobileSteps: [
+      "Do not reuse a finished Sewer Key state.",
+      "Follow the UFO sequence from a fresh route state.",
+      "Confirm the key appears before leaving the maze.",
+      "Return to the alien path after collecting the key.",
+      "Talk to the alien only after the route opens."
+    ]
+  },
+  {
+    id: "cosmic-cash-vine",
+    label: "Cosmic Cash Vine",
+    status: "disputed",
+    title: "Cosmic Cash Vine Route",
+    summary: "Use this route only after the Sewer Key path. Reward value claims conflict across community pages.",
+    checkpoints: [
+      { label: "Entry", value: "Start from the Sewer Key route rather than the UFO route." },
+      { label: "Main Split", value: "Use the same reset point from the Sewer Key path." },
+      { label: "Lever Rooms", value: "Complete the reported Sewer Key lever order first." },
+      { label: "Key Pickup", value: "Bring the Sewer Key to the locked gate." },
+      { label: "Reward Gate", value: "Open the gate and treat any payout amount as disputed until checked in-game." }
+    ],
+    mobileSteps: [
+      "Finish the Sewer Key checklist first.",
+      "Avoid switching to the UFO sequence.",
+      "Use the key at the reported gate.",
+      "Record your actual reward if you want to verify the payout.",
+      "Do not publish a fixed payout from memory."
+    ]
+  }
+];
+
+const recoveryNotes = [
+  {
+    title: "Wrong lever",
+    note: "Stop adding more inputs. Return to the main split or join a fresh server so the lever state is easier to reason about."
+  },
+  {
+    title: "Door will not open",
+    note: "Recheck the route goal. A Sewer Key state and a UFO Key state are not the same route, even when both use similar colors."
+  },
+  {
+    title: "UFO objective already done",
+    note: "Use a fresh server before starting the Sewer Key route if prior UFO progress left the puzzle in a confusing state."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Maze Map | Sewer Route and UFO Key Steps" description="Follow a Sell Lemons maze map for the sewer route, lever order, UFO key checkpoints, and mobile-readable puzzle steps.">
+<SiteLayout title="Sell Lemons Maze Map: Sewer Routes, Keys and Levers" description="Follow a Sell Lemons maze map with sewer key, UFO key, Cosmic Cash Vine checkpoints, mobile steps, reset recovery, route tables, and evidence labels.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Map First</p>
           <h1>Sell Lemons Maze Map</h1>
-          <p>Use this sewer maze map as a route-first reference before entering the underground puzzle. The goal is to reduce backtracking, missed levers, and wrong-key resets.</p>
+          <p>Use this sewer maze map as a route-first reference before entering the underground puzzle. Pick one objective first, then follow the matching checkpoints instead of mixing key routes.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons sewer maze map route reference" width="894" height="500" />
       </div>
@@ -28,26 +109,61 @@ import RelatedGuides from "../components/RelatedGuides.astro";
         <div>UFO Route</div>
       </section>
 
-      <p class="evidence-note">Evidence boundary: exact maze layouts can shift after updates. Treat this as a planning route and confirm final turns in-game before marking a step verified.</p>
+      <p class="evidence-note">Evidence boundary: route structures are reported from community pages and can change after game updates. Confirm final turns in-game before treating any step as verified.</p>
 
-      <h2>Sewer Route Steps</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>1. Enter with a clear objective</h3>
-          <p>Decide whether you are chasing the sewer key route, the Cosmic Cash Vine vault, or the UFO key route. Mixing goals is why players lose track of the maze.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>2. Mark the main split</h3>
-          <p>Use the first large branch as your reset point. If you reach a dead end or pull the wrong lever, return to this split before trying the next branch.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>3. Solve levers before the vault</h3>
-          <p>The lever route should be completed as a checklist. Open the dedicated lever sequence page on mobile before entering the vault section.</p>
-        </section>
-        <section class="guide-step-card">
-          <h3>4. Separate UFO key progress</h3>
-          <p>The UFO key path belongs after the Good Samaritan route. Do not assume a vault step also completes the UFO objective unless the game confirms it.</p>
-        </section>
+      <section aria-labelledby="objective-selector-title">
+        <h2 id="objective-selector-title">Objective Selector</h2>
+        <div class="route-tabs" role="tablist" aria-label="Maze objective routes">
+          {routePlans.map((route, index) => (
+            <button
+              class={`tier-pill ${index === 0 ? "is-active" : ""}`}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`${route.id}-panel`}
+              data-route-tab={route.id}
+            >
+              <span class="tier-pill__dot"></span>
+              {route.label}
+            </button>
+          ))}
+        </div>
+
+        {routePlans.map((route, index) => (
+          <section
+            class={`guide-panel ${index === 0 ? "is-active" : ""}`}
+            id={`${route.id}-panel`}
+            data-route-panel={route.id}
+            aria-labelledby={`${route.id}-title`}
+          >
+            <span class="tag">{route.status}</span>
+            <h3 id={`${route.id}-title`}>{route.title}</h3>
+            <p>{route.summary}</p>
+            <div class="route-table">
+              {route.checkpoints.map((checkpoint) => (
+                <div>
+                  <strong>{checkpoint.label}</strong>
+                  <span>{checkpoint.value}</span>
+                </div>
+              ))}
+            </div>
+            <h3>Mobile Steps</h3>
+            <ol class="mobile-step-list">
+              {route.mobileSteps.map((step) => <li>{step}</li>)}
+            </ol>
+          </section>
+        ))}
+      </section>
+
+      <h2>Reset Recovery</h2>
+      <div class="info-grid">
+        {recoveryNotes.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">reported</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
       </div>
 
       <h2>Route Cluster</h2>
@@ -55,10 +171,46 @@ import RelatedGuides from "../components/RelatedGuides.astro";
         <a href="/lever-sequence/">Open lever sequence checklist</a>
         <a href="/sewer-key/">Prepare sewer key entry</a>
         <a href="/ufo-key/">Follow UFO key route</a>
+        <a href="/badge-tracker/">Track badge status</a>
         <a href="/deals/">Return to deals and secrets hub</a>
+      </div>
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <details class="faq-card">
+          <summary>Why does the route split into three objectives?</summary>
+          <div class="faq-card__body">
+            <p>Sewer Key, UFO Key, and Cosmic Cash Vine routes share the same underground area, but they do not use the same checklist state. Mixing them is the fastest way to lose the route.</p>
+          </div>
+        </details>
+        <details class="faq-card">
+          <summary>Why are reward amounts not listed as final?</summary>
+          <div class="faq-card__body">
+            <p>Community sources conflict on some reward details. This page keeps reward value claims disputed until a current in-game check confirms them.</p>
+          </div>
+        </details>
       </div>
 
       <RelatedGuides currentSlug="sewer-maze-map" />
     </article>
   </main>
+
+  <script is:inline>
+    const routeTabs = Array.from(document.querySelectorAll("[data-route-tab]"));
+    const routePanels = Array.from(document.querySelectorAll("[data-route-panel]"));
+
+    routeTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.routeTab;
+        routeTabs.forEach((item) => {
+          const isActive = item.dataset.routeTab === target;
+          item.classList.toggle("is-active", isActive);
+          item.setAttribute("aria-selected", String(isActive));
+        });
+        routePanels.forEach((panel) => {
+          panel.classList.toggle("is-active", panel.dataset.routePanel === target);
+        });
+      });
+    });
+  </script>
 </SiteLayout>
