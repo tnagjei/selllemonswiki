@@ -1,19 +1,64 @@
 ---
-// input: Reported evolution timing, 42x speed notes, and Void route planning assumptions
-// output: Sell Lemons evolution guide page for reset timing and progression decisions
+// input: Reported evolution timing, 42x speed, fruit chain, reset losses, and comparison rules
+// output: Sell Lemons evolution guide page for reset risk, timing, and progression decisions
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/evolution.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const fruitChain = [
+  "Fruit chain progress is reported as part of the evolution path.",
+  "Void Portal and late fruit steps should be treated as pending until checked in-game.",
+  "Do not evolve only because a guide says the next fruit exists; confirm your rebuild speed first."
+];
+
+const resetLosses = [
+  { label: "Investors", status: "reported", value: "Evolution is reported to reset or consume investor progress." },
+  { label: "Powers", status: "reported", value: "Community pages report power loss or reset pressure after evolving." },
+  { label: "Requirement number", status: "reported", value: "501.2 Quadrillion Investors is reported, but some pages still mark requirements as TBA." },
+  { label: "Speed reward", status: "reported", value: "42x Global Speed is reported, not verified by this site." }
+];
+
+const comparisonRows = [
+  { layer: "Rebirth", use: "Earlier investor scaling and first reset loops." },
+  { layer: "Evolution", use: "Major speed reset with reported 42x route value and investor/power cost." },
+  { layer: "Ascend", use: "Intermediate term used by some guides; confirm context before following." },
+  { layer: "Ascension", use: "Endgame reset with Forever Purchase planning and higher rebuild cost." }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "How To EVOLVE in Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/LsghH1imBJk",
+    sourceUrl: "https://www.youtube.com/watch?v=LsghH1imBJk",
+    status: "youtube_embed",
+    note: "Use as a visual evolution walkthrough. The exact threshold is still reported, not verified."
+  },
+  {
+    title: "How To Unlock Portal In Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/PvfhwEKSisg",
+    sourceUrl: "https://www.youtube.com/watch?v=PvfhwEKSisg",
+    status: "youtube_embed",
+    note: "Helps players orient around portal steps, but does not verify portal requirements."
+  },
+  {
+    title: "HOW To EVOLVE in Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/LZOPoqoQWjE",
+    sourceUrl: "https://www.youtube.com/watch?v=LZOPoqoQWjE",
+    status: "youtube_embed",
+    note: "Supplemental visual reference for evolution timing and menu flow."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Evolution Guide | 42x Speed and Void Route" description="Use a Sell Lemons evolution guide to plan 42x speed resets, Void route timing, investor scaling, and late-game progression choices.">
+<SiteLayout title="Sell Lemons Evolution Guide: 42x Speed and Reset Timing" description="Use a Sell Lemons evolution guide for 42x speed, fruit chain planning, investor reset risk, when not to evolve, and reset layer comparisons.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Reset Planning</p>
           <h1>Sell Lemons Evolution Guide</h1>
-          <p>Evolution sits between regular rebirth planning and ascension. The main decision is whether your next reset speeds up the route enough to justify rebuilding.</p>
+          <p>Evolution can bring a reported 42x speed layer, but it can also reset investors and powers. Treat it as a rebuild decision, not a free upgrade button.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons evolution guide with speed route planning" width="894" height="500" />
       </div>
@@ -23,20 +68,74 @@ import RelatedGuides from "../components/RelatedGuides.astro";
       <p class="evidence-note">Reported mechanic: players describe evolution as a major speed layer. Treat exact multiplier and requirement numbers as pending unless checked in-game.</p>
 
       <h2>Evolution Decision Flow</h2>
-      <div class="guide-step-flow">
+      <div class="info-grid">
         <section class="guide-step-card">
+          <span class="tag">reported</span>
           <h3>1. Confirm rebuild speed</h3>
           <p>Reset only when your early income and key unlock path can rebuild quickly. If the first stages still feel slow, upgrade income sources and automation first.</p>
         </section>
         <section class="guide-step-card">
+          <span class="tag">reported</span>
           <h3>2. Check investor scaling</h3>
           <p>Investor progress matters because it supports later reset layers. Compare your current route against the rebirth guide before pressing a reset button.</p>
         </section>
         <section class="guide-step-card">
+          <span class="tag">pending</span>
           <h3>3. Watch the Void route</h3>
           <p>Void-related upgrades and event timing can change which purchase is best. Use the profit calculator when comparing a slow source against a global multiplier.</p>
         </section>
       </div>
+
+      <h2>Fruit Chain</h2>
+      <ol class="mobile-step-list">
+        {fruitChain.map((item) => <li>{item}</li>)}
+      </ol>
+
+      <h2>What Resets</h2>
+      <div class="route-table">
+        {resetLosses.map((item) => (
+          <div>
+            <strong>{item.label} <span class="tag">{item.status}</span></strong>
+            <span>{item.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>When Not to Evolve</h2>
+      <div class="info-grid">
+        <section class="guide-step-card">
+          <span class="tag">pending</span>
+          <h3>Investor bonus is too low</h3>
+          <p>The 200% investor bonus threshold is a community suggestion, not verified rule text.</p>
+        </section>
+        <section class="guide-step-card">
+          <span class="tag">reported</span>
+          <h3>Managers are not rebuilt quickly</h3>
+          <p>If automation takes too long after reset, the 42x speed claim may not help immediately.</p>
+        </section>
+        <section class="guide-step-card">
+          <span class="tag">reported</span>
+          <h3>You are close to Ascension checks</h3>
+          <p>Compare evolution timing against Ascension requirements before burning a strong current route.</p>
+        </section>
+      </div>
+
+      <h2>Reset Layer Comparison</h2>
+      <div class="route-table">
+        {comparisonRows.map((item) => (
+          <div>
+            <strong>{item.layer}</strong>
+            <span>{item.use}</span>
+          </div>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="evolution-video-guides"
+        title="Video Evolution References"
+        note="youtube_embed: these videos are visual route examples only. They do not verify the 42x value, investor threshold, or fruit chain requirements."
+        videos={youtubeEmbeds}
+      />
 
       <h2>Internal Planning Links</h2>
       <div class="mini-table">

@@ -1,19 +1,59 @@
 ---
-// input: Reported ascension requirements, rewards, and planning cautions from site research
-// output: Sell Lemons ascension guide page with requirements, rewards, and Forever Purchase advice
+// input: Reported ascension requirements, rewards, reset costs, and terminology conflicts
+// output: Sell Lemons ascension guide page with readiness checks, tradeoff table, and evidence labels
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/ascension.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const resetTerms = [
+  { term: "Rebirth", status: "reported", meaning: "Earlier prestige reset layer focused on investor scaling and route speed." },
+  { term: "Evolution", status: "reported", meaning: "Later reset layer commonly tied to a reported 42x speed boost and investor/power loss." },
+  { term: "Ascend", status: "reported", meaning: "A term some guides use for a lower or intermediate progression reset." },
+  { term: "Ascension", status: "reported", meaning: "Endgame reset decision with Forever Purchase planning and higher rebuild cost." }
+];
+
+const requirementChecklist = [
+  "Staircase or stairway route is completed.",
+  "All required tycoon buttons are purchased.",
+  "Cash and investor rebuild speed is strong enough after reset.",
+  "Forever Purchase target is chosen before pressing the reset.",
+  "Evolution progress is not too low for the rebuild you expect."
+];
+
+const rewardTradeoffs = [
+  { label: "Halo", status: "reported", value: "Cosmetic or prestige-style reward reported by community pages." },
+  { label: "Forever Purchase", status: "reported", value: "One permanent unlock token is commonly reported per Ascension." },
+  { label: "Cash multiplier", status: "reported", value: "7.77x cash is reported, but this site has not verified the live number." },
+  { label: "Price penalty", status: "reported", value: "3.33x higher purchase prices are reported as the rebuild cost." }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "I GOT TONS OF ASCENSIONS IN SELL LEMONS",
+    embedUrl: "https://www.youtube-nocookie.com/embed/0FbAYF2_C9Q",
+    sourceUrl: "https://www.youtube.com/watch?v=0FbAYF2_C9Q",
+    status: "youtube_embed",
+    note: "Shows player demand for visual Ascension progress, not verified reward or reset evidence."
+  },
+  {
+    title: "Visual Ascension Walkthrough",
+    embedUrl: "https://www.youtube-nocookie.com/embed/_u2DL_GGT_4",
+    sourceUrl: "https://www.youtube.com/watch?v=_u2DL_GGT_4",
+    status: "youtube_embed",
+    note: "Use as route orientation only. Requirements and rewards remain reported until checked in-game."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Ascension Guide | Requirements and Rewards" description="Plan Sell Lemons ascension with reported requirements, rewards, Forever Purchase timing, and reset preparation for Roblox progression.">
+<SiteLayout title="Sell Lemons Ascension Guide: Rewards and Requirements" description="Plan Sell Lemons Ascension with reported requirements, rewards, Forever Purchase timing, reset costs, and safe links to evolution and progression guides.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Endgame Reset</p>
           <h1>Sell Lemons Ascension Guide</h1>
-          <p>Ascension is a late-game reset layer. Use this page to check the reported readiness signals, understand the reward tradeoff, and avoid using Forever Purchase on a weak button.</p>
+          <p>Ascend is not the same decision as Ascension. Use this endgame checklist to compare reported requirements, rewards, rebuild costs, and Forever Purchase timing before resetting.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons ascension requirements and rewards" width="894" height="500" />
       </div>
@@ -22,29 +62,56 @@ import RelatedGuides from "../components/RelatedGuides.astro";
     <article class="guide-detail">
       <p class="evidence-note">Evidence boundary: ascension values are community-reported unless confirmed in-game. Keep screenshots or direct checks before treating numbers as verified.</p>
 
-      <h2>Ascension Readiness</h2>
-      <div class="guide-step-flow">
+      <h2>Ascend vs Evolution vs Ascension</h2>
+      <div class="route-table">
+        {resetTerms.map((item) => (
+          <div>
+            <strong>{item.term} <span class="tag">{item.status}</span></strong>
+            <span>{item.meaning}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Requirement Checklist</h2>
+      <ol class="mobile-step-list">
+        {requirementChecklist.map((item) => <li>{item}</li>)}
+      </ol>
+
+      <h2>Reward and Cost Table</h2>
+      <div class="route-table">
+        {rewardTradeoffs.map((item) => (
+          <div>
+            <strong>{item.label} <span class="tag">{item.status}</span></strong>
+            <span>{item.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>When Not to Ascend</h2>
+      <div class="info-grid">
         <section class="guide-step-card">
-          <h3>Complete the stairway path</h3>
-          <p>Players report that stairway completion is a major gate before ascension. If the option does not appear, inspect unfinished buttons and hidden decoration gates first.</p>
+          <span class="tag">pending</span>
+          <h3>Forever Purchase target is unclear</h3>
+          <p>If you cannot explain why the permanent button compounds through future resets, wait.</p>
         </section>
         <section class="guide-step-card">
-          <h3>Clear required tycoon buttons</h3>
-          <p>Ascension planning is not only wallet cash. The game can depend on total build completion, optional blockers, and late-stage progression nodes.</p>
+          <span class="tag">reported</span>
+          <h3>Rebuild speed is weak</h3>
+          <p>Higher future prices can turn a prestige reset into a slow rebuild if your route is not ready.</p>
         </section>
         <section class="guide-step-card">
-          <h3>Plan the first Forever Purchase</h3>
-          <p>Choose a button that compounds through future resets. A global cash or speed upgrade is usually easier to justify than a slow late-game source.</p>
+          <span class="tag">pending</span>
+          <h3>Evolution loop is too low</h3>
+          <p>Some sources point to Evolution 6 readiness, but this remains a community planning signal.</p>
         </section>
       </div>
 
-      <h2>Reward Tradeoff</h2>
-      <div class="mini-table">
-        <span>Reported reward: global cash multiplier</span>
-        <span>Reported reward: one Forever Purchase token</span>
-        <span>Reported cost: higher future purchase prices</span>
-        <span>Planning risk: weak permanent unlock choice</span>
-      </div>
+      <VideoGuideBlock
+        id="ascension-video-guides"
+        title="Video Ascension References"
+        note="youtube_embed: these videos help with visual Ascension steps, but they are not verified route, reward, or reset proof."
+        videos={youtubeEmbeds}
+      />
 
       <section class="guide-what-next" aria-labelledby="ascension-next">
         <header class="guide-what-next__head">
@@ -58,6 +125,13 @@ import RelatedGuides from "../components/RelatedGuides.astro";
           <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
         </a>
       </section>
+
+      <div class="mini-table">
+        <a href="/progression/">Open progression guide</a>
+        <a href="/profit-calculator/">Estimate rebuild speed</a>
+        <a href="/money-fast/">Improve money route</a>
+        <a href="/rebirths/">Review rebirth timing</a>
+      </div>
 
       <RelatedGuides currentSlug="ascension" />
     </article>

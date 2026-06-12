@@ -1,9 +1,10 @@
 ---
-// input: User-entered income, upgrade, target cash, session length, and optional offline assumptions
-// output: Static Sell Lemons calculator page with ROI, break even, goal time, and session estimates
+// input: User-entered income, upgrade, target cash, session length, optional offline assumptions, and YouTube money references
+// output: Static Sell Lemons calculator page with ROI, break even, goal time, session estimates, video embeds, and FAQ
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/profit-calculator.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 
 const formulaNotes = [
   {
@@ -38,6 +39,60 @@ const interpretationCards = [
     title: "Low priority",
     status: "estimated",
     note: "The upgrade pays back slowly. Save cash unless it unlocks a required milestone."
+  }
+];
+
+const decisionCards = [
+  {
+    title: "Before a route push",
+    status: "estimated",
+    note: "Check whether the next upgrade pays back before you enter a Sewer Key, UFO Key, Evolution, or Ascension route."
+  },
+  {
+    title: "Before going offline",
+    status: "pending",
+    note: "Use your own offline rate assumption. This site does not verify a fixed offline earning percentage."
+  },
+  {
+    title: "Before a reset",
+    status: "estimated",
+    note: "Compare current-run payback against rebuild speed so a reset does not erase a better short-term route."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "The Best Money Guide in Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/89R0pSgQ7fI",
+    sourceUrl: "https://www.youtube.com/watch?v=89R0pSgQ7fI",
+    status: "youtube_embed",
+    note: "Use as visual money-route context only. It does not verify ROI, payout, or upgrade priority."
+  },
+  {
+    title: "These Tips WILL MAKE YOU RICH In Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/_q8yT5cmYS4",
+    sourceUrl: "https://www.youtube.com/watch?v=_q8yT5cmYS4",
+    status: "youtube_embed",
+    note: "Shows search demand for fast-money advice, not proof of guaranteed income."
+  }
+];
+
+const faqItems = [
+  {
+    question: "Is this profit calculator reading my live Roblox account?",
+    answer: "No. The calculator is estimated because it only uses numbers you enter on this page."
+  },
+  {
+    question: "What offline rate should I use?",
+    answer: "Use 0 until you have your own current in-game evidence. Offline rates are pending because third-party claims conflict."
+  },
+  {
+    question: "When is ROI not enough?",
+    answer: "A slow upgrade can still matter if it unlocks a route, manager, reset layer, or required button. Treat the result as a decision aid, not an order."
+  },
+  {
+    question: "Is this an official Sell Lemons calculator?",
+    answer: "No. It is an independent fan-site planner with visible formulas and estimated labels."
   }
 ];
 ---
@@ -111,6 +166,20 @@ const interpretationCards = [
         </div>
       </section>
 
+      <h2>What This Calculator Estimates</h2>
+      <p>This Sell Lemons Profit Calculator estimates break-even time, time-to-goal, session cash, and optional offline cash from numbers you provide. It does not connect to Roblox, does not read live account data, and does not confirm hidden game formulas. Use it to compare choices before spending cash, then verify important thresholds in-game.</p>
+
+      <h2>Why ROI Matters Before You Buy</h2>
+      <div class="info-grid">
+        {decisionCards.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
       <h2>Formula Notes</h2>
       <div class="info-grid">
         {formulaNotes.map((item) => (
@@ -134,12 +203,34 @@ const interpretationCards = [
         ))}
       </div>
 
+      <VideoGuideBlock
+        id="profit-calculator-video-guides"
+        title="Video Money References"
+        note="youtube_embed: these videos show money-route demand, but calculator results remain estimated and videos are not payout proof."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
       <h2>Useful Internal Routes</h2>
       <div class="mini-table">
         <a href="/income-sources/">Compare income sources</a>
         <a href="/best-upgrades/">Check upgrade priority</a>
         <a href="/money-fast/">Plan fastest money routes</a>
         <a href="/rebirths/">Review rebirth timing</a>
+        <a href="/evolution/">Compare evolution timing</a>
+        <a href="/ascension/">Plan ascension cost</a>
+        <a href="/sewer-maze-map/">Check maze route costs</a>
       </div>
 
       <RelatedGuides currentSlug="profit-calculator" />

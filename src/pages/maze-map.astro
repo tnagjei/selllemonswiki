@@ -1,0 +1,197 @@
+---
+// input: Reported broad map areas, sewer route clusters, hidden zone notes, and YouTube maze references
+// output: Sell Lemons broad maze map hub with route links, mobile steps, evidence labels, video embeds, and FAQ
+// pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/maze-map.astro (更新规则：文件变更需同步本注释与所属目录 README)
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const areaRows = [
+  {
+    area: "Surface stand",
+    status: "reported",
+    goal: "Plan basic income, managers, and upgrade spending before entering hidden routes.",
+    next: "/money-fast/",
+    nextLabel: "Money route"
+  },
+  {
+    area: "Upgrade path",
+    status: "estimated",
+    goal: "Use ROI and payback time before buying expensive route or reset upgrades.",
+    next: "/profit-calculator/",
+    nextLabel: "Profit calculator"
+  },
+  {
+    area: "Sewer entrance",
+    status: "reported",
+    goal: "Enter the underground route only after choosing Sewer Key, UFO Key, or Cosmic Cash Vine.",
+    next: "/sewer-maze-map/",
+    nextLabel: "Sewer maze map"
+  },
+  {
+    area: "Lever rooms",
+    status: "disputed",
+    goal: "Follow Blue/Teal, Red, Green, and Purple route steps with conflict labels visible.",
+    next: "/lever-sequence/",
+    nextLabel: "Lever sequence"
+  },
+  {
+    area: "Hidden key routes",
+    status: "reported",
+    goal: "Split Sewer Key and UFO Key objectives before touching repeated route states.",
+    next: "/sewer-key/",
+    nextLabel: "Sewer Key"
+  }
+];
+
+const mobileSteps = [
+  "Pick one objective before entering a hidden route.",
+  "Open the matching route page instead of relying on memory.",
+  "Use the lever checklist on mobile while moving through rooms.",
+  "Stop and reset if the route state no longer matches your objective.",
+  "Treat rewards and timers as reported until your own current check confirms them."
+];
+
+const mapWarnings = [
+  {
+    title: "This is not an official full map",
+    status: "reported",
+    note: "The page organizes reported route areas and next pages. It does not claim to reproduce an official developer map."
+  },
+  {
+    title: "Sewer route is separate",
+    status: "reported",
+    note: "The sewer maze needs its own page because Sewer Key, UFO Key, and Cosmic Cash Vine can use different route states."
+  },
+  {
+    title: "Route names can conflict",
+    status: "disputed",
+    note: "Blue and Teal may describe the same first lever in different community writeups, so the site keeps both names visible."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "Visual Maze Map Reference",
+    embedUrl: "https://www.youtube-nocookie.com/embed/-kAvJrF9834",
+    sourceUrl: "https://www.youtube.com/watch?v=-kAvJrF9834",
+    status: "youtube_embed",
+    note: "Use as visual orientation only. It does not verify an official map."
+  },
+  {
+    title: "Full Sewer Key Maze Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/L_2dj-irnjY",
+    sourceUrl: "https://www.youtube.com/watch?v=L_2dj-irnjY",
+    status: "youtube_embed",
+    note: "Helpful for sewer route context, not verified route or reward proof."
+  },
+  {
+    title: "Sell Lemons Maze Guide UFO KEY & SEWER KEY",
+    embedUrl: "https://www.youtube-nocookie.com/embed/05cLLRLUZR8",
+    sourceUrl: "https://www.youtube.com/watch?v=05cLLRLUZR8",
+    status: "youtube_embed",
+    note: "Cluster video for key-route demand. Keep reward and route claims evidence-labeled."
+  }
+];
+
+const faqItems = [
+  {
+    question: "Is this Sell Lemons Maze Map official?",
+    answer: "No. It is a reported fan-site route hub that points to the pages where each objective is explained."
+  },
+  {
+    question: "Is the maze map the same as the sewer maze map?",
+    answer: "No. This page is the broad map hub. The sewer-specific route lives on the Sewer Maze Map page."
+  },
+  {
+    question: "What should I do if the key route breaks?",
+    answer: "Stop adding more lever inputs, return to a known checkpoint, or use a fresh server before restarting the route."
+  },
+  {
+    question: "Why do some pages say Blue and others say Teal?",
+    answer: "That naming is disputed across community sources, so this site writes Blue/Teal until a live check settles it."
+  },
+  {
+    question: "Can the videos verify rewards?",
+    answer: "No. Videos are embedded for visual help only and do not verify route rewards, timers, or payout amounts."
+  }
+];
+---
+
+<SiteLayout title="Sell Lemons Maze Map: Areas, Sewer Route, and Hidden Zones" description="Use a Sell Lemons maze map hub for surface areas, sewer route links, hidden key zones, mobile steps, and embedded video references with evidence labels.">
+  <main>
+    <section class="page-hero guide-detail-hero">
+      <div class="wrap page-hero__grid">
+        <div>
+          <p class="eyebrow">Map Hub</p>
+          <h1>Sell Lemons Maze Map</h1>
+          <p>Use this map hub before choosing a hidden route. It separates broad area planning from the sewer-specific lever puzzle so you can open the right guide on mobile.</p>
+        </div>
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons maze map hub for hidden routes" width="894" height="500" />
+      </div>
+    </section>
+
+    <article class="guide-detail">
+      <p class="evidence-note">Evidence boundary: this page uses reported route structures and estimated planning logic. It is not an official full game map and does not verify rewards.</p>
+
+      <h2>What This Maze Map Covers</h2>
+      <p>The Sell Lemons Maze Map is a route hub for areas, hidden objectives, and the next page you should open. It covers the surface stand, upgrade planning, sewer entrance, lever rooms, and hidden key routes. Use it when you know the goal but need the correct route page before touching puzzle state.</p>
+
+      <h2>Why Players Need a Map First</h2>
+      <div class="info-grid">
+        {mapWarnings.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <h2>How to Use This Map on Mobile</h2>
+      <ol class="mobile-step-list">
+        {mobileSteps.map((step) => <li>{step}</li>)}
+      </ol>
+
+      <h2>Map Areas and Next Pages</h2>
+      <div class="route-table">
+        {areaRows.map((row) => (
+          <div>
+            <strong>{row.area} <span class="tag">{row.status}</span></strong>
+            <span>{row.goal} <a href={row.next}>{row.nextLabel}</a></span>
+          </div>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="maze-map-video-guides"
+        title="Video Maze References"
+        note="youtube_embed: these videos help players orient visually, but they are not official map, route, reward, or timer proof."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <h2>Next Route Pages</h2>
+      <div class="mini-table">
+        <a href="/sewer-maze-map/">Open sewer maze map</a>
+        <a href="/lever-sequence/">Use lever sequence checklist</a>
+        <a href="/sewer-key/">Follow Sewer Key guide</a>
+        <a href="/ufo-key/">Follow UFO Key guide</a>
+        <a href="/money-fast/">Plan money route</a>
+      </div>
+
+      <RelatedGuides currentSlug="maze-map" />
+    </article>
+  </main>
+</SiteLayout>

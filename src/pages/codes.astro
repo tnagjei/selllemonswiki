@@ -1,24 +1,87 @@
 ---
-// input: siteConfig, evidenceNotice, reportedCodeRows from config and reported-guides
-// output: Codes page template listing code status and rewards
+// input: siteConfig, evidenceNotice, reportedCodeRows, code warning video, and conservative code evidence rules
+// output: Codes page with 0 verified active codes, fake-code warnings, warning-only video embed, and verification steps
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/codes.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 import { siteConfig } from "../data/config";
 import { evidenceNotice, reportedCodeRows } from "../data/reported-guides";
+
+const verificationChannels = [
+  "Official Roblox game description or in-game update log",
+  "Developer-owned Discord, Roblox group, or X/Twitter post",
+  "Current in-game redemption check with a screenshot or recording"
+];
+
+const fakeCodeWarnings = [
+  {
+    title: "Video titles are not proof",
+    status: "disputed",
+    note: "YouTube titles that say working codes are treated as risk signals until the exact code is verified in-game."
+  },
+  {
+    title: "Redemption box is still pending",
+    status: "pending",
+    note: "Some third-party pages describe redeem steps, but that does not prove the live game currently has a working code box."
+  },
+  {
+    title: "Reported codes stay out of active table",
+    status: "reported",
+    note: "A reported code can be watched, but it is not an active code until official or in-game evidence confirms it."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "WORKING CODES FOR SELL LEMONS IN 2026",
+    embedUrl: "https://www.youtube-nocookie.com/embed/aBXeUfIy8wo",
+    sourceUrl: "https://www.youtube.com/watch?v=aBXeUfIy8wo",
+    status: "unsafe/pending",
+    note: "Warning-only reference: the title is not official proof, and no code from this video belongs in the active table without direct in-game or official evidence."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Codes | Active Codes, Rewards & Updates" description="Find Sell Lemons codes for Roblox, including code status, rewards, update notes, and tips for checking new code drops from the game community.">
+<SiteLayout title="Sell Lemons Codes: 0 Verified Active Codes and Warnings" description="Check Sell Lemons codes with 0 verified active codes, reported-code watch rules, fake code warnings, redemption status, and safe verification channels.">
   <main class="content-page">
     <section class="prose-block">
       <p class="eyebrow">Codes</p>
       <h1>{siteConfig.gameName} Codes</h1>
       <p>{evidenceNotice.body}</p>
-      <p>No verified active codes are listed yet. Community-reported codes appear below as research signals only.</p>
+      <p><strong>0 verified active codes.</strong> Community-reported codes appear below as research signals only, not rewards you should expect to redeem.</p>
       <p class="source-label">{evidenceNotice.communityReportedLabel}</p>
     </section>
     <section class="section">
-      <h2>Reported code watch</h2>
+      <h2>Active Codes Table</h2>
+      <div class="route-table">
+        <div>
+          <strong>Status</strong>
+          <span>0 verified active codes</span>
+        </div>
+        <div>
+          <strong>Evidence</strong>
+          <span>No official or in-game proof has been added to this site yet.</span>
+        </div>
+        <div>
+          <strong>Redemption box</strong>
+          <span>pending: the live code system still needs a current in-game check.</span>
+        </div>
+      </div>
+
+      <h2>Expired Codes Table</h2>
+      <div class="route-table">
+        <div>
+          <strong>Status</strong>
+          <span>0 verified expired codes</span>
+        </div>
+        <div>
+          <strong>Boundary</strong>
+          <span>Fake, disputed, or video-claimed codes do not move into this table without official or in-game proof.</span>
+        </div>
+      </div>
+
+      <h2>Reported Code Watch</h2>
       {reportedCodeRows.length > 0 ? (
         <div class="card-grid">
           {reportedCodeRows.map((row) => (
@@ -34,6 +97,42 @@ import { evidenceNotice, reportedCodeRows } from "../data/reported-guides";
         <p>No community-reported codes are being tracked at this time. Check back for updates.</p>
       )}
     </section>
+
+    <section class="section">
+      <h2>Fake Code Warnings</h2>
+      <div class="info-grid">
+        {fakeCodeWarnings.map((item) => (
+          <article class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <h2>Why Some Sites and Videos Claim Working Codes</h2>
+      <p>Code pages and videos often chase searches before a code system is confirmed. This page keeps those claims in warning areas until official channels or a current in-game redemption check can support them.</p>
+
+      <VideoGuideBlock
+        id="unverified-code-video"
+        title="Unverified Code Claim Video"
+        note="youtube_embed: this warning-only video reference is not an active code source and does not verify any reward."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>Where to Verify New Codes</h2>
+      <ol class="mobile-step-list">
+        {verificationChannels.map((channel) => <li>{channel}</li>)}
+      </ol>
+      <p class="evidence-note">Last checked: 2026-06-11 source review. Do not move any reported code into the active table without direct official or in-game proof.</p>
+      <div class="mini-table">
+        <a href="/beginner-guide/">Open beginner guide</a>
+        <a href="/money-fast/">Plan money route instead</a>
+        <a href="/progression/">Review progression</a>
+        <a href="/editorial-policy/">Read editorial policy</a>
+      </div>
+    </section>
+
     <RelatedGuides currentSlug="codes" />
   </main>
 </SiteLayout>

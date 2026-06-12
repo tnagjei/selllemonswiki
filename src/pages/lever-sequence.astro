@@ -1,9 +1,10 @@
 ---
-// input: Reported Sewer Key and UFO Key lever routes plus player checklist state in localStorage
-// output: Sell Lemons lever sequence page with route tabs, evidence labels, and reset warnings
+// input: Reported Sewer Key and UFO Key lever routes, YouTube lever references, and player checklist state in localStorage
+// output: Sell Lemons lever sequence page with route tabs, evidence labels, reset warnings, video embeds, and FAQ
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/lever-sequence.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 
 const routeChecklists = [
   {
@@ -60,6 +61,71 @@ const recoveryNotes = [
     title: "Route conflict",
     status: "disputed",
     note: "A simple five-color order appears in some older or broader pages, while the current SERP evidence points to longer route-specific checklists."
+  }
+];
+
+const routeSummaryRows = [
+  {
+    route: "Sewer Key",
+    status: "reported/disputed",
+    summary: "Blue/Teal, Red, Green, Red off, Blue/Teal off, Purple, Red."
+  },
+  {
+    route: "UFO Key compact route",
+    status: "reported/disputed",
+    summary: "Blue/Teal, Red, Green, Red, Purple, Red, Green, Red."
+  },
+  {
+    route: "Longer community variant",
+    status: "disputed",
+    summary: "Some sources add extra route-state actions, so this page keeps conflict notes visible instead of merging every version."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "ALL LEVERS LOCATIONS",
+    embedUrl: "https://www.youtube-nocookie.com/embed/8MlwMpB9bdk",
+    sourceUrl: "https://www.youtube.com/watch?v=8MlwMpB9bdk",
+    status: "youtube_embed",
+    note: "Visual lever-location reference only. It does not verify the live route state."
+  },
+  {
+    title: "Full Sewer Key Maze Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/L_2dj-irnjY",
+    sourceUrl: "https://www.youtube.com/watch?v=L_2dj-irnjY",
+    status: "youtube_embed",
+    note: "Useful for sewer-route orientation, not official route proof."
+  },
+  {
+    title: "Sell Lemons Maze Guide UFO KEY & SEWER KEY",
+    embedUrl: "https://www.youtube-nocookie.com/embed/05cLLRLUZR8",
+    sourceUrl: "https://www.youtube.com/watch?v=05cLLRLUZR8",
+    status: "youtube_embed",
+    note: "Cluster video for both key routes. Reward and route details remain reported or disputed."
+  }
+];
+
+const faqItems = [
+  {
+    question: "Is this lever sequence verified?",
+    answer: "No. The route is reported or disputed until the site checks the current live maze in-game."
+  },
+  {
+    question: "Are Blue and Teal the same lever?",
+    answer: "That naming is disputed across community sources, so the checklist writes Blue/Teal instead of pretending the conflict is settled."
+  },
+  {
+    question: "Can I switch from Sewer Key to UFO Key halfway through?",
+    answer: "No. Treat each route as a separate state. Mixing routes is the main reason doors or keys fail to appear."
+  },
+  {
+    question: "What should I do after a wrong lever?",
+    answer: "Stop entering more steps, return to a known checkpoint, or restart from a fresh server before following the checklist again."
+  },
+  {
+    question: "Do the embedded videos prove the route?",
+    answer: "No. Videos help visual orientation, but route and reward claims still need evidence labels."
   }
 ];
 ---
@@ -124,6 +190,9 @@ const recoveryNotes = [
         ))}
       </section>
 
+      <h2>What This Lever Sequence Tracks</h2>
+      <p>This Sell Lemons Lever Sequence page tracks two reported underground routes: Sewer Key and UFO Key. Use it as a mobile checklist while keeping the route labels conservative. A checked box means personal progress in this browser, not proof that the route is official or current for every player.</p>
+
       <h2>Wrong State Recovery</h2>
       <div class="info-grid">
         {recoveryNotes.map((item) => (
@@ -137,8 +206,36 @@ const recoveryNotes = [
 
       <h2>Conflict Notes</h2>
       <p class="evidence-note">The shorter five-color route is kept as disputed because it does not fully match the longer Sewer Key and UFO Key routes found in current guide sources. Blue and Teal are also treated as naming variants until the site can verify the live maze directly.</p>
+      <div class="route-table">
+        {routeSummaryRows.map((row) => (
+          <div>
+            <strong>{row.route} <span class="tag">{row.status}</span></strong>
+            <span>{row.summary}</span>
+          </div>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="lever-video-guides"
+        title="Lever Video References"
+        note="youtube_embed: these videos help with visual lever locations and route context, but they do not verify route state, rewards, or badge outcomes."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
 
       <div class="mini-table">
+        <a href="/maze-map/">Open broad maze map</a>
         <a href="/sewer-maze-map/">Open maze map</a>
         <a href="/sewer-key/">Prepare sewer key</a>
         <a href="/ufo-key/">Continue to UFO key</a>

@@ -1,9 +1,10 @@
 ---
-// input: Reported sewer objectives, route checkpoints, lever puzzle context, and related key pages
-// output: Sell Lemons sewer maze map guide page with objective routes and mobile steps
+// input: Reported sewer objectives, route checkpoints, lever puzzle context, and video references
+// output: Sell Lemons sewer maze map guide page with objective routes, node map, and mobile steps
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/sewer-maze-map.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 
 const routePlans = [
   {
@@ -85,15 +86,46 @@ const recoveryNotes = [
     note: "Use a fresh server before starting the Sewer Key route if prior UFO progress left the puzzle in a confusing state."
   }
 ];
+
+const youtubeEmbeds = [
+  {
+    title: "Full Sewer Key Maze Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/L_2dj-irnjY",
+    sourceUrl: "https://www.youtube.com/watch?v=L_2dj-irnjY",
+    status: "youtube_embed",
+    note: "Visual Sewer Key route reference. It is not verified route or reward proof."
+  },
+  {
+    title: "Visual Maze Map Reference",
+    embedUrl: "https://www.youtube-nocookie.com/embed/-kAvJrF9834",
+    sourceUrl: "https://www.youtube.com/watch?v=-kAvJrF9834",
+    status: "youtube_embed",
+    note: "Helps with map orientation, but the page keeps all route claims evidence-labeled."
+  },
+  {
+    title: "Sell Lemons Maze Guide UFO KEY & SEWER KEY",
+    embedUrl: "https://www.youtube-nocookie.com/embed/05cLLRLUZR8",
+    sourceUrl: "https://www.youtube.com/watch?v=05cLLRLUZR8",
+    status: "youtube_embed",
+    note: "Cluster reference for both key routes. Do not use it as verified reward evidence."
+  },
+  {
+    title: "How To Get UFO Key In Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/Wilq37Abpkk",
+    sourceUrl: "https://www.youtube.com/watch?v=Wilq37Abpkk",
+    status: "youtube_embed",
+    note: "Supplemental visual route for the UFO objective inside the same sewer area."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Maze Map: Sewer Routes, Keys and Levers" description="Follow a Sell Lemons maze map with sewer key, UFO key, Cosmic Cash Vine checkpoints, mobile steps, reset recovery, route tables, and evidence labels.">
+<SiteLayout title="Sell Lemons Sewer Maze Map: Lever Rooms and Key Routes" description="Follow a Sell Lemons sewer maze map with lever rooms, Sewer Key, UFO route, Cosmic Cash Vine notes, mobile steps, video references, and evidence labels.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Map First</p>
-          <h1>Sell Lemons Maze Map</h1>
+          <h1>Sell Lemons Sewer Maze Map</h1>
           <p>Use this sewer maze map as a route-first reference before entering the underground puzzle. Pick one objective first, then follow the matching checkpoints instead of mixing key routes.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons sewer maze map route reference" width="894" height="500" />
@@ -104,12 +136,14 @@ const recoveryNotes = [
       <section class="route-map" aria-label="Sewer maze route map">
         <div>Entry</div>
         <div>Main Split</div>
-        <div>Lever Rooms</div>
+        <div>Blue / Red / Green / Purple Lever Rooms</div>
         <div>Vault Door</div>
         <div>UFO Route</div>
       </section>
 
       <p class="evidence-note">Evidence boundary: route structures are reported from community pages and can change after game updates. Confirm final turns in-game before treating any step as verified.</p>
+
+      <p class="evidence-note">disputed: Blue and Teal may refer to the same first lever across sources, but the naming mismatch remains a conflict until checked in-game.</p>
 
       <section aria-labelledby="objective-selector-title">
         <h2 id="objective-selector-title">Objective Selector</h2>
@@ -166,8 +200,16 @@ const recoveryNotes = [
         ))}
       </div>
 
+      <VideoGuideBlock
+        id="sewer-maze-video-guides"
+        title="Video Maze References"
+        note="youtube_embed: sewer maze videos help with visual turns, but this page does not treat videos as verified map or reward evidence."
+        videos={youtubeEmbeds}
+      />
+
       <h2>Route Cluster</h2>
       <div class="mini-table">
+        <a href="/maze-map/">Open broad maze map</a>
         <a href="/lever-sequence/">Open lever sequence checklist</a>
         <a href="/sewer-key/">Prepare sewer key entry</a>
         <a href="/ufo-key/">Follow UFO key route</a>

@@ -130,6 +130,7 @@ const llms = [
   `- [Rebirths](${absoluteUrl(siteDomain, "/rebirths/")}): Rebirth planning, reset notes, bonuses, and progression tips.`,
   `- [Deals](${absoluteUrl(siteDomain, "/deals/")}): Deal notes, offer timing, profit tips, and better return strategies.`,
   `- [Profit Calculator](${absoluteUrl(siteDomain, "/profit-calculator/")}): Upgrade ROI estimates and next-purchase planning.`,
+  `- [Maze Map](${absoluteUrl(siteDomain, "/maze-map/")}): Broad map hub for surface areas, hidden zones, and next route pages.`,
   `- [Sewer Maze Map](${absoluteUrl(siteDomain, "/sewer-maze-map/")}): Map-first sewer route, lever order, and key planning.`,
   `- [Lever Sequence](${absoluteUrl(siteDomain, "/lever-sequence/")}): Checklist for the reported sewer lever route.`,
   "",

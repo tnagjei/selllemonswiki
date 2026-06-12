@@ -1,47 +1,143 @@
 ---
-// input: Reported sewer key route requirements and related maze pages
-// output: Sell Lemons sewer key guide page separated from general deals content
+// input: Reported sewer key route, 7-step lever order, badge notes, and maze recovery rules
+// output: Sell Lemons sewer key guide page with route table, recovery help, and evidence labels
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/sewer-key.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const sewerKeySteps = [
+  { step: "1", action: "Blue or Teal", note: "Start with the blue/teal lever naming variant used across community guides." },
+  { step: "2", action: "Red", note: "Move to the Red lever branch after the first room is set." },
+  { step: "3", action: "Green", note: "Set Green, then return carefully to the known split." },
+  { step: "4", action: "Red off", note: "Return to Red and turn it off for the reported Sewer Key state." },
+  { step: "5", action: "Blue or Teal off", note: "Return to the first lever and turn it off." },
+  { step: "6", action: "Purple", note: "Set Purple before the final Red step." },
+  { step: "7", action: "Red", note: "Set Red again, then check the key pickup and gate path." }
+];
+
+const recoveryNotes = [
+  {
+    title: "Wrong lever state",
+    status: "reported",
+    note: "Use a fresh server or restart from the main split instead of adding random lever pulls."
+  },
+  {
+    title: "Gate still closed",
+    status: "reported",
+    note: "Recheck whether Blue/Teal was turned off before Purple and final Red."
+  },
+  {
+    title: "Reward amount claims",
+    status: "disputed",
+    note: "Cosmic Cash Vine payout values conflict, so this page only treats the route and timing as reported."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "How To GET SEWER KEY in SELL LEMONS",
+    embedUrl: "https://www.youtube-nocookie.com/embed/KvYYqptZAIY",
+    sourceUrl: "https://www.youtube.com/watch?v=KvYYqptZAIY",
+    status: "youtube_embed",
+    note: "Visual Sewer Key route reference. The route still remains reported on this page."
+  },
+  {
+    title: "Full Sewer Key Maze Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/L_2dj-irnjY",
+    sourceUrl: "https://www.youtube.com/watch?v=L_2dj-irnjY",
+    status: "youtube_embed",
+    note: "Maze walkthrough reference for orientation, not verified reward proof."
+  },
+  {
+    title: "Sewer Key and Cosmic Farmer Badge",
+    embedUrl: "https://www.youtube-nocookie.com/embed/odiCcEXTcHA",
+    sourceUrl: "https://www.youtube.com/watch?v=odiCcEXTcHA",
+    status: "youtube_embed",
+    note: "Badge-related visual reference. Cosmic Cash and badge claims still need in-game confirmation."
+  },
+  {
+    title: "Sewer Key Step-by-Step Tutorial",
+    embedUrl: "https://www.youtube-nocookie.com/embed/m5jx8NhLXXE",
+    sourceUrl: "https://www.youtube.com/watch?v=m5jx8NhLXXE",
+    status: "youtube_embed",
+    note: "Supplemental mobile-friendly step reference, not a verified source."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Sewer Key Guide | Maze Entry and Route Prep" description="Use a Sell Lemons sewer key guide to prepare maze entry, lever route checks, UFO key planning, and underground progression steps.">
+<SiteLayout title="Sell Lemons Sewer Key Guide: 7-Step Lever Route and Badge" description="Use a Sell Lemons sewer key guide with the reported 7-step lever route, Cosmic Farmer Badge notes, Cosmic Cash Vine timing, recovery tips, and video references.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Hidden Route</p>
           <h1>Sell Lemons Sewer Key Guide</h1>
-          <p>The sewer key should be treated as the entry point for underground route planning, not as a general deals topic. Prepare the map and lever checklist before starting.</p>
+          <p>Use this reported 7-step lever route for the Sewer Key before chasing the Cosmic Farmer Badge or Cosmic Cash Vine. The UFO Key route is different, so do not mix the two checklists.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons sewer key route guide" width="894" height="500" />
       </div>
     </section>
 
     <article class="guide-detail">
-      <p class="evidence-note">Status: community-reported. Do not present exact key requirements as verified unless you have a current in-game check.</p>
+      <p class="evidence-note">Status: reported. The route is based on community and guide-site evidence. Do not present exact key requirements, rewards, or payout amounts as verified without a current in-game check.</p>
 
-      <h2>Sewer Key Route Prep</h2>
-      <div class="guide-step-flow">
+      <h2>Entry and Prerequisites</h2>
+      <div class="info-grid">
         <section class="guide-step-card">
-          <h3>Check your route goal</h3>
-          <p>Players use the sewer entry for more than one objective. Decide whether you are preparing the vault route, the UFO key route, or badge progress.</p>
+          <span class="tag">reported</span>
+          <h3>Main street manhole</h3>
+          <p>Community guides describe the sewer entry as a manhole route from the main street area.</p>
         </section>
         <section class="guide-step-card">
-          <h3>Open the map first</h3>
-          <p>Use the maze map before entering. This reduces time lost in repeated dead ends and keeps the route mobile-readable.</p>
+          <span class="tag">reported</span>
+          <h3>Fresh route state</h3>
+          <p>Start from a clean maze state if you recently attempted the UFO Key or pulled extra levers.</p>
         </section>
         <section class="guide-step-card">
-          <h3>Bring the lever checklist</h3>
-          <p>If your objective touches the vault, complete the lever sequence in order. Guessing after a wrong pull is slower than resetting from the main split.</p>
+          <span class="tag">reported</span>
+          <h3>Map open first</h3>
+          <p>Keep the maze map or lever checklist open on mobile before entering the underground route.</p>
         </section>
       </div>
+
+      <h2>7-Step Sewer Key Route</h2>
+      <div class="route-table">
+        {sewerKeySteps.map((item) => (
+          <div>
+            <strong>Step {item.step}: {item.action}</strong>
+            <span>{item.note}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Cosmic Farmer Badge and Vine</h2>
+      <p>After the reported Sewer Key route, players connect the gate path with the Cosmic Farmer Badge and Cosmic Cash Vine. The repeat harvest timing is reported, but payout values are still disputed across sources.</p>
+
+      <h2>Why the Puzzle Fails</h2>
+      <div class="info-grid">
+        {recoveryNotes.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="sewer-key-video-guides"
+        title="Video Sewer Key References"
+        note="youtube_embed: these videos show demand for visual route help, but they are not used as verified route or reward proof."
+        videos={youtubeEmbeds}
+      />
 
       <div class="mini-table">
         <a href="/sewer-maze-map/">Open maze map</a>
         <a href="/lever-sequence/">Open lever sequence</a>
         <a href="/ufo-key/">Continue to UFO key</a>
+        <a href="/badge-tracker/">Track badge progress</a>
+        <a href="/money-fast/">Plan recovery money route</a>
       </div>
 
       <RelatedGuides currentSlug="sewer-key" />

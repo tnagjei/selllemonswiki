@@ -60,6 +60,7 @@ Publishes:
 /money-fast/
 /best-upgrades/
 /profit-calculator/
+/maze-map/
 /sewer-maze-map/
 /lever-sequence/
 /ascension/

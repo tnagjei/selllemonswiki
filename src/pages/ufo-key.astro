@@ -1,19 +1,73 @@
 ---
-// input: Reported UFO key route context, Good Samaritan badge notes, and related sewer pages
-// output: Sell Lemons UFO key guide page separated from general deals content
+// input: Reported UFO key lever order, route conflicts, Good Samaritan badge notes, and sewer links
+// output: Sell Lemons UFO key guide page with order table, conflict notes, and evidence labels
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/ufo-key.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const mainLeverOrder = [
+  { step: "1", action: "Blue or Teal", note: "Start the reported UFO route from a fresh sewer state." },
+  { step: "2", action: "Red", note: "Set Red after the first lever is active." },
+  { step: "3", action: "Green", note: "Set Green before the repeated Red check." },
+  { step: "4", action: "Red", note: "Return to Red for the UFO route state." },
+  { step: "5", action: "Purple", note: "Set Purple before the final repeated colors." },
+  { step: "6", action: "Red", note: "Return to Red again." },
+  { step: "7", action: "Green", note: "Return to Green for the alien path state." },
+  { step: "8", action: "Red", note: "Return to Red, then check the UFO Key and alien path." }
+];
+
+const routeCards = [
+  {
+    title: "Different from Sewer Key",
+    status: "reported",
+    note: "The UFO Key route uses repeated Red and Green steps. Do not reuse the Sewer Key checklist."
+  },
+  {
+    title: "Fandom alternate route",
+    status: "disputed",
+    note: "Some community pages describe a longer version with extra on/off actions, so this page separates the conflict instead of merging it."
+  },
+  {
+    title: "Investor bonus reward",
+    status: "reported",
+    note: "Good Samaritan Badge and Investor Bonus claims are reported rewards, not official values on this site."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "How To GET UFO KEY & GOOD SAMARITAN BADGE",
+    embedUrl: "https://www.youtube-nocookie.com/embed/cQ0Tb3NAXEk",
+    sourceUrl: "https://www.youtube.com/watch?v=cQ0Tb3NAXEk",
+    status: "youtube_embed",
+    note: "Primary visual reference for UFO Key and Good Samaritan demand, not verified reward proof."
+  },
+  {
+    title: "How To Get UFO Key In Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/Wilq37Abpkk",
+    sourceUrl: "https://www.youtube.com/watch?v=Wilq37Abpkk",
+    status: "youtube_embed",
+    note: "Helps with maze orientation when the key route state becomes confusing."
+  },
+  {
+    title: "HOW To GET ALL SEWER & UFO KEYS",
+    embedUrl: "https://www.youtube-nocookie.com/embed/Q9AgkQ3y8XU",
+    sourceUrl: "https://www.youtube.com/watch?v=Q9AgkQ3y8XU",
+    status: "youtube_embed",
+    note: "Cluster reference for related key routes, not a verified source."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons UFO Key Guide | Good Samaritan Badge Route" description="Follow a Sell Lemons UFO key guide with Good Samaritan badge notes, sewer route links, map prep, and evidence-labeled steps.">
+<SiteLayout title="Sell Lemons UFO Key Guide: Lever Order and Badge Route" description="Follow a Sell Lemons UFO Key guide with reported lever order, Good Samaritan Badge steps, investor bonus notes, route conflicts, and video references.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">UFO Route</p>
           <h1>Sell Lemons UFO Key Guide</h1>
-          <p>The UFO key route deserves its own page because it has a different intent from deals and haggling. Use this as a clean path from sewer prep to Good Samaritan progress.</p>
+          <p>The UFO Key route is different from the Sewer Key route. Use this reported lever order for Good Samaritan Badge progress, then verify the final reward in-game before calling it confirmed.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons UFO key and Good Samaritan route" width="894" height="500" />
       </div>
@@ -23,24 +77,68 @@ import RelatedGuides from "../components/RelatedGuides.astro";
       <p class="evidence-note">Evidence boundary: this route is tracked as community-reported until a current in-game check confirms the exact sequence.</p>
 
       <h2>UFO Key Route</h2>
-      <div class="guide-step-flow">
+      <div class="info-grid">
+        {routeCards.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <h2>Main Lever Order</h2>
+      <div class="route-table">
+        {mainLeverOrder.map((item) => (
+          <div>
+            <strong>Step {item.step}: {item.action}</strong>
+            <span>{item.note}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Good Samaritan Badge Steps</h2>
+      <ol class="mobile-step-list">
+        <li>Prepare sewer access and open the maze map before touching levers.</li>
+        <li>Follow the UFO Key order from a clean route state.</li>
+        <li>Confirm the UFO Key appears before leaving the maze path.</li>
+        <li>Return toward the alien route and use the related Red/Green checks if the path stays closed.</li>
+        <li>Talk to the Alien and mark Good Samaritan as reported complete, not verified proof for every player.</li>
+      </ol>
+
+      <h2>If the UFO Key Does Not Appear</h2>
+      <div class="info-grid">
         <section class="guide-step-card">
-          <h3>1. Prepare sewer access</h3>
-          <p>Start with sewer key planning and the maze map. The UFO route is easier when you are not solving every underground objective at once.</p>
+          <span class="tag">reported</span>
+          <h3>Route state mismatch</h3>
+          <p>Restart from a clean sewer state if you mixed Sewer Key and UFO Key lever orders.</p>
         </section>
         <section class="guide-step-card">
-          <h3>2. Track Good Samaritan progress</h3>
-          <p>Keep the badge tracker open while you complete reported help-station and sewer steps. Marking progress locally helps separate personal completion from public verification.</p>
+          <span class="tag">pending</span>
+          <h3>Progress gate</h3>
+          <p>Some sources imply the key may depend on investor or badge progress, but this needs live confirmation.</p>
         </section>
         <section class="guide-step-card">
-          <h3>3. Confirm the final unlock</h3>
-          <p>Do not publish the final reward as verified from memory. Capture a current in-game confirmation if the route changes after an update.</p>
+          <span class="tag">reported</span>
+          <h3>Fresh server reset</h3>
+          <p>Use a fresh server when repeated Red and Green states become impossible to diagnose.</p>
         </section>
       </div>
+
+      <h2>Conflict Notes</h2>
+      <p class="evidence-note">disputed: PGG and SportsRant describe the compact Blue, Red, Green, Red, Purple, Red, Green, Red route, while Fandom-style community notes can include a longer version. This page keeps the compact route as reported and the longer variant as disputed.</p>
+
+      <VideoGuideBlock
+        id="ufo-key-video-guides"
+        title="Video UFO Key References"
+        note="youtube_embed: videos can help players see the path, but this page does not treat video titles as verified reward or route evidence."
+        videos={youtubeEmbeds}
+      />
 
       <div class="mini-table">
         <a href="/sewer-key/">Prepare sewer key</a>
         <a href="/sewer-maze-map/">Open maze map</a>
+        <a href="/lever-sequence/">Use lever checklist</a>
         <a href="/badge-tracker/">Track badge progress</a>
       </div>
 

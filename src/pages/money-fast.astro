@@ -1,95 +1,178 @@
 ---
-// input: siteConfig, evidenceNotice from config and reported-guides
-// output: Dedicated guide detailing fast money methods, void weather, and automation rules in Sell Lemons
+// input: Reported manager, activity, weather, reset, offline earning, and YouTube route signals
+// output: Sell Lemons fastest money guide with stage routes, risk guardrails, video embeds, and evidence labels
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/money-fast.astro (更新规则：文件变更需同步本目录 README与文件头注释)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import ArticleAd from "../components/ArticleAd.astro";
-import { siteConfig } from "../data/config";
-import { evidenceNotice } from "../data/reported-guides";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const stageRoutes = [
+  {
+    title: "Early game route",
+    status: "reported",
+    steps: [
+      "Prioritize manager upgrades that remove manual collection pressure.",
+      "Push the latest unlocked activity when it clearly pays more than the base stand.",
+      "Use the profit calculator before buying a high-cost upgrade with a slow payback."
+    ]
+  },
+  {
+    title: "Mid game route",
+    status: "reported",
+    steps: [
+      "Compare minigames, current activity rewards, and investor bonus progress.",
+      "Treat Void Weather as a reported event boost, not a fixed multiplier on this site.",
+      "Avoid temporary boost spending unless it moves a specific route checkpoint."
+    ]
+  },
+  {
+    title: "Late game route",
+    status: "reported",
+    steps: [
+      "Compare Evolution timing against your current rebuild speed.",
+      "Use Ascension planning only after your Forever Purchase target is clear.",
+      "Fold Sewer Key and Cosmic Cash routes into recovery planning, not as guaranteed payouts."
+    ]
+  }
+];
+
+const comparisonRows = [
+  { route: "Active play", status: "reported", bestUse: "When the newest activity or event is clearly beating passive route value." },
+  { route: "Offline planning", status: "pending", bestUse: "Useful for manager-backed income, but exact offline rate still needs direct verification." },
+  { route: "Reset route", status: "reported", bestUse: "Strong when Rebirth, Evolution, or Ascension rebuild speed beats staying in the current run." },
+  { route: "Calculator check", status: "estimated", bestUse: "Best when two upgrades look close and you need break even time before spending." }
+];
+
+const mistakes = [
+  "Buying decorations without checking whether they unlock required buttons.",
+  "Resetting before the next route can rebuild managers quickly.",
+  "Treating a video title or third-party number as a guaranteed live multiplier.",
+  "Saving cash without comparing it to a manager, activity, or reset checkpoint."
+];
+
+const riskyClaims = [
+  {
+    title: "Guaranteed payout titles",
+    status: "unsafe",
+    note: "A dramatic title can show what players search for, but it does not prove a live payout, multiplier, or route speed."
+  },
+  {
+    title: "Fixed offline percentage",
+    status: "pending",
+    note: "Offline income can matter, but exact rates stay pending until a current in-game test confirms them."
+  },
+  {
+    title: "One route for every stage",
+    status: "estimated",
+    note: "Early, mid, and late runs value different upgrades, so this page uses stage checks instead of a universal shortcut."
+  }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "These Tips WILL MAKE YOU RICH In Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/_q8yT5cmYS4",
+    sourceUrl: "https://www.youtube.com/watch?v=_q8yT5cmYS4",
+    status: "youtube_embed",
+    note: "Strong demand signal for fast money routing, not proof of fixed income values or guaranteed results."
+  },
+  {
+    title: "DO THIS NOW To GET RICH FAST",
+    embedUrl: "https://www.youtube-nocookie.com/embed/SO8lbEy3mfY",
+    sourceUrl: "https://www.youtube.com/watch?v=SO8lbEy3mfY",
+    status: "youtube_embed",
+    note: "Use as visual route context only. Validate spending decisions with stage goals and calculator checks."
+  },
+  {
+    title: "The Best Money Guide in Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/89R0pSgQ7fI",
+    sourceUrl: "https://www.youtube.com/watch?v=89R0pSgQ7fI",
+    status: "youtube_embed",
+    note: "Supplemental visual reference for money route planning, not verified payout evidence."
+  },
+  {
+    title: "Do This Now To GET RICH In Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/r6CbMD3eb38",
+    sourceUrl: "https://www.youtube.com/watch?v=r6CbMD3eb38",
+    status: "youtube_embed",
+    note: "Helpful for seeing player route intent, while live earnings remain estimated or reported."
+  }
+];
 ---
 
-<SiteLayout title="Sell Lemons Fastest Money Methods | Complete Automation Meta" description="Discover the fastest money methods in Roblox Sell Lemons! Learn the best active haggling loops, offline passive farming, and manager priorities.">
+<SiteLayout title="Sell Lemons Fastest Money Method: Stage Routes and ROI" description="Choose Sell Lemons money routes by stage, compare upgrades with ROI and time-to-goal, avoid risky shortcut claims, and watch embedded video references.">
   <main>
-    <!-- Page Hero Section -->
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
-          <p class="eyebrow">Money & Payouts</p>
+          <p class="eyebrow">Money Routes</p>
           <h1>Sell Lemons Fastest Money Methods</h1>
-          <p>Stop grinding blindly. Learn how to exploit NPC phone contracts, maximize passive offline income, and utilize Void Weather events to scale your cash into centillions.</p>
+          <p>Choose a fast money route by stage instead of chasing vague shortcuts. The practical choice changes when managers, activities, weather events, and reset layers become available.</p>
         </div>
-        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons fastest money methods" width="894" height="500" />
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons fastest money methods by game stage" width="894" height="500" />
       </div>
     </section>
 
-    <!-- Main Guide Body -->
     <article class="guide-detail">
       <ArticleAd />
-      <h2>The Ultimate Fast-Money Matrix</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>⚡ 1. Active Profit: The LemonDash Negotiation Loop</h3>
-          <ul>
-            <li><strong>The Blueprint Meta:</strong> Your absolute fastest active money method in the early-to-mid game is exploiting the Level 2 LemonDash phone message system. When NPCs text you with delivery offers, NEVER click auto-accept!</li>
-            <li><strong>Action Blueprint:</strong> Always use the counter-offer option to haggle. Countering by 25% to 35% above the starting price forces the game's AI to meet you halfway, instantly multiplying single deliveries into $8,000+ lump-sum payouts within seconds.</li>
-          </ul>
-        </section>
+      <p class="evidence-note">Evidence boundary: high-yield claims are reported or estimated unless verified in-game. This page avoids unsafe shortcut claims and keeps fixed multiplier numbers conservative.</p>
 
-        <section class="guide-step-card">
-          <h3>💤 2. Passive Income Tips: The 100% Offline Exploit</h3>
-          <ul>
-            <li><strong>The Blueprint Meta:</strong> The ultimate passive income tip relies on the game's built-in offline reward mechanics. Unlike standard tycoon games that nerf your away-from-keyboard (AFK) earnings, Sell Lemons grants you 100% full income rate indefinitely while offline.</li>
-            <li><strong>Action Blueprint:</strong> The optimal cycle is "Burst and Sleep"—log in, claim 100% of your accumulated offline bankroll, throw all capital into automated infrastructure upgrades, and log out immediately. Staying online mid-game adds zero mathematical advantage.</li>
-          </ul>
-        </section>
-
-        <section class="guide-step-card">
-          <h3>🛸 3. Investor Income: The 350% Reset Scaling</h3>
-          <ul>
-            <li><strong>The Blueprint Meta:</strong> To scale your investor income, you must master the Evolution (Rebirth) prestige system to collect permanent Alien Investor percentage multipliers.</li>
-            <li><strong>Action Blueprint:</strong> NEVER Rebirth under a 200% investor bonus! The ultimate community-verified sweet spot is 350%+. Resetting at 350% multiplies your income so drastically that your new multipliers allow you to fund lower tiers back to max within 60 seconds of run start.</li>
-          </ul>
-        </section>
-
-        <section class="guide-step-card">
-          <h3>⛈️ 4. Active Event: The Void Weather Stacking Method</h3>
-          <ul>
-            <li><strong>The Blueprint Meta:</strong> Squeeze astronomical cash margins during active gameplay by tracking weather occurrences.</li>
-            <li><strong>Action Blueprint:</strong> Occasionally, the sky will glitch out into a rare Void Weather event, applying a massive 3x to 8x global multiplier to every active source simultaneously. This is the only time active play beats the offline strategy!</li>
-            <li><strong>How to Exploit:</strong> If you see a Void Weather alert, get online immediately! Dump all your saved bank cash into your base upgrades before the timer ticks down. Stack your Lemon Labs Time-Skips right during Void Weather—the multipliers stack together, completely breaking the game's economy tree in seconds!</li>
-          </ul>
-        </section>
-
-        <section class="guide-step-card">
-          <h3>⚠️ 5. Money Making Mistakes: Avoid Decoration Gates</h3>
-          <ul>
-            <li><strong>The Blueprint Meta:</strong> The #1 money making mistake that plateaus mid-game players is falling victim to the hidden Decoration Gates inside the Lemon Depot and Labs.</li>
-            <li><strong>Action Blueprint:</strong> The developers completely hide critical progression buttons behind mandatory building decorations. Buying the Depot Roof alone unlocks 3 massive upgrade nodes! If you stop earning cash, don't assume you've maxed out—buy the walls, roof, and lights, then walk through the facility to find the newly spawned buttons.</li>
-          </ul>
-        </section>
+      <h2>Stage Routes</h2>
+      <div class="info-grid">
+        {stageRoutes.map((route) => (
+          <section class="guide-step-card">
+            <span class="tag">{route.status}</span>
+            <h3>{route.title}</h3>
+            <ul>
+              {route.steps.map((step) => <li>{step}</li>)}
+            </ul>
+          </section>
+        ))}
       </div>
 
-      <!-- What to Do Next Section -->
-      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
-        <header class="guide-what-next__head">
-          <span class="guide-what-next__icon" aria-hidden="true">🎯</span>
-          <h2 id="guide-what-next-title">What to Do Next</h2>
-        </header>
-        <div class="guide-what-next__divider" aria-hidden="true">
-          <span></span>
-          <span class="guide-what-next__diamond"></span>
-          <span></span>
-        </div>
-        <a class="guide-what-next__cta" href="/progression/">
-          <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
-          <span class="guide-what-next__cta-copy">
-            <strong>👉 Learn Best Progression Paths</strong>
-            <span>Master the optimal upgrade priority and milestone routes to max out your base.</span>
-          </span>
-          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-        </a>
-      </section>
+      <VideoGuideBlock
+        id="money-video-guides"
+        title="Video Money Route References"
+        note="youtube_embed: these videos show fast-money route demand and visual play patterns, but they are not verified payout, multiplier, or guaranteed result proof."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>Active vs Offline vs Reset</h2>
+      <div class="route-table">
+        {comparisonRows.map((item) => (
+          <div>
+            <strong>{item.route} <span class="tag">{item.status}</span></strong>
+            <span>{item.bestUse}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>Common Money Mistakes</h2>
+      <ol class="mobile-step-list">
+        {mistakes.map((item) => <li>{item}</li>)}
+      </ol>
+
+      <h2>Risky Claims We Do Not Verify</h2>
+      <div class="info-grid">
+        {riskyClaims.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <h2>Calculator Check</h2>
+      <p>When two upgrades look close, use break even time and time-to-goal instead of guessing. A route that pays back in minutes is usually safer than a route that only sounds strong in a video title.</p>
+      <div class="mini-table">
+        <a href="/profit-calculator/">Open profit calculator</a>
+        <a href="/best-upgrades/">Compare upgrade priority</a>
+        <a href="/evolution/">Review evolution timing</a>
+        <a href="/ascension/">Review ascension planning</a>
+        <a href="/sewer-key/">Check Sewer Key route</a>
+      </div>
 
       <RelatedGuides currentSlug="money-fast" />
     </article>

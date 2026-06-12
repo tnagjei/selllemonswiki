@@ -13,6 +13,7 @@ export const wikiLinks = [
   { title: "Money Fast", slug: "money-fast", description: "Master the fastest active and passive methods to earn cash quickly." },
   { title: "Best Upgrades", slug: "best-upgrades", description: "Compare free-to-play, light spender, and endgame upgrade priorities." },
   { title: "Profit Calculator", slug: "profit-calculator", description: "Estimate upgrade ROI before spending cash on a low-impact purchase." },
+  { title: "Maze Map", slug: "maze-map", description: "Open the broad map hub before choosing sewer, key, or hidden-route pages." },
   { title: "Sewer Maze Map", slug: "sewer-maze-map", description: "Follow the sewer route, lever order, and key checkpoints from one map page." },
   { title: "Lever Sequence", slug: "lever-sequence", description: "Use a step checklist for the sewer lever puzzle and reset warnings." },
   { title: "Evolution", slug: "evolution", description: "Plan the 42x speed loop, Void route, and late-game reset timing." },
@@ -67,6 +68,7 @@ export const homeContent = {
   secrets: [
     { name: "Sewer Key", desc: "Opens the underground route and prepares the maze checklist.", href: "/sewer-key/" },
     { name: "UFO Key", desc: "Connects the Good Samaritan route with UFO unlock planning.", href: "/ufo-key/" },
+    { name: "Maze Map", desc: "Starts broad route planning before choosing the sewer-specific page.", href: "/maze-map/" },
     { name: "Sewer Maze Map", desc: "Gives players a mobile-readable route before starting the puzzle.", href: "/sewer-maze-map/" }
   ],
   tierListData: {
