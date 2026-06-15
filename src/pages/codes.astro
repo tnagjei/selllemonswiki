@@ -1,6 +1,6 @@
 ---
-// input: siteConfig, evidenceNotice, reportedCodeRows, code warning video, and conservative code evidence rules
-// output: Codes page with 0 verified active codes, fake-code warnings, warning-only video embed, and verification steps
+// input: siteConfig, evidenceNotice, reportedCodeRows, source conflict rows, code warning video, and conservative evidence rules
+// output: Codes page with 0 verified active codes, Roblox codes status, fake-code warnings, source conflicts, and verification steps
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/codes.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
@@ -30,6 +30,15 @@ const fakeCodeWarnings = [
     status: "reported",
     note: "A reported code can be watched, but it is not an active code until official or in-game evidence confirms it."
   }
+];
+
+const sourceConflictRows = [
+  { source: "Pro Game Guides", claim: "Tracks Sell Lemons code interest", status: "reported", action: "Watch only until an exact code is confirmed in-game." },
+  { source: "Destructoid", claim: "May publish code-style update coverage", status: "reported", action: "Do not move claims into active codes without live redemption proof." },
+  { source: "LDPlayer", claim: "May describe Roblox code searches", status: "reported", action: "Treat as third-party search context, not official proof." },
+  { source: "SellLemons", claim: "Fan guide or tool context", status: "reported", action: "Use only as a cross-check signal." },
+  { source: "YouTube", claim: "Video titles may say working codes", status: "disputed", action: "Warning-only unless the exact code works in a current game check." },
+  { source: "Official Roblox or developer channel", claim: "Only source class that can verify active codes", status: "required", action: "Use this before adding any active code." }
 ];
 
 const youtubeEmbeds = [
@@ -81,6 +90,9 @@ const youtubeEmbeds = [
         </div>
       </div>
 
+      <h2>Sell Lemons Roblox Codes Status</h2>
+      <p>The current site position is unchanged: <strong>0 verified active codes</strong> and <strong>0 verified expired codes</strong>. A Roblox code claim needs either official developer proof or a current in-game redemption check before it becomes an active code on this page.</p>
+
       <h2>Reported Code Watch</h2>
       {reportedCodeRows.length > 0 ? (
         <div class="card-grid">
@@ -96,6 +108,18 @@ const youtubeEmbeds = [
       ) : (
         <p>No community-reported codes are being tracked at this time. Check back for updates.</p>
       )}
+    </section>
+
+    <section class="section">
+      <h2>Sell Lemons Roblox Codes vs Reported Codes</h2>
+      <div class="route-table">
+        {sourceConflictRows.map((row) => (
+          <div>
+            <strong>{row.source} <span class="tag">{row.status}</span></strong>
+            <span>{row.claim}. Action: {row.action}</span>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="section">

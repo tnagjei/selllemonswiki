@@ -1,6 +1,6 @@
 ---
-// input: User-entered income, upgrade, target cash, session length, optional offline assumptions, and YouTube money references
-// output: Static Sell Lemons calculator page with ROI, break even, goal time, session estimates, video embeds, and FAQ
+// input: User-entered Roblox Sell Lemons income, upgrade, target cash, session length, gamepass assumptions, and YouTube money references
+// output: Static Sell Lemons calculator page with ROI, gamepass ROI, break even, goal time, session estimates, videos, and FAQ
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/profit-calculator.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
@@ -21,6 +21,11 @@ const formulaNotes = [
     title: "Session cash",
     formula: "effective income per minute x planned minutes",
     note: "Offline income is optional and remains an editable estimate, not an official value."
+  },
+  {
+    title: "Gamepass ROI",
+    formula: "time saved or added income / Robux decision cost",
+    note: "Use this as a judgment aid only because this page cannot price your personal Robux value."
   }
 ];
 
@@ -57,7 +62,19 @@ const decisionCards = [
     title: "Before a reset",
     status: "estimated",
     note: "Compare current-run payback against rebuild speed so a reset does not erase a better short-term route."
+  },
+  {
+    title: "Before a gamepass",
+    status: "estimated",
+    note: "Test whether 2x Cash, Remote Buy, or instant-profit claims solve your actual bottleneck before spending Robux."
   }
+];
+
+const scenarioPresets = [
+  { title: "Early-game route", status: "estimated", note: "Use low income and short session minutes to compare first automators against stand upgrades." },
+  { title: "Before rebirth", status: "estimated", note: "Compare rebuild time against the investor bonus you expect after resetting." },
+  { title: "Before evolution", status: "reported", note: "Check whether your current route can survive a larger reported speed-layer reset." },
+  { title: "Gamepass ROI", status: "estimated", note: "Model 2x Cash as a multiplier or Remote Buy as time saved, then decide whether the purchase matters." }
 ];
 
 const youtubeEmbeds = [
@@ -73,7 +90,14 @@ const youtubeEmbeds = [
     embedUrl: "https://www.youtube-nocookie.com/embed/_q8yT5cmYS4",
     sourceUrl: "https://www.youtube.com/watch?v=_q8yT5cmYS4",
     status: "youtube_embed",
-    note: "Shows search demand for fast-money advice, not proof of guaranteed income."
+    note: "Shows search demand for fast-money advice, not proof of certain income."
+  },
+  {
+    title: "Sell Lemons Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/NUMf7hgpslI",
+    sourceUrl: "https://www.youtube.com/watch?v=NUMf7hgpslI",
+    status: "youtube_embed",
+    note: "General gameplay context only. Calculator output still depends on your entered numbers."
   }
 ];
 
@@ -91,20 +115,28 @@ const faqItems = [
     answer: "A slow upgrade can still matter if it unlocks a route, manager, reset layer, or required button. Treat the result as a decision aid, not an order."
   },
   {
+    question: "Can this calculator decide whether a gamepass is worth Robux?",
+    answer: "It can estimate time saved or added income, but it cannot decide your personal Robux value. Use it to pressure-test 2x Cash, Remote Buy, or instant-profit claims."
+  },
+  {
+    question: "Is this for a real lemonade stand?",
+    answer: "No. This is for the Roblox game Sell Lemons and does not calculate real business profit."
+  },
+  {
     question: "Is this an official Sell Lemons calculator?",
     answer: "No. It is an independent fan-site planner with visible formulas and estimated labels."
   }
 ];
 ---
 
-<SiteLayout title="Sell Lemons Profit Calculator: ROI and Goal Planner" description="Use a Sell Lemons profit calculator for ROI, break even time, time to goal, session cash estimates, offline estimates, and transparent planning formulas.">
+<SiteLayout title="Roblox Sell Lemons Profit Calculator and ROI Planner" description="Use a Roblox Sell Lemons profit calculator for upgrade ROI, gamepass ROI, break even time, time to goal, session cash, and transparent planning formulas.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">ROI Tool</p>
           <h1>Sell Lemons Profit Calculator</h1>
-          <p>Compare upgrade cost, goal timing, and session value before spending cash. Every result is an estimated planning number based on player input and visible formulas, not official game math.</p>
+          <p>Compare Roblox Sell Lemons upgrade cost, goal timing, gamepass assumptions, and session value before spending cash or Robux. Every result is an estimated planning number based on player input and visible formulas, not official game math.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons profit calculator upgrade ROI tool" width="894" height="500" />
       </div>
@@ -114,7 +146,7 @@ const faqItems = [
       <section class="tool-panel" aria-labelledby="calculator-title">
         <div>
           <p class="eyebrow">Calculate Best Upgrade</p>
-          <h2 id="calculator-title">Upgrade ROI and Goal Estimate</h2>
+          <h2 id="calculator-title">Roblox Sell Lemons Upgrade ROI and Goal Estimate</h2>
           <p class="evidence-note">Evidence boundary: use reported or personal in-game numbers only. Results are marked estimated because the site is not reading live Roblox account data.</p>
         </div>
         <div class="calculator-grid">
@@ -168,6 +200,17 @@ const faqItems = [
 
       <h2>What This Calculator Estimates</h2>
       <p>This Sell Lemons Profit Calculator estimates break-even time, time-to-goal, session cash, and optional offline cash from numbers you provide. It does not connect to Roblox, does not read live account data, and does not confirm hidden game formulas. Use it to compare choices before spending cash, then verify important thresholds in-game.</p>
+
+      <h2>Scenario Presets to Model</h2>
+      <div class="info-grid">
+        {scenarioPresets.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
 
       <h2>Why ROI Matters Before You Buy</h2>
       <div class="info-grid">

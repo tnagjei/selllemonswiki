@@ -1,15 +1,22 @@
 ---
-// input: Reported evolution timing, 42x speed, fruit chain, reset losses, and comparison rules
-// output: Sell Lemons evolution guide page for reset risk, timing, and progression decisions
+// input: Reported evolution requirements, fruit chart, 42x speed, reset losses, and comparison rules
+// output: Sell Lemons evolution requirements chart page for reset risk, timing, and progression decisions
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/evolution.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 
-const fruitChain = [
-  "Fruit chain progress is reported as part of the evolution path.",
-  "Void Portal and late fruit steps should be treated as pending until checked in-game.",
-  "Do not evolve only because a guide says the next fruit exists; confirm your rebuild speed first."
+const requirementRows = [
+  { evolution: "First unlock", fruit: "Lemon", investors: "501.2 Quadrillion reported", speed: "42x reported", unlocks: "Void Portal and first evolution menu", status: "reported" },
+  { evolution: "Evolution 2", fruit: "Orange", investors: "higher investor target", speed: "stacked 42x layer reported", unlocks: "next fruit stage", status: "reported" },
+  { evolution: "Evolution 3", fruit: "Lime", investors: "higher investor target", speed: "stacked 42x layer reported", unlocks: "fruit chain progress", status: "reported" },
+  { evolution: "Evolution 4", fruit: "Coconut", investors: "higher investor target", speed: "stacked 42x layer reported", unlocks: "mid-chain rebuild pressure", status: "reported" },
+  { evolution: "Evolution 5", fruit: "Pineapple", investors: "higher investor target", speed: "stacked 42x layer reported", unlocks: "late fruit chain", status: "reported" },
+  { evolution: "Evolution 6", fruit: "Dragon Fruit", investors: "route-dependent investor target", speed: "stacked 42x layer reported", unlocks: "late progression check", status: "reported" },
+  { evolution: "Evolution 7", fruit: "Star Fruit", investors: "route-dependent investor target", speed: "stacked 42x layer reported", unlocks: "advanced rebuild loop", status: "pending" },
+  { evolution: "Evolution 8", fruit: "Void Fruit", investors: "route-dependent investor target", speed: "stacked 42x layer reported", unlocks: "Void route pressure", status: "pending" },
+  { evolution: "Evolution 9", fruit: "Celestial Fruit", investors: "route-dependent investor target", speed: "stacked 42x layer reported", unlocks: "pre-Purity route", status: "pending" },
+  { evolution: "Evolution 10+", fruit: "Purity", investors: "late-game investor target", speed: "reported multiplier chain", unlocks: "advanced evolution chart endpoint", status: "pending" }
 ];
 
 const resetLosses = [
@@ -24,6 +31,28 @@ const comparisonRows = [
   { layer: "Evolution", use: "Major speed reset with reported 42x route value and investor/power cost." },
   { layer: "Ascend", use: "Intermediate term used by some guides; confirm context before following." },
   { layer: "Ascension", use: "Endgame reset with Forever Purchase planning and higher rebuild cost." }
+];
+
+const portalSteps = [
+  "Build enough investor progress to unlock the reported Void Portal condition.",
+  "Enter the Void Portal area and look for the Void Altar or evolution menu.",
+  "Confirm the displayed progress reaches the required state before pressing evolve.",
+  "Record the fruit stage, multiplier text, and reset losses if you want to verify the route.",
+  "If the portal or menu does not appear, rebuild income and investor progress instead of guessing."
+];
+
+const evolveChecks = [
+  { label: "Rebuild speed", status: "estimated", value: "Evolve only when early managers and income sources can return quickly." },
+  { label: "Investor surplus", status: "reported", value: "Treat the chart number as a minimum signal, then keep extra buffer for a clean rebuild." },
+  { label: "Current goal", status: "estimated", value: "Delay evolution if a Sewer Key, UFO Key, or Ascension check is nearly complete." }
+];
+
+const faqItems = [
+  { question: "Are the Sell Lemons evolution requirements verified?", answer: "No. The chart is reported from non-official guide sources and should be checked in-game before treating it as final." },
+  { question: "Is 42x Global Speed confirmed?", answer: "No. 42x is a reported value, not a site-verified live multiplier." },
+  { question: "Does evolution reset investors?", answer: "Community sources report investor and power reset pressure, so plan the rebuild before pressing evolve." },
+  { question: "Should there be a separate evolution chart page?", answer: "No. This site keeps the chart inside the Evolution guide to avoid a thin duplicate page." },
+  { question: "What happens after Purity?", answer: "Late stages remain pending on this site until a current in-game check confirms the chart endpoint." }
 ];
 
 const youtubeEmbeds = [
@@ -51,49 +80,69 @@ const youtubeEmbeds = [
 ];
 ---
 
-<SiteLayout title="Sell Lemons Evolution Guide: 42x Speed and Reset Timing" description="Use a Sell Lemons evolution guide for 42x speed, fruit chain planning, investor reset risk, when not to evolve, and reset layer comparisons.">
+<SiteLayout title="Sell Lemons Evolution Requirements Chart and Guide" description="Use a Sell Lemons evolution requirements chart for reported investors, 42x speed, fruit stages, Void Portal steps, and reset risk.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Reset Planning</p>
-          <h1>Sell Lemons Evolution Guide</h1>
-          <p>Evolution can bring a reported 42x speed layer, but it can also reset investors and powers. Treat it as a rebuild decision, not a free upgrade button.</p>
+          <h1>Sell Lemons Evolution Requirements Chart</h1>
+          <p>Use this reported requirements chart to compare fruit stages, investor gates, 42x speed claims, and reset risk before evolving. Every number remains reported or pending until checked in-game.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons evolution guide with speed route planning" width="894" height="500" />
       </div>
     </section>
 
     <article class="guide-detail">
-      <p class="evidence-note">Reported mechanic: players describe evolution as a major speed layer. Treat exact multiplier and requirement numbers as pending unless checked in-game.</p>
+      <p class="evidence-note">Reported mechanic: players describe evolution as a major speed layer. Treat exact multiplier and requirement numbers as reported or pending unless checked in-game.</p>
 
-      <h2>Evolution Decision Flow</h2>
+      <h2>Sell Lemons Evolution Requirements Chart</h2>
+      <div class="route-table">
+        {requirementRows.map((row) => (
+          <div>
+            <strong>{row.evolution} <span class="tag">{row.status}</span></strong>
+            <span>{row.fruit}: {row.investors}; {row.speed}; unlock note: {row.unlocks}.</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>What Evolution Changes</h2>
       <div class="info-grid">
         <section class="guide-step-card">
           <span class="tag">reported</span>
-          <h3>1. Confirm rebuild speed</h3>
-          <p>Reset only when your early income and key unlock path can rebuild quickly. If the first stages still feel slow, upgrade income sources and automation first.</p>
+          <h3>Investor requirement</h3>
+          <p>Evolution is reported as a reset layer that starts around a large investor gate, with later fruit stages requiring more progress.</p>
         </section>
         <section class="guide-step-card">
           <span class="tag">reported</span>
-          <h3>2. Check investor scaling</h3>
-          <p>Investor progress matters because it supports later reset layers. Compare your current route against the rebirth guide before pressing a reset button.</p>
+          <h3>Total speed multiplier</h3>
+          <p>Community sources describe a 42x Global Speed layer, but this site has not verified the live multiplier.</p>
         </section>
         <section class="guide-step-card">
-          <span class="tag">pending</span>
-          <h3>3. Watch the Void route</h3>
-          <p>Void-related upgrades and event timing can change which purchase is best. Use the profit calculator when comparing a slow source against a global multiplier.</p>
+          <span class="tag">reported</span>
+          <h3>Reset losses</h3>
+          <p>Evolution can reset or consume progress. Treat it as a rebuild decision, not a free upgrade.</p>
         </section>
       </div>
 
-      <h2>Fruit Chain</h2>
+      <h2>How to Unlock the Void Portal</h2>
       <ol class="mobile-step-list">
-        {fruitChain.map((item) => <li>{item}</li>)}
+        {portalSteps.map((item) => <li>{item}</li>)}
       </ol>
 
       <h2>What Resets</h2>
       <div class="route-table">
         {resetLosses.map((item) => (
+          <div>
+            <strong>{item.label} <span class="tag">{item.status}</span></strong>
+            <span>{item.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2>When to Evolve</h2>
+      <div class="route-table">
+        {evolveChecks.map((item) => (
           <div>
             <strong>{item.label} <span class="tag">{item.status}</span></strong>
             <span>{item.value}</span>
@@ -136,6 +185,18 @@ const youtubeEmbeds = [
         note="youtube_embed: these videos are visual route examples only. They do not verify the 42x value, investor threshold, or fruit chain requirements."
         videos={youtubeEmbeds}
       />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
 
       <h2>Internal Planning Links</h2>
       <div class="mini-table">

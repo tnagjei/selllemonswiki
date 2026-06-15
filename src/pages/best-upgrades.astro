@@ -1,138 +1,152 @@
 ---
-// input: siteConfig, evidenceNotice from config and reported-guides
-// output: Dedicated guide detailing upgrade rankings, priority matrix, and optimal builds
+// input: Reported upgrade priorities, gamepass ROI questions, buyer profiles, and video references
+// output: Sell Lemons best upgrades page with conservative gamepass guidance and evidence-labeled ROI risk
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/best-upgrades.astro (更新规则：文件变更需同步本目录 README与文件头注释)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import ArticleAd from "../components/ArticleAd.astro";
-import { siteConfig } from "../data/config";
-import { evidenceNotice } from "../data/reported-guides";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const upgradeRows = [
+  { tier: "S", name: "Alien Investor scaling", status: "reported", value: "Best when you are planning rebirth, evolution, or long-run multiplier progress." },
+  { tier: "S", name: "Cash Register Automator", status: "reported", value: "High early utility because it reduces manual stand collection during rebuilds." },
+  { tier: "A", name: "LemonDash route upgrades", status: "reported", value: "Useful when delivery income beats your current stand income per minute." },
+  { tier: "A", name: "Manager automation", status: "reported", value: "Worth checking when active routes become slower than repeated rebuild chores." },
+  { tier: "B", name: "Labs permanent upgrades", status: "pending", value: "Potentially strong if the upgrade survives the reset layer you are targeting." },
+  { tier: "B", name: "Stand and customer upgrades", status: "estimated", value: "Good early, but compare payback time against route unlocks first." },
+  { tier: "C", name: "Required decorations", status: "estimated", value: "Buy only when they unlock the next required button or completion path." },
+  { tier: "D", name: "Cosmetic-only purchases", status: "estimated", value: "Low economic priority unless you are finished with income goals." }
+];
+
+const gamepassRows = [
+  { name: "2x Cash", buyer: "Active players with stable session time", risk: "Robux cost can be inefficient if you reset before the pass changes your real route.", status: "reported" },
+  { name: "Remote Buy", buyer: "Players who lose time walking between buttons", risk: "Convenience may feel strong while payback remains hard to measure.", status: "reported" },
+  { name: "24h Instant Profit", buyer: "Only players who understand the timing cost", risk: "One-time value can underperform a permanent route upgrade.", status: "pending" },
+  { name: "Forever Purchase token", buyer: "Late reset planners", risk: "Poor target choice can lock value into a low-impact button.", status: "reported" }
+];
+
+const buyerCards = [
+  { title: "Free player", status: "estimated", note: "Prioritize automators, Alien Investor scaling, and route unlocks before any cosmetic or low-payback purchase." },
+  { title: "Light spender", status: "estimated", note: "Compare 2x Cash or Remote Buy against your actual session length before spending Robux." },
+  { title: "Endgame buyer", status: "reported", note: "Permanent reset-layer value matters more than short one-time profit bursts." }
+];
+
+const unsafeClaims = [
+  { title: "Off-platform reward claims", status: "unsafe", note: "Do not enter account details or payment details outside Roblox for promised rewards." },
+  { title: "Automation shortcuts", status: "unsafe", note: "Avoid tools that bypass normal play. They can violate platform rules and make guide data unreliable." },
+  { title: "Exact payout claims", status: "disputed", note: "Treat payout promises as disputed unless the result is visible in the current game." }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "I Made 131.54DD With New 2x Cash in Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/xm9KavCIKdA",
+    sourceUrl: "https://www.youtube.com/watch?v=xm9KavCIKdA",
+    status: "youtube_embed",
+    note: "Visual reference for 2x Cash interest. It does not prove ROI for your account."
+  },
+  {
+    title: "I Bought Instant Cash to Beat Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/X7MN3G9C-Iw",
+    sourceUrl: "https://www.youtube.com/watch?v=X7MN3G9C-Iw",
+    status: "youtube_embed",
+    note: "Reference for paid shortcut demand. Treat outcomes as video context, not a purchase recommendation."
+  }
+];
+
+const faqItems = [
+  { question: "What is the best Sell Lemons gamepass?", answer: "There is no verified universal best gamepass. 2x Cash and Remote Buy are common candidates, but ROI depends on session length, reset timing, and your current bottleneck." },
+  { question: "Should I buy Remote Buy early?", answer: "Only if walking time is slowing your actual route. If income is still the bottleneck, a normal upgrade can be better." },
+  { question: "Are paid upgrades required?", answer: "No. This page keeps Robux purchases separate from normal progression because a free route should still be understandable." },
+  { question: "Can videos prove an upgrade is best?", answer: "No. Videos can show how an upgrade looks, but they do not verify payback time for every account." }
+];
 ---
 
-<SiteLayout title="Sell Lemons Best Upgrades Ranking | Optimal Build Priority" description="Check the best upgrades, automators, and gamepasses in Roblox Sell Lemons. Maximize your Rebirth efficiency with the active and passive meta builds.">
+<SiteLayout title="Sell Lemons Best Gamepasses and Upgrade ROI" description="Compare Sell Lemons best upgrades, gamepasses, 2x Cash, Remote Buy, ROI risk, buyer profiles, and safe upgrade priority before spending cash or Robux.">
   <main>
-    <!-- Page Hero Section -->
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
-          <p class="eyebrow">Rankings & Meta</p>
+          <p class="eyebrow">Upgrade ROI</p>
           <h1>Sell Lemons Best Upgrades Ranking</h1>
-          <p>Check our weekly updated priorities matrix to find the absolute best upgrades, automators, and gamepasses to optimize your fast-progression loop.</p>
+          <p>Compare reported upgrade priority, gamepass value, and reset timing before spending cash or Robux. The goal is not to hype one purchase, but to identify the bottleneck that actually slows your route.</p>
         </div>
-        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons best upgrades priority rankings" width="894" height="500" />
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons best upgrades and gamepass ROI ranking" width="894" height="500" />
       </div>
     </section>
 
-    <!-- Main Guide Body -->
     <article class="guide-detail">
       <ArticleAd />
+
       <h2>The Upgrade Priority Matrix</h2>
-      <div class="guide-step-flow">
-        
-        <!-- S-Rank -->
-        <section class="guide-step-card" style="border-left: 4px solid #ef4444;">
-          <h3 style="color: #ef4444; font-size: 1.3rem;">🔥 S-Rank — Essential Meta Upgrades</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">The most powerful systems in Sell Lemons. Essential for long-term progression speedruns.</p>
-          <ul>
-            <li><strong>Alien Investors (Core System):</strong> The main engine for your whole Rebirth loop. You need these points to unlock permanent, game-changing multiplier boosts.</li>
-            <li><strong>Expert Picker (Alien Power):</strong> Massively scales the cash rewards when you manually pick up loose floor fruits. This is the absolute best meta for active players trying to climb the leaderboard fast.</li>
-            <li><strong>Run Faster (Alien Power):</strong> Grants a massive speed boost, allowing you to zoom around the map and harvest spawned lemons way faster.</li>
-            <li><strong>Cash Register Automator (Base Automation):</strong> Automatically collects cash from your stand, removing finger click strain and making early game setup a breeze.</li>
-            <li><strong>2x Stand Cash (Premium Pass):</strong> Permanent double stand multiplier that compounds with all other multipliers from the second you spawn.</li>
-          </ul>
-        </section>
-
-        <!-- A-Rank -->
-        <section class="guide-step-card" style="border-left: 4px solid #3b82f6;">
-          <h3 style="color: #3b82f6; font-size: 1.3rem;">⚡ A-Rank — High Efficiency Upgrades</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Improves income scaling speed and automation efficiency in mid-game progression.</p>
-          <ul>
-            <li><strong>LemonDash Garage (Logistics):</strong> Unlocks the racing delivery minigame which yields huge startup cash injections.</li>
-            <li><strong>LemonDash Manager (Automation):</strong> Passively completes deliveries for you so you can continue running around the map harvesting fruits.</li>
-            <li><strong>LemonDash Delivery Fees (Logistics):</strong> Permanently increases the baseline payout of delivery minigame phone contracts.</li>
-            <li><strong>Vehicle Speed (Logistics):</strong> Speeds up your delivery truck, decreasing automated run times and raising cash rate speeds.</li>
-            <li><strong>Depot Manager (Base Automation):</strong> Automatically steps on physical base buttons, freeing you from manual construction routines.</li>
-          </ul>
-        </section>
-
-        <!-- B-Rank -->
-        <section class="guide-step-card" style="border-left: 4px solid #f59e0b;">
-          <h3 style="color: #f59e0b; font-size: 1.3rem;">✨ B-Rank — Situational & Mid-Game Upgrades</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Useful for early-to-mid progression, but becomes less efficient once late-game automation is running.</p>
-          <ul>
-            <li><strong>Labs Permanent Upgrades (Base Tech):</strong> A late-game technology tree containing crucial multipliers that survive Evolve resets.</li>
-            <li><strong>Cup Stand Upgrade (Base Progression):</strong> Provides a steady, reliable stream of passive background cash for your stand.</li>
-            <li><strong>Depot Per-Click (Active):</strong> Buffs click rewards inside the factory. Perfect if you run auto-clickers or macros.</li>
-            <li><strong>Depot Multipliers (Active):</strong> Triggers massive, temporary multiplier spikes while you click inside the Depot.</li>
-            <li><strong>Street Flyers (Base Progression):</strong> Attracts more customers to your starting lemonade stands, slightly boosting early stand cash flow.</li>
-            <li><strong>Trading Manager (Automation):</strong> Automates futures trading and resource exchange without manual terminal interaction.</li>
-          </ul>
-        </section>
-
-        <!-- C-Rank -->
-        <section class="guide-step-card" style="border-left: 4px solid #10b981;">
-          <h3 style="color: #10b981; font-size: 1.3rem;">🟢 C-Rank — Low Efficiency Upgrades</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Basic systems that are quickly outscaled by active gathering and delivery loops.</p>
-          <ul>
-            <li><strong>Required Decorations (Blockers):</strong> A mandatory cash trap. The game forces you to buy these signs, walls, and lights simply to spawn the next progression buttons.</li>
-            <li><strong>Main Lemon Stands (Base Progression):</strong> Basic passive stands. They are decent for early AFK but get outpaced by active picking.</li>
-          </ul>
-        </section>
-
-        <!-- D-Rank -->
-        <section class="guide-step-card" style="border-left: 4px solid #64748b;">
-          <h3 style="color: #64748b; font-size: 1.3rem;">⚪ D-Rank — Cosmetic & Trap Items</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Zero impact on economic progression. Avoid spending money on these early.</p>
-          <ul>
-            <li><strong>Cosmetic Fences & Signs:</strong> Yields zero stat buffs. Only purchase right before resetting to claim the 100% completion speed bonus.</li>
-            <li><strong>Cosmetic Skins:</strong> Visually customized base looks. Offers no economic progression value.</li>
-            <li><strong>24h Instant Profit (Consumables):</strong> A premium Robux trap. Avoid unless popped during active high-value weather multiplier events.</li>
-          </ul>
-        </section>
-
+      <div class="route-table">
+        {upgradeRows.map((row) => (
+          <div>
+            <strong>{row.tier}-Tier: {row.name} <span class="tag">{row.status}</span></strong>
+            <span>{row.value}</span>
+          </div>
+        ))}
       </div>
 
-      <h2>Meta Progression Builds</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>The Active Fruit-Picking Build (Fast Rebirths)</h3>
-          <ul>
-            <li><strong>Core Powers:</strong> Expert Picker + Run Faster (Max these out with your Investor points first)</li>
-            <li><strong>Base Setup:</strong> Cash Register Automator + 2x Stand Cash (Purchase the gamepass if possible)</li>
-            <li><strong>Build Summary:</strong> This setup boosts manual gathering speed by over 1000%. It is the best strategy for free-to-play and micro-spending players to speedrun their first 20 Rebirth cycles and climb the leaderboards.</li>
-          </ul>
-        </section>
-
-        <section class="guide-step-card">
-          <h3>The Idle Automation Build (Mid-to-Late Game)</h3>
-          <ul>
-            <li><strong>Core Automation:</strong> LemonDash Manager + Depot Manager + Trading Manager</li>
-            <li><strong>Passive Boosts:</strong> Labs Permanent Upgrades + Street Flyers</li>
-            <li><strong>Build Summary:</strong> Perfect for hands-free progress or making money while away. The game grants 100% full offline income. Sleep for 8 hours and wake up with enough capital to trigger a major Ascension loop.</li>
-          </ul>
-        </section>
+      <h2>Best Sell Lemons Gamepasses</h2>
+      <p>Gamepasses should be judged by time saved, rebuild speed, and whether they still matter after a reset. A purchase that feels fast for one run can still be weak if it does not help your next bottleneck.</p>
+      <div class="route-table">
+        {gamepassRows.map((row) => (
+          <div>
+            <strong>{row.name} <span class="tag">{row.status}</span></strong>
+            <span>Best fit: {row.buyer}. Risk: {row.risk}</span>
+          </div>
+        ))}
       </div>
 
-      <!-- What to Do Next Section -->
-      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
-        <header class="guide-what-next__head">
-          <span class="guide-what-next__icon" aria-hidden="true">⚡</span>
-          <h2 id="guide-what-next-title">What to Do Next</h2>
-        </header>
-        <div class="guide-what-next__divider" aria-hidden="true">
-          <span></span>
-          <span class="guide-what-next__diamond"></span>
-          <span></span>
-        </div>
-        <a class="guide-what-next__cta" href="/money-fast/">
-          <span class="guide-what-next__cta-arrow" aria-hidden="true">⚡</span>
-          <span class="guide-what-next__cta-copy">
-            <strong>👉 Learn How to Make Money Fast</strong>
-            <span>Explore the best active and passive money-making strategies to compound your wealth.</span>
-          </span>
-          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-        </a>
-      </section>
+      <h2>Buyer Profiles</h2>
+      <div class="info-grid">
+        {buyerCards.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <h2>Unsafe Upgrade Advice to Avoid</h2>
+      <div class="info-grid">
+        {unsafeClaims.map((item) => (
+          <section class="guide-step-card">
+            <span class="tag">{item.status}</span>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </section>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="best-upgrades-video-guides"
+        title="Gamepass Video References"
+        note="youtube_embed: these videos show paid-upgrade interest and gameplay examples, but they do not verify upgrade ROI."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <h2>What to Check Next</h2>
+      <div class="mini-table">
+        <a href="/profit-calculator/">Calculate upgrade ROI</a>
+        <a href="/income-sources/">Compare income sources</a>
+        <a href="/money-fast/">Plan fast money route</a>
+        <a href="/rebirths/">Check rebirth timing</a>
+      </div>
 
       <RelatedGuides currentSlug="best-upgrades" />
     </article>

@@ -1,86 +1,152 @@
 ---
-// input: siteConfig, evidenceNotice from config and reported-guides
-// output: High-fidelity step-by-step rebirth guide matching competitor framework
+// input: Reported rebirth timing thresholds, reset losses, rebuild checks, and video references
+// output: Sell Lemons rebirth guide with when-to-rebirth anchor, conservative 350% label, and reset planning
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/rebirths.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
 import ArticleAd from "../components/ArticleAd.astro";
-import { siteConfig } from "../data/config";
-import { evidenceNotice } from "../data/reported-guides";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
+
+const resetRows = [
+  { label: "Cash and bought buttons", status: "reported", value: "Expect a rebuild after rebirth. Do not reset if your route cannot recover quickly." },
+  { label: "Alien Investor bonus", status: "reported", value: "The long-term reason to rebirth is permanent scaling, but exact best thresholds remain community-reported." },
+  { label: "Managers and automators", status: "reported", value: "Plan how fast you can buy back early automation after the reset." },
+  { label: "Current route progress", status: "estimated", value: "Delay rebirth if you are one step away from a key route, badge route, or evolution check." }
+];
+
+const timingRows = [
+  { label: "Under 200% investor bonus", status: "pending", value: "Usually too early unless you are testing or recovering from a bad route." },
+  { label: "Around 200% to 350%", status: "reported", value: "Common community decision range. Use calculator checks before resetting." },
+  { label: "350% plus", status: "community-reported", value: "Often described as a stronger target, but this site does not treat it as verified." },
+  { label: "Route nearly complete", status: "estimated", value: "Finish the current high-value unlock first if it is close and does not block reset scaling." }
+];
+
+const recoverySteps = [
+  "Buy the starter income source first instead of chasing expensive late buttons.",
+  "Recover manual cash flow, then rebuild the first automator or manager.",
+  "Check whether the new investor bonus makes the old route faster within a few minutes.",
+  "If recovery is slow, record the bottleneck before planning the next rebirth."
+];
+
+const youtubeEmbeds = [
+  {
+    title: "How To REBIRTH in Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/GqkESwDi48Y",
+    sourceUrl: "https://www.youtube.com/watch?v=GqkESwDi48Y",
+    status: "youtube_embed",
+    note: "Visual rebirth reference only. It does not verify the best multiplier threshold."
+  },
+  {
+    title: "I Got My First Rebirth in Sell Lemons Roblox",
+    embedUrl: "https://www.youtube-nocookie.com/embed/oSaLuntyIw8",
+    sourceUrl: "https://www.youtube.com/watch?v=oSaLuntyIw8",
+    status: "youtube_embed",
+    note: "Shows first-rebirth flow as a player example, not a universal timing rule."
+  },
+  {
+    title: "Sell Lemons Rebirth Guide",
+    embedUrl: "https://www.youtube-nocookie.com/embed/32dPqoTI7ok",
+    sourceUrl: "https://www.youtube.com/watch?v=32dPqoTI7ok",
+    status: "youtube_embed",
+    note: "Supplemental route context. Verify current in-game values before resetting."
+  }
+];
+
+const faqItems = [
+  { question: "When should I rebirth in Sell Lemons?", answer: "Use the reported 200% to 350% range as a planning signal, then check whether you can rebuild core income quickly." },
+  { question: "Is 350% verified as the best rebirth point?", answer: "No. 350% is community-reported and remains pending on this site until direct live evidence confirms it." },
+  { question: "What is the biggest rebirth mistake?", answer: "Resetting while your current route is close to a higher-value unlock or while your rebuild path is still slow." },
+  { question: "Should I rebirth before evolution?", answer: "Compare both reset layers. Rebirth is usually an investor-scaling decision, while evolution is a larger reported speed-layer decision." }
+];
 ---
 
-<SiteLayout title="Sell Lemons Rebirth Guide | Optimal Evolve Milestones & Reset Recovery" description="Use this Sell Lemons rebirth guide to master evolve milestones, permanent boosts, the community 350% multiplier sweet spot, and post-reset recovery strategy.">
+<SiteLayout title="Sell Lemons When to Rebirth: Timing and Reset Guide" description="Learn when to rebirth in Sell Lemons with reported 200% to 350% investor timing, reset losses, rebuild steps, and video references.">
   <main>
-    <!-- Page Hero Section -->
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
-          <p class="eyebrow">Prestige Strategy</p>
-          <h1>The Ultimate Rebirth Blueprint: Maximize Multipliers</h1>
-          <p>Ready to reset your base for permanent multipliers? Learn why you must wait for the community-verified 350% investor sweet spot and how to execute the 180-second post-reset recovery walkthrough to secure maximum growth.</p>
+          <p class="eyebrow">Reset Timing</p>
+          <h1>Sell Lemons Rebirth Guide</h1>
+          <p>Use this guide to decide when to rebirth, what resets, and how to rebuild. The 350% target is community-reported, not verified, so treat it as a planning range rather than a fixed rule.</p>
         </div>
-        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons rebirth guide" width="894" height="500" />
+        <img src="/sell_lemons_hero_main.png" alt="Sell Lemons rebirth timing and reset guide" width="894" height="500" />
       </div>
     </section>
 
-    <!-- Detailed Guide Content -->
     <article class="guide-detail">
       <ArticleAd />
-      <h2>The Rebirth & Evolution Road Map</h2>
-      <div class="guide-step-flow">
-        <section class="guide-step-card">
-          <h3>Step 1: Evolve Valuation Thresholds</h3>
-          <ul>
-            <li><strong>The Milestone Target:</strong> You unlock the Rebirth feature when your total base valuation hits roughly 50 to 100 Sextillion. Valuation includes spent cash, bought buttons, and structures.</li>
-            <li><strong>Action Blueprint:</strong> Do not rush into resetting. Keep pushing upgrades until you reach Evolution 6 (requiring cash/base valuation between 50 to 100 Octillion alongside a high count of Investors) which grants your base a permanent 42x income speed buff.</li>
-          </ul>
-        </section>
 
-        <section class="guide-step-card">
-          <h3>Step 2: The Community 350% Sweet Spot Rule</h3>
-          <ul>
-            <li><strong>The Milestone Target:</strong> To scale your investor income, you must collect permanent Alien Investor percentage multipliers.</li>
-            <li><strong>Action Blueprint:</strong> NEVER Rebirth under a 200% investor bonus! The ultimate community-verified sweet spot is 350%+. Resetting at 350% multiplies your income so drastically that your new multipliers allow you to buy back your automated stand loops in less than 60 seconds.</li>
-          </ul>
-        </section>
+      <h2>What Rebirth Resets</h2>
+      <div class="route-table">
+        {resetRows.map((row) => (
+          <div>
+            <strong>{row.label} <span class="tag">{row.status}</span></strong>
+            <span>{row.value}</span>
+          </div>
+        ))}
+      </div>
 
-        <section class="guide-step-card">
-          <h3>Step 3: The 180-Second Post-Reset Recovery Speedrun</h3>
-          <ul>
-            <li><strong>The Milestone Target:</strong> Recover your automated income stream immediately after a reset.</li>
-            <li><strong>Action Blueprint:</strong> Immediately upon resetting, buy back the starter stand, click manually to purchase the Juicer ($450), and get the Cash Register Automator ($2,100). Because of your new 350% multiplier, you will accumulate the necessary cash in under 3 minutes without grinding.</li>
-          </ul>
-        </section>
+      <h2 id="when-to-rebirth">When to Rebirth in Sell Lemons</h2>
+      <p>A rebirth is worth considering when the permanent investor gain beats the value of continuing your current route. The important question is not only the displayed percentage, but how quickly you can rebuild after the reset.</p>
+      <div class="route-table">
+        {timingRows.map((row) => (
+          <div>
+            <strong>{row.label} <span class="tag">{row.status}</span></strong>
+            <span>{row.value}</span>
+          </div>
+        ))}
+      </div>
 
+      <h2>Post-Rebirth Recovery Steps</h2>
+      <ol class="mobile-step-list">
+        {recoverySteps.map((step) => <li>{step}</li>)}
+      </ol>
+
+      <h2>Why Early Rebirth Can Be a Mistake</h2>
+      <div class="info-grid">
         <section class="guide-step-card">
-          <h3>Step 4: Forever Purchase Token Allocation</h3>
-          <ul>
-            <li><strong>The Milestone Target:</strong> Make key upgrades permanent across all future Ascensions.</li>
-            <li><strong>Action Blueprint:</strong> You receive a Forever Purchase token upon successfully completing an Ascension (or for 1,499 Robux). Always prioritize the 42x Global Cash Upgrade button as your first Forever Purchase candidate. Alternative good targets are the two 16x Global Cash upgrades.</li>
-          </ul>
+          <span class="tag">estimated</span>
+          <h3>Slow rebuild</h3>
+          <p>If early automation takes too long to recover, the reset can feel weaker than waiting for more investor bonus.</p>
+        </section>
+        <section class="guide-step-card">
+          <span class="tag">reported</span>
+          <h3>Route interruption</h3>
+          <p>Key, badge, evolution, and ascension routes can lose momentum if you reset before finishing a nearby checkpoint.</p>
+        </section>
+        <section class="guide-step-card">
+          <span class="tag">pending</span>
+          <h3>Threshold confusion</h3>
+          <p>Community thresholds are useful, but they are not official instructions. Keep screenshots or notes if you test them.</p>
         </section>
       </div>
 
-      <!-- What to Do Next Section -->
-      <section class="guide-what-next" aria-labelledby="guide-what-next-title">
-        <header class="guide-what-next__head">
-          <span class="guide-what-next__icon" aria-hidden="true">🔑</span>
-          <h2 id="guide-what-next-title">What to Do Next</h2>
-        </header>
-        <div class="guide-what-next__divider" aria-hidden="true">
-          <span></span>
-          <span class="guide-what-next__diamond"></span>
-          <span></span>
-        </div>
-        <a class="guide-what-next__cta" href="/deals/">
-          <span class="guide-what-next__cta-arrow" aria-hidden="true">🔑</span>
-          <span class="guide-what-next__cta-copy">
-            <strong>👉 Discover Map Secrets</strong>
-            <span>Solve the sewer mazes, get the UFO key, and unlock hidden endgame areas.</span>
-          </span>
-          <span class="guide-what-next__cta-chevron" aria-hidden="true">&gt;</span>
-        </a>
-      </section>
+      <VideoGuideBlock
+        id="rebirth-video-guides"
+        title="Rebirth Video References"
+        note="youtube_embed: these videos are visual examples only. They do not verify the best rebirth percentage."
+        videos={youtubeEmbeds}
+      />
+
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-card">
+            <summary>{item.question}</summary>
+            <div class="faq-card__body">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <h2>What to Check Next</h2>
+      <div class="mini-table">
+        <a href="/profit-calculator/">Estimate rebuild time</a>
+        <a href="/best-upgrades/">Compare upgrade priority</a>
+        <a href="/evolution/">Review evolution requirements</a>
+        <a href="/ascension/">Plan ascension</a>
+      </div>
 
       <RelatedGuides currentSlug="rebirths" />
     </article>

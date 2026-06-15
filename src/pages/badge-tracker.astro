@@ -1,26 +1,85 @@
 ---
-// input: Reported badge names, status labels, and player checklist state saved in localStorage
-// output: Sell Lemons badge tracker page with evidence-labeled badge progress checkboxes
+// input: Reported badge names, Dad's Mission notes, hidden badge videos, and localStorage checklist state
+// output: Sell Lemons badge tracker page with all-badge checklist, secret badge guidance, and evidence labels
 // pos: /Users/tangjei/Documents/建站/游戏站/selllemonswiki/src/pages/badge-tracker.astro (更新规则：文件变更需同步本注释与所属目录 README)
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelatedGuides from "../components/RelatedGuides.astro";
+import VideoGuideBlock from "../components/VideoGuideBlock.astro";
 
 const badges = [
-  { name: "Good Samaritan", status: "community-reported", note: "Reported route tied to the sewer and UFO key path." },
-  { name: "UFO Key", status: "pending", note: "Track after the Good Samaritan route is complete." },
-  { name: "Cosmic Cash Vines", status: "pending", note: "Reported vault route reward inside the underground area." },
-  { name: "First Ascension", status: "pending", note: "Late-game milestone tied to stairway completion and reset readiness." }
+  { name: "Dad's Mission", type: "story", status: "reported", note: "Reported mission chain tied to Dad's requests and route progression." },
+  { name: "Good Samaritan", type: "hidden", status: "reported", note: "Reported sewer and UFO key path badge. Confirm the current route in-game." },
+  { name: "We Are So Back", type: "hidden", status: "reported", note: "Community videos list this as a hidden badge route; exact trigger remains unverified here." },
+  { name: "Cosmic Farmer", type: "hidden", status: "reported", note: "Reported Cosmic Cash Vine route badge connected to the underground area." },
+  { name: "Purity", type: "endgame", status: "pending", note: "Late evolution endpoint badge signal. Keep pending until a current live check confirms it." },
+  { name: "First Lemonade", type: "progress", status: "pending", note: "Starter progress badge candidate. Use the checkbox only for personal tracking." },
+  { name: "First Customer", type: "progress", status: "pending", note: "Early stand milestone candidate from community checklist patterns." },
+  { name: "Cash Register", type: "progress", status: "pending", note: "Reported early automation checkpoint. Not independently verified by this site." },
+  { name: "LemonDash Rookie", type: "route", status: "pending", note: "Delivery route milestone candidate for players tracking LemonDash progress." },
+  { name: "LemonDash Driver", type: "route", status: "pending", note: "Reported delivery progression badge candidate." },
+  { name: "Sewer Explorer", type: "route", status: "reported", note: "Track after entering the sewer route or maze path." },
+  { name: "Lever Solver", type: "route", status: "reported", note: "Use with the lever sequence checklist when testing badge progress." },
+  { name: "Sewer Key", type: "route", status: "reported", note: "Reported key route badge candidate around sewer completion." },
+  { name: "UFO Key", type: "route", status: "pending", note: "Track after the Good Samaritan route is complete." },
+  { name: "Alien Contact", type: "secret", status: "pending", note: "Secret route candidate. Do not treat as verified without live evidence." },
+  { name: "Investor Boost", type: "reset", status: "pending", note: "Alien Investor milestone candidate for reset planning." },
+  { name: "First Rebirth", type: "reset", status: "pending", note: "Personal checkpoint for first reset completion." },
+  { name: "Rebuild Ready", type: "reset", status: "pending", note: "Use after confirming your post-reset rebuild route works." },
+  { name: "Evolution Ready", type: "evolution", status: "reported", note: "Track when the evolution menu or portal condition appears." },
+  { name: "Void Portal", type: "evolution", status: "reported", note: "Reported portal unlock checkpoint from evolution walkthroughs." },
+  { name: "Dragon Fruit", type: "evolution", status: "pending", note: "Fruit-chain badge candidate. Keep status pending until checked." },
+  { name: "Star Fruit", type: "evolution", status: "pending", note: "Advanced fruit-chain candidate from reported progression paths." },
+  { name: "Celestial Fruit", type: "evolution", status: "pending", note: "Late fruit-chain badge candidate." },
+  { name: "First Ascension", type: "endgame", status: "pending", note: "Late-game milestone tied to stairway completion and reset readiness." }
+];
+
+const dadMissionSteps = [
+  "Check Dad's request before buying unrelated expensive buttons.",
+  "Finish the visible route requirement, then return to the mission source before assuming the badge failed.",
+  "If the mission text changes after a reset, record the new step and keep the tracker label pending.",
+  "Do not follow off-platform reward claims. This page only tracks in-game badge progress."
+];
+
+const secretBadgeRows = [
+  { badge: "Good Samaritan", route: "Sewer and UFO path", status: "reported" },
+  { badge: "We Are So Back", route: "Hidden badge video route", status: "reported" },
+  { badge: "Cosmic Farmer", route: "Cosmic Cash Vine route", status: "reported" },
+  { badge: "Purity", route: "Late evolution endpoint", status: "pending" }
+];
+
+const youtubeEmbeds = [
+  {
+    title: "How To GET HIDDEN BADGES in Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/EuM8sjcXEQM",
+    sourceUrl: "https://www.youtube.com/watch?v=EuM8sjcXEQM",
+    status: "youtube_embed",
+    note: "Visual hidden-badge reference only. It does not independently verify the live route."
+  },
+  {
+    title: "Unlocking ALL 24 Badges in Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/BohBLcUBd_k",
+    sourceUrl: "https://www.youtube.com/watch?v=BohBLcUBd_k",
+    status: "youtube_embed",
+    note: "Useful checklist context, but badge names and triggers remain reported or pending here."
+  },
+  {
+    title: "How To GET ALL HIDDEN BADGES in Sell Lemons",
+    embedUrl: "https://www.youtube-nocookie.com/embed/ana7qUWXtWA",
+    sourceUrl: "https://www.youtube.com/watch?v=ana7qUWXtWA",
+    status: "youtube_embed",
+    note: "Reference for secret badge search intent. Use in-game confirmation before marking routes as proven."
+  }
 ];
 ---
 
-<SiteLayout title="Sell Lemons Badge Tracker | Sewer, UFO and Badge Checklist" description="Track Sell Lemons badges with community-reported labels, pending checks, sewer route notes, UFO key progress, and reset milestones.">
+<SiteLayout title="Sell Lemons Badges and Dad's Mission Tracker" description="Track Sell Lemons badges, Dad's Mission, secret badges, hidden badge routes, and all-badge progress with reported and pending evidence labels.">
   <main>
     <section class="page-hero guide-detail-hero">
       <div class="wrap page-hero__grid">
         <div>
           <p class="eyebrow">Evidence Tracker</p>
           <h1>Sell Lemons Badge Tracker</h1>
-          <p>Use this tracker to separate completed player progress from verified evidence. A checkbox is personal progress, not proof that the badge route is current for everyone.</p>
+          <p>Use this tracker for Sell Lemons badges, Dad's Mission, and secret badge progress. A checkbox is personal progress, not proof that the badge route is current for everyone.</p>
         </div>
         <img src="/sell_lemons_hero_main.png" alt="Sell Lemons badge tracker checklist" width="894" height="500" />
       </div>
@@ -30,21 +89,44 @@ const badges = [
       <section class="tool-panel" aria-labelledby="badge-tracker-title">
         <div>
           <p class="eyebrow">Badge Checklist</p>
-          <h2 id="badge-tracker-title">Reported Badge Progress</h2>
-          <p class="evidence-note">A status of pending means the site has not independently verified the live route. Keep labels conservative until direct proof exists.</p>
+          <h2 id="badge-tracker-title">All Sell Lemons Badges</h2>
+          <p class="evidence-note">A status of pending means the site has not independently verified the live route. This is a 24-item tracker built from reported community routes, so keep labels conservative until direct proof exists.</p>
         </div>
         <ol class="checklist" id="badgeTracker">
           {badges.map((badge, index) => (
             <li>
               <label>
                 <input type="checkbox" data-badge={String(index)} />
-                <span><strong>{badge.name}</strong> <em>{badge.status}</em> {badge.note}</span>
+                <span><strong>{badge.name}</strong> <em>{badge.type} · {badge.status}</em> {badge.note}</span>
               </label>
             </li>
           ))}
         </ol>
         <button class="button secondary tool-button" type="button" id="resetBadgeTracker">Reset Tracker</button>
       </section>
+
+      <h2>Dad's Mission Badge Notes</h2>
+      <p>Dad's Mission is treated as a reported story-route badge chain. Follow visible in-game prompts first, then use this page to remember which route steps still need a live check.</p>
+      <ol class="mobile-step-list">
+        {dadMissionSteps.map((step) => <li>{step}</li>)}
+      </ol>
+
+      <h2>Secret Badges to Watch</h2>
+      <div class="route-table">
+        {secretBadgeRows.map((row) => (
+          <div>
+            <strong>{row.badge} <span class="tag">{row.status}</span></strong>
+            <span>{row.route}</span>
+          </div>
+        ))}
+      </div>
+
+      <VideoGuideBlock
+        id="badge-video-guides"
+        title="Hidden Badge Video References"
+        note="youtube_embed: these videos are route references only. They do not turn a reported badge into a verified live badge."
+        videos={youtubeEmbeds}
+      />
 
       <h2>Badge Route Links</h2>
       <div class="mini-table">
